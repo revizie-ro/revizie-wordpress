@@ -163,8 +163,77 @@ get_header();
     </div>
   </section>
 
+  <!-- carVertical -20% promo (exclusive for revizie.ro users) -->
+  <section class="py-20 bg-surface-muted relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30 pointer-events-none">
+      <div class="absolute top-10 right-10 w-72 h-72 bg-info/20 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-10 left-10 w-64 h-64 bg-accent/15 rounded-full blur-[90px]"></div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-6">
+      <div class="bg-card rounded-3xl border border-info/25 shadow-xl overflow-hidden">
+        <div class="grid lg:grid-cols-5 gap-0">
+          <!-- Left: badge + headline + copy -->
+          <div class="lg:col-span-3 p-8 sm:p-12">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-info/15 rounded-full text-info text-sm font-semibold mb-5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+              Parteneriat carVertical
+            </div>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
+              Verifica istoricul oricarei masini
+              <span class="block text-info">cu 20% reducere</span>
+            </h2>
+
+            <p class="text-lg text-foreground-muted mb-6 leading-relaxed">
+              Inainte sa cumperi o masina second-hand, vezi tot ce trebuie sa stii: kilometraj real, accidente, fosti proprietari, daune declarate, date tehnice. Raport oficial generat in cateva minute, direct din contul tau revizie.ro.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 mb-8">
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-success/10 text-success rounded-full text-sm font-medium">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                Kilometraj real
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-success/10 text-success rounded-full text-sm font-medium">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                Istoric accidente
+              </span>
+              <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-success/10 text-success rounded-full text-sm font-medium">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                Date tehnice oficiale
+              </span>
+            </div>
+
+            <a href="https://app.revizie.ro/anunturi" class="group inline-flex items-center gap-2 px-7 py-3.5 bg-info hover:bg-info/90 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:shadow-info/30 transition-all">
+              Verifica un VIN
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Right: discount badge visual -->
+          <div class="lg:col-span-2 bg-gradient-to-br from-info via-info/80 to-accent flex items-center justify-center p-8 sm:p-12 relative">
+            <div class="absolute inset-0 opacity-20">
+              <div class="absolute top-8 right-8 w-32 h-32 bg-white rounded-full blur-2xl"></div>
+              <div class="absolute bottom-8 left-8 w-24 h-24 bg-white rounded-full blur-xl"></div>
+            </div>
+            <div class="relative text-center text-white">
+              <div class="text-sm font-medium uppercase tracking-wider mb-2 opacity-90">Reducere exclusiva</div>
+              <div class="text-7xl md:text-8xl font-bold leading-none mb-2">-20%</div>
+              <div class="text-lg font-semibold mb-1">la rapoartele carVertical</div>
+              <div class="text-sm opacity-90">doar pentru utilizatorii revizie.ro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Coming soon + single email capture -->
-  <section class="py-20 bg-surface-muted relative">
+  <section class="py-20 bg-card relative">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-12">
         <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-card border border-border rounded-full text-foreground-muted text-sm font-medium mb-4">
@@ -214,6 +283,60 @@ get_header();
         <p class="text-sm text-foreground-muted mb-5">Lasa-ti emailul si iti dam un singur mesaj scurt pentru fiecare lansare. Fara spam.</p>
         <?php revizie_render_waitlist_form('general', 'urmatoarele functii'); ?>
       </div>
+    </div>
+  </section>
+
+  <!-- Mobile apps coming soon -->
+  <section class="py-20 bg-surface-muted relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30 pointer-events-none">
+      <div class="absolute top-10 left-1/4 w-64 h-64 bg-accent/15 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-10 right-1/4 w-72 h-72 bg-info/15 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="relative max-w-5xl mx-auto px-6">
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-soft border border-accent/20 rounded-full text-accent-strong text-sm font-semibold mb-4">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+          Aplicatii de mobil
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-3">In curand pe iPhone si Android</h2>
+        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
+          Aplicatiile native vin imediat dupa lansarea web-ului. Garajul tau, asigurarile si scadentele - direct in buzunar.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <!-- App Store badge (coming soon) -->
+        <div class="inline-flex items-center gap-3 px-6 py-3 bg-card border border-border rounded-2xl shadow-sm opacity-90">
+          <svg class="w-9 h-9 text-foreground" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+          <div class="text-left">
+            <div class="text-xs text-foreground-muted leading-tight">In curand pe</div>
+            <div class="text-base font-bold text-foreground leading-tight">App Store</div>
+          </div>
+        </div>
+
+        <!-- Google Play badge (coming soon) -->
+        <div class="inline-flex items-center gap-3 px-6 py-3 bg-card border border-border rounded-2xl shadow-sm opacity-90">
+          <svg class="w-9 h-9" viewBox="0 0 24 24">
+            <path fill="#34A853" d="M3.609 1.814L13.792 12 3.609 22.186c-.31-.292-.5-.71-.5-1.186V3c0-.476.19-.894.5-1.186z"/>
+            <path fill="#FBBC04" d="M16.81 15.02l-2.07-2.07 2.07-2.07 3.18 1.82c.78.45.78 1.6 0 2.05l-3.18 1.82z" opacity=".9"/>
+            <path fill="#EA4335" d="M3.609 22.186L13.792 12l3.018 3.02-11.43 6.55c-.5.29-1.15.27-1.77-.38z" opacity=".9"/>
+            <path fill="#4285F4" d="M3.609 1.814L16.81 8.98 13.792 12 3.609 1.814z" opacity=".9"/>
+          </svg>
+          <div class="text-left">
+            <div class="text-xs text-foreground-muted leading-tight">In curand pe</div>
+            <div class="text-base font-bold text-foreground leading-tight">Google Play</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center text-sm text-foreground-subtle mt-8">
+        Pana atunci, <a href="https://app.revizie.ro" class="text-accent-strong hover:text-accent font-medium underline-offset-4 hover:underline">aplicatia web</a> functioneaza perfect pe orice telefon.
+      </p>
     </div>
   </section>
 
