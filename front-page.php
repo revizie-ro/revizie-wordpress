@@ -217,6 +217,17 @@ get_header();
     </div>
   </section>
 
+  <!-- Social -->
+  <section class="py-16 bg-card border-t border-border-subtle">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="text-2xl font-bold text-foreground mb-2">Urmareste-ne pe social</h2>
+      <p class="text-foreground-muted mb-6">Tips, noutati despre lansari si feedback rapid.</p>
+      <div class="flex items-center justify-center gap-4">
+        <?php revizie_render_social_links('card'); ?>
+      </div>
+    </div>
+  </section>
+
   <!-- Final CTA -->
   <section class="py-24 bg-gradient-to-br from-accent via-accent-hover to-accent-strong">
     <div class="max-w-4xl mx-auto px-6 text-center">

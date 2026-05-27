@@ -6,6 +6,9 @@
             <img src="<?php echo esc_url(revizie_get_logo_url()); ?>" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto object-contain">
           </div>
           <p class="text-foreground-subtle text-sm mb-4">Tot ce ai nevoie pentru intretinerea masinii, intr-un singur cont.</p>
+          <div class="flex items-center gap-2">
+            <?php revizie_render_social_links('light'); ?>
+          </div>
         </div>
 
         <div>

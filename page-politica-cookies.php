@@ -7,7 +7,7 @@ get_header();
 
   <main class="pt-24 pb-20">
     <div class="max-w-4xl mx-auto px-6">
-      <a href="<?php echo home_url('/'); ?>" class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors">
+      <a href="<?php echo home_url('/'); ?>" class="inline-flex items-center gap-2 text-foreground-muted hover:text-foreground mb-8 transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
         </svg>
@@ -15,28 +15,28 @@ get_header();
       </a>
 
       <div class="flex items-center gap-4 mb-8">
-        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-warning to-accent flex items-center justify-center">
           <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
         </div>
         <div>
-          <h1 class="text-3xl font-bold text-gray-900">Politica Cookies</h1>
-          <p class="text-gray-500">Ultima actualizare: 4 Ianuarie 2026</p>
+          <h1 class="text-3xl font-bold text-foreground">Politica Cookies</h1>
+          <p class="text-foreground-subtle">Ultima actualizare: 4 Ianuarie 2026</p>
         </div>
       </div>
 
       <div class="prose prose-lg max-w-none">
         <section class="mb-10">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">Ce sunt cookie-urile?</h2>
-          <div class="space-y-4 text-gray-700">
+          <h2 class="text-2xl font-bold text-foreground mb-4">Ce sunt cookie-urile?</h2>
+          <div class="space-y-4 text-foreground-muted">
             <p>Cookie-urile sunt fisiere text de mici dimensiuni stocate pe dispozitivul dumneavoastra (computer, telefon, tableta) atunci cand vizitati un website. Acestea permit site-ului sa va "aminteasca" - preferintele, actiunile si alte informatii.</p>
             <p>Cookie-urile sunt esentiale pentru functionarea moderna a internetului si nu pot accesa alte informatii de pe dispozitivul dumneavoastra.</p>
           </div>
         </section>
 
         <section class="mb-10">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">Tipuri de cookies utilizate</h2>
+          <h2 class="text-2xl font-bold text-foreground mb-4">Tipuri de cookies utilizate</h2>
 
           <div class="space-y-6">
             <div class="bg-green-50 border border-green-200 rounded-2xl p-6">
@@ -51,12 +51,12 @@ get_header();
                 <table class="w-full text-sm">
                   <thead>
                     <tr class="border-b">
-                      <th class="text-left py-2 font-semibold text-gray-700">Cookie</th>
-                      <th class="text-left py-2 font-semibold text-gray-700">Scop</th>
-                      <th class="text-left py-2 font-semibold text-gray-700">Durata</th>
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Cookie</th>
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Scop</th>
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Durata</th>
                     </tr>
                   </thead>
-                  <tbody class="text-gray-600">
+                  <tbody class="text-foreground-muted">
                     <tr class="border-b">
                       <td class="py-2">sb-auth-token</td>
                       <td class="py-2">Autentificare utilizator</td>
@@ -90,12 +90,12 @@ get_header();
                 <table class="w-full text-sm">
                   <thead>
                     <tr class="border-b">
-                      <th class="text-left py-2 font-semibold text-gray-700">Cookie</th>
-                      <th class="text-left py-2 font-semibold text-gray-700">Scop</th>
-                      <th class="text-left py-2 font-semibold text-gray-700">Durata</th>
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Cookie</th>
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Scop</th>
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Durata</th>
                     </tr>
                   </thead>
-                  <tbody class="text-gray-600">
+                  <tbody class="text-foreground-muted">
                     <tr class="border-b">
                       <td class="py-2">selected_car</td>
                       <td class="py-2">Ultima masina selectata</td>
@@ -111,24 +111,24 @@ get_header();
               </div>
             </div>
 
-            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+            <div class="bg-surface-muted border border-gray-200 rounded-2xl p-6">
               <div class="flex items-center gap-3 mb-4">
-                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-6 h-6 text-foreground-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                 </svg>
                 <h3 class="text-xl font-bold text-gray-800 m-0">Cookies Analitice</h3>
               </div>
-              <p class="text-gray-700 mb-4">Ne ajuta sa intelegem cum este utilizata platforma pentru a o imbunatati. Datele sunt anonimizate.</p>
+              <p class="text-foreground-muted mb-4">Ne ajuta sa intelegem cum este utilizata platforma pentru a o imbunatati. Datele sunt anonimizate.</p>
               <div class="bg-white rounded-xl p-4 overflow-x-auto">
                 <table class="w-full text-sm">
                   <thead>
                     <tr class="border-b">
-                      <th class="text-left py-2 font-semibold text-gray-700">Cookie</th>
-                      <th class="text-left py-2 font-semibold text-gray-700">Scop</th>
-                      <th class="text-left py-2 font-semibold text-gray-700">Durata</th>
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Cookie</th>
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Scop</th>
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Durata</th>
                     </tr>
                   </thead>
-                  <tbody class="text-gray-600">
+                  <tbody class="text-foreground-muted">
                     <tr class="border-b">
                       <td class="py-2">_ga</td>
                       <td class="py-2">Google Analytics - identificare</td>
@@ -147,25 +147,25 @@ get_header();
         </section>
 
         <section class="mb-10">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">Cum sa gestionati cookies</h2>
-          <div class="space-y-4 text-gray-700">
+          <h2 class="text-2xl font-bold text-foreground mb-4">Cum sa gestionati cookies</h2>
+          <div class="space-y-4 text-foreground-muted">
             <p>Puteti controla si sterge cookies din setarile browserului dumneavoastra. Iata cum:</p>
             <div class="grid md:grid-cols-2 gap-4">
-              <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
-                <h4 class="font-semibold text-gray-900">Google Chrome</h4>
-                <p class="text-sm text-gray-600 m-0">Setari &gt; Confidentialitate &gt; Cookies</p>
+              <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" class="block bg-surface-muted rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
+                <h4 class="font-semibold text-foreground">Google Chrome</h4>
+                <p class="text-sm text-foreground-muted m-0">Setari &gt; Confidentialitate &gt; Cookies</p>
               </a>
-              <a href="https://support.mozilla.org/ro/kb/activarea-si-dezactivarea-cookies" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
-                <h4 class="font-semibold text-gray-900">Mozilla Firefox</h4>
-                <p class="text-sm text-gray-600 m-0">Optiuni &gt; Confidentialitate &gt; Cookies</p>
+              <a href="https://support.mozilla.org/ro/kb/activarea-si-dezactivarea-cookies" target="_blank" rel="noopener noreferrer" class="block bg-surface-muted rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
+                <h4 class="font-semibold text-foreground">Mozilla Firefox</h4>
+                <p class="text-sm text-foreground-muted m-0">Optiuni &gt; Confidentialitate &gt; Cookies</p>
               </a>
-              <a href="https://support.apple.com/ro-ro/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
-                <h4 class="font-semibold text-gray-900">Safari</h4>
-                <p class="text-sm text-gray-600 m-0">Preferinte &gt; Confidentialitate</p>
+              <a href="https://support.apple.com/ro-ro/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" class="block bg-surface-muted rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
+                <h4 class="font-semibold text-foreground">Safari</h4>
+                <p class="text-sm text-foreground-muted m-0">Preferinte &gt; Confidentialitate</p>
               </a>
-              <a href="https://support.microsoft.com/ro-ro/microsoft-edge/stergerea-modulelor-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" class="block bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
-                <h4 class="font-semibold text-gray-900">Microsoft Edge</h4>
-                <p class="text-sm text-gray-600 m-0">Setari &gt; Confidentialitate &gt; Cookies</p>
+              <a href="https://support.microsoft.com/ro-ro/microsoft-edge/stergerea-modulelor-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" class="block bg-surface-muted rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
+                <h4 class="font-semibold text-foreground">Microsoft Edge</h4>
+                <p class="text-sm text-foreground-muted m-0">Setari &gt; Confidentialitate &gt; Cookies</p>
               </a>
             </div>
             <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-4">
@@ -177,11 +177,11 @@ get_header();
         </section>
 
         <section class="mb-10">
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">Contact</h2>
-          <div class="bg-gray-50 rounded-xl p-6">
-            <p class="text-gray-700 mb-4">Pentru intrebari despre politica de cookies, contactati-ne:</p>
-            <ul class="space-y-2 text-gray-700 list-none pl-0">
-              <li><strong>Email:</strong> <a href="mailto:gdpr@revizie.ro" class="text-orange-500 hover:text-orange-600">gdpr@revizie.ro</a></li>
+          <h2 class="text-2xl font-bold text-foreground mb-4">Contact</h2>
+          <div class="bg-surface-muted rounded-xl p-6">
+            <p class="text-foreground-muted mb-4">Pentru intrebari despre politica de cookies, contactati-ne:</p>
+            <ul class="space-y-2 text-foreground-muted list-none pl-0">
+              <li><strong>Email:</strong> <a href="mailto:gdpr@revizie.ro" class="text-orange-500 hover:text-accent">gdpr@revizie.ro</a></li>
               <li><strong>Telefon:</strong> 0758 500 700</li>
             </ul>
           </div>
