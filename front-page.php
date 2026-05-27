@@ -206,12 +206,30 @@ get_header();
               </span>
             </div>
 
-            <a href="https://app.revizie.ro/anunturi" class="group inline-flex items-center gap-2 px-7 py-3.5 bg-info hover:bg-info/90 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:shadow-info/30 transition-all">
-              Verifica un VIN
+            <?php
+              // Direct carVertical affiliate URL. The `a` param is what
+              // Post Affiliate Pro reads to credit revizie.ro for any
+              // purchase in their cookie window. Routing through
+              // app.revizie.ro first would lose the cookie on this click.
+              // Keep these values in sync with src/lib/carVertical.ts in
+              // the React app.
+              $carvertical_url = 'https://www.carvertical.com/ro/landing/v3?'
+                . http_build_query(array(
+                    'a' => 'zzckyffu4vzpn',
+                    'b' => '0eb206ae',
+                    'utm_medium' => 'aff',
+                    'utm_source' => 'revizie_wp',
+                    'utm_content' => 'landing_promo',
+                    'voucher' => 'revizie',
+                ));
+            ?>
+            <a href="<?php echo esc_url($carvertical_url); ?>" target="_blank" rel="noopener noreferrer sponsored" class="group inline-flex items-center gap-2 px-7 py-3.5 bg-info hover:bg-info/90 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:shadow-info/30 transition-all">
+              Verifica un VIN cu -20%
               <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
             </a>
+            <p class="text-xs text-foreground-subtle mt-3">Te redirectionam direct pe carVertical, cu codul aplicat automat.</p>
           </div>
 
           <!-- Right: discount badge visual -->
