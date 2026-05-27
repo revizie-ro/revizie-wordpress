@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('REVIZIE_THEME_VERSION', '1.6.0');
+define('REVIZIE_THEME_VERSION', '1.6.1');
 define('REVIZIE_THEME_DIR', get_template_directory());
 define('REVIZIE_THEME_URI', get_template_directory_uri());
 
@@ -139,9 +139,14 @@ function revizie_get_logo_url() {
 
 function revizie_main_menu_fallback() {
     ?>
-    <nav class="hidden md:flex items-center gap-8">
-        <a href="<?php echo home_url('/despre-noi/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Despre Noi</a>
-        <a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Cum Functioneaza</a>
+    <nav class="hidden md:flex items-center gap-5 lg:gap-6">
+        <a href="<?php echo home_url('/functii/garaj-digital/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Garaj Digital</a>
+        <a href="https://app.revizie.ro/anunturi" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Anunturi</a>
+        <a href="https://app.revizie.ro/asigurari/rca" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Asigurari</a>
+        <a href="<?php echo home_url('/functii/remindere/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Reminder-e</a>
+        <span class="w-px h-4 bg-border" aria-hidden="true"></span>
+        <a href="<?php echo home_url('/despre-noi/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Despre Noi</a>
+        <a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Cum Functioneaza</a>
     </nav>
     <?php
 }
