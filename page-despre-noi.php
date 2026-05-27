@@ -17,13 +17,13 @@ get_header();
         <span class="text-sm text-accent-strong font-medium">Despre Noi</span>
       </div>
 
-      <h1 class="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-[1.1]">
-        Cream platforma pe care ne-am
-        <span class="block bg-gradient-to-r from-accent via-accent-hover to-warning bg-clip-text text-transparent leading-[1.15] pb-2">dorit-o si noi</span>
+      <h1 class="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-[1.15]">
+        Platforma completa pentru
+        <span class="bg-gradient-to-r from-accent via-accent-hover to-warning bg-clip-text text-transparent pb-1">proprietarii de masini</span>
       </h1>
 
       <p class="text-xl text-foreground-muted leading-relaxed max-w-3xl">
-        revizie.ro e o platforma romaneasca pentru posesori de masini. Tot ce face un sofer in jurul masinii lui — sa-si gestioneze documentele, sa cumpere RCA &amp; CASCO, sa vinda masina, sa verifice istoricul VIN — intr-un singur cont. Construita curat, fara abonamente ascunse.
+        revizie.ro consolideaza intr-un singur cont toate serviciile de care are nevoie un sofer: gestionarea documentelor vehiculului, asigurari RCA &amp; CASCO emise online, marketplace pentru masini second-hand si verificarea istoricului prin VIN.
       </p>
     </div>
   </section>
@@ -32,12 +32,12 @@ get_header();
     <div class="max-w-6xl mx-auto px-6">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <div>
-          <h2 class="text-4xl font-bold text-foreground mb-6">De ce am pornit asta</h2>
+          <h2 class="text-4xl font-bold text-foreground mb-6">Misiunea noastra</h2>
           <p class="text-lg text-foreground-muted mb-5 leading-relaxed">
-            In Romania, ca sofer, jonglezi cu 5-6 site-uri si aplicatii: una pentru asigurari, alta pentru anunturi auto, alta pentru istoric, alta pentru reminder-e. Niciuna nu vorbeste cu cealalta.
+            In prezent, un sofer roman trebuie sa foloseasca cinci sau sase aplicatii diferite pentru a-si gestiona masina: o platforma pentru asigurari, alta pentru anunturile auto, alta pentru istoricul VIN, una pentru reminder-e si asa mai departe. Niciuna nu comunica cu celelalte.
           </p>
           <p class="text-lg text-foreground-muted leading-relaxed">
-            revizie.ro inlocuieste toate astea cu un singur cont, in care masina ta e centrul tuturor lucrurilor. Iti adaugi numarul de inmatriculare o data, restul se completeaza automat din DRPCIV. Apoi ai accesul la toate functionalitatile fara sa re-introduci aceleasi date.
+            revizie.ro inlocuieste acest fluxul fragmentat cu un cont unic, in care masina ta este punctul central al tuturor operatiunilor. Adaugi numarul de inmatriculare o singura data, iar restul datelor se completeaza automat din sursele oficiale DRPCIV. De acolo, ai acces direct la toate functionalitatile, fara sa reintroduci aceleasi informatii.
           </p>
         </div>
 
@@ -48,15 +48,15 @@ get_header();
           </div>
           <div class="bg-gradient-to-br from-success/10 to-card rounded-2xl p-5 border border-success/15">
             <div class="text-3xl font-bold text-success mb-1">100%</div>
-            <div class="text-sm text-foreground-muted">Plan gratuit pentru oricine</div>
+            <div class="text-sm text-foreground-muted">Plan gratuit permanent</div>
           </div>
           <div class="bg-gradient-to-br from-warning/10 to-card rounded-2xl p-5 border border-warning/15">
-            <div class="text-3xl font-bold text-warning mb-1">UE</div>
-            <div class="text-sm text-foreground-muted">Date stocate in Frankfurt</div>
+            <div class="text-3xl font-bold text-warning mb-1">30 sec</div>
+            <div class="text-sm text-foreground-muted">Setezi prima masina</div>
           </div>
           <div class="bg-gradient-to-br from-info/10 to-card rounded-2xl p-5 border border-info/15">
-            <div class="text-3xl font-bold text-info mb-1">Cod deschis</div>
-            <div class="text-sm text-foreground-muted">Repo public pe GitHub</div>
+            <div class="text-3xl font-bold text-info mb-1">DRPCIV</div>
+            <div class="text-sm text-foreground-muted">Date oficiale auto-fill</div>
           </div>
         </div>
       </div>
@@ -66,8 +66,8 @@ get_header();
   <section class="py-20 bg-surface-muted">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-14">
-        <h2 class="text-4xl font-bold text-foreground mb-3">Cum gandim platforma</h2>
-        <p class="text-lg text-foreground-muted">Trei principii care ne ghideaza in tot ce livram.</p>
+        <h2 class="text-4xl font-bold text-foreground mb-3">Principiile noastre</h2>
+        <p class="text-lg text-foreground-muted">Standardele care ghideaza fiecare functionalitate pe care o livram.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
@@ -78,7 +78,7 @@ get_header();
             </svg>
           </div>
           <h3 class="text-xl font-bold text-foreground mb-2">Transparenta totala</h3>
-          <p class="text-foreground-muted">Vezi exact ce face platforma cu datele tale (politica GDPR detaliata) si cat plateste fiecare functionalitate. Fara taxe ascunse, fara dark patterns.</p>
+          <p class="text-foreground-muted">Politica detaliata privind utilizarea datelor (GDPR), preturi afisate clar pentru fiecare functionalitate si zero costuri ascunse sau abonamente fortate.</p>
         </div>
 
         <div class="bg-card rounded-2xl p-7 border border-border-subtle">
@@ -88,17 +88,17 @@ get_header();
             </svg>
           </div>
           <h3 class="text-xl font-bold text-foreground mb-2">Automatizare unde conteaza</h3>
-          <p class="text-foreground-muted">VIN decoder care iti completeaza 24+ campuri din DRPCIV automat. Reminder-e care iti scriu cand expira ITP-ul. Lucruri care iti scot timp, nu munca in plus.</p>
+          <p class="text-foreground-muted">VIN decoder care completeaza automat 24+ campuri din DRPCIV. Reminder-e prin email inainte de expirarea ITP, RCA sau a reviziei. Functionalitati gandite sa economiseasca timp, nu sa adauge munca.</p>
         </div>
 
         <div class="bg-card rounded-2xl p-7 border border-border-subtle">
           <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-success to-success/70 flex items-center justify-center mb-5 shadow-md">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-foreground mb-2">Construim deschis</h3>
-          <p class="text-foreground-muted">Repo-ul aplicatiei e public. Vezi exact ce schimbam, cum o gestionam, ce features urmeaza. Feedback-ul tau intra direct in roadmap.</p>
+          <h3 class="text-xl font-bold text-foreground mb-2">Date oficiale, nu estimari</h3>
+          <p class="text-foreground-muted">Toate datele vehiculului provin direct de la sursele oficiale (DRPCIV) sau de la partenerii nostri verificati. Nu ghicim, nu interpolam — afisam exact ce e in registrele autoritatii.</p>
         </div>
       </div>
     </div>
@@ -108,7 +108,7 @@ get_header();
     <div class="max-w-5xl mx-auto px-6">
       <div class="text-center mb-12">
         <h2 class="text-4xl font-bold text-foreground mb-3">Contact</h2>
-        <p class="text-lg text-foreground-muted">Suntem aici pentru tine.</p>
+        <p class="text-lg text-foreground-muted">Echipa noastra raspunde in zilele lucratoare.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto">
@@ -141,7 +141,7 @@ get_header();
 
   <section class="py-24 bg-gradient-to-br from-accent via-accent-hover to-accent-strong">
     <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Hai sa-ti simplificam relatia cu masina</h2>
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Incepe sa-ti gestionezi masina mai eficient</h2>
       <p class="text-xl text-white/90 mb-10">Cont gratuit, fara card. Adaugi prima masina in 30 de secunde.</p>
       <a href="https://app.revizie.ro/register" class="inline-flex items-center gap-2 px-10 py-5 bg-white text-accent-strong rounded-2xl font-bold text-lg shadow-2xl hover:scale-105 transition-all">
         Creeaza cont gratuit

@@ -194,10 +194,10 @@ get_header();
         </div>
         <div class="bg-card border border-border-subtle rounded-2xl p-5">
           <div class="w-11 h-11 rounded-xl bg-info/15 text-info flex items-center justify-center mb-3">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
           </div>
-          <h3 class="font-semibold text-foreground mb-1">Marketplace piese</h3>
-          <p class="text-xs text-foreground-muted">Piese auto de la furnizori verificati, compatibilitate AI.</p>
+          <h3 class="font-semibold text-foreground mb-1">Asistent AI piese</h3>
+          <p class="text-xs text-foreground-muted">Chat AI specializat care recomanda piese si ofertele cele mai bune pentru masina ta.</p>
         </div>
         <div class="bg-card border border-border-subtle rounded-2xl p-5">
           <div class="w-11 h-11 rounded-xl bg-success/15 text-success flex items-center justify-center mb-3">

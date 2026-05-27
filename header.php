@@ -10,13 +10,15 @@
 
   <header class="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-border-subtle">
     <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-3">
-        <div class="bg-logo rounded-xl p-1">
-          <img src="<?php echo esc_url(revizie_get_logo_url()); ?>" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto object-contain">
-        </div>
-      </a>
+      <div class="flex items-center gap-10">
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-3">
+          <div class="bg-logo rounded-xl p-1">
+            <img src="<?php echo esc_url(revizie_get_logo_url()); ?>" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto object-contain">
+          </div>
+        </a>
 
-      <?php revizie_display_main_menu(); ?>
+        <?php revizie_display_main_menu(); ?>
+      </div>
 
       <div class="flex items-center gap-3">
         <a href="https://app.revizie.ro/login" class="px-4 py-2 text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Login</a>
