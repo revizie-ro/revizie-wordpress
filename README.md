@@ -1,39 +1,34 @@
 # Tema WordPress revizie.ro
 
-Tema oficiala pentru site-ul de prezentare revizie.ro.
+Tema oficiala pentru site-ul de prezentare revizie.ro. Companion la React app de pe `app.revizie.ro` — paleta de culori, mesajul si lista de functionalitati sunt sincronizate manual cu app-ul.
 
-## Instalare
+## Instalare initiala
 
-### Metoda 1: Upload folder
+### Metoda 1: Upload folder (FTP / cPanel File Manager)
 
 1. Conecteaza-te prin FTP sau File Manager la hosting (Romarg)
 2. Navigheaza la: `public_html/wp-content/themes/`
-3. Incarca intregul folder `revizie-theme/`
-4. In WordPress Admin, mergi la **Appearance -> Themes**
-5. Activeaza tema **Revizie.ro Theme**
+3. Incarca intregul folder al temei
+4. In WordPress Admin: **Appearance → Themes** → activeaza tema "Revizie.ro Theme"
 
 ### Metoda 2: Upload ZIP
 
-1. Creeaza un ZIP al folderului `revizie-theme`
-2. In WordPress Admin, mergi la **Appearance -> Themes -> Add New -> Upload Theme**
-3. Selecteaza fisierul ZIP si instaleaza
-4. Activeaza tema
+1. Creeaza un ZIP al folderului (din `revizie-wordpress/` selectezi tot, fara folder-ul `.git`)
+2. WP Admin: **Appearance → Themes → Add New → Upload Theme** → incarca ZIP-ul
+3. Activeaza tema
 
 ## Configurare dupa activare
 
-### 1. Adauga logo-ul
+### 1. Logo
 
-1. Mergi la **Appearance -> Customize -> Site Identity**
-2. Click pe **Select Logo**
-3. Incarca fisierul `logo.png` (din folderul temei sau al tau)
-4. Salveaza
+**Appearance → Customize → Site Identity** → Select Logo → urca PNG (se foloseste si in header si footer).
 
-### 2. Creeaza paginile
+### 2. Pagini
 
-Creeaza urmatoarele pagini in WordPress (**Pages -> Add New**) si atribuie template-ul corespunzator:
+Creeaza urmatoarele pagini si atribuie template-ul corespunzator din **Page Attributes → Template**:
 
-| Titlu Pagina | Slug (URL) | Template de selectat |
-|--------------|------------|---------------------|
+| Titlu pagina | Slug (URL) | Template |
+|--------------|------------|----------|
 | Acasa | `/` (front page) | Home Page |
 | Despre Noi | `despre-noi` | Despre Noi |
 | Cum Functioneaza | `cum-functioneaza` | Cum Functioneaza |
@@ -42,70 +37,92 @@ Creeaza urmatoarele pagini in WordPress (**Pages -> Add New**) si atribuie templ
 | Politica de Confidentialitate | `politica-de-confidentialitate` | Politica de Confidentialitate |
 | Politica Cookies | `politica-cookies` | Politica Cookies |
 | Garaj Digital | `functii/garaj-digital` | Functie - Garaj Digital |
-| Servicii Auto | `functii/servicii-auto` | Functie - Servicii Auto |
-| Anvelope | `functii/anvelope` | Functie - Anvelope |
-| Tractari | `functii/tractari` | Functie - Tractari |
-| Piese Auto | `functii/piese-auto` | Functie - Piese Auto |
 | Reminder-e | `functii/remindere` | Functie - Remindere |
+| Programari Service *(Coming Soon)* | `functii/servicii-auto` | Functie - Servicii Auto |
+| Tractari *(Coming Soon)* | `functii/tractari` | Functie - Tractari |
+| Anvelope *(Coming Soon)* | `functii/anvelope` | Functie - Anvelope |
+| Piese Auto *(Coming Soon)* | `functii/piese-auto` | Functie - Piese Auto |
 
-**Nota:** Pentru a atribui un template, cand editezi pagina, gasesti in partea dreapta (sau in bara laterala) optiunea **Page Attributes -> Template**.
+### 3. Homepage
 
-### 3. Seteaza Homepage
+**Settings → Reading** → "A static page" → Homepage = pagina "Acasa".
 
-1. Mergi la **Settings -> Reading**
-2. La "Your homepage displays" selecteaza **A static page**
-3. La "Homepage" selecteaza pagina **Acasa** (cu template Home Page)
-4. Salveaza
+### 4. Meniu (optional)
 
-### 4. Configureaza meniul (optional)
+**Appearance → Menus** → meniu "Main Menu" cu link-uri spre Despre Noi / Cum Functioneaza / Pentru Parteneri. Daca nu configurezi, foloseste fallback-ul hardcodat din tema.
 
-Daca vrei sa modifici meniul principal:
+## Aliniere cu app.revizie.ro
 
-1. Mergi la **Appearance -> Menus**
-2. Creeaza un meniu nou numit "Main Menu"
-3. Adauga paginile dorite (Despre Noi, Cum Functioneaza, Pentru Parteneri)
-4. La "Menu Settings" selecteaza locatia **Main Menu**
-5. Salveaza
+Aceasta tema partajeaza identitate vizuala si lista de features cu React app-ul de la `app.revizie.ro`. Schimbarile pe care le faci aici trebuie corelate cu app-ul:
 
-**Nota:** Daca nu configurezi meniul, se va folosi automat meniul hardcodat din tema cu link-urile corecte.
+- **Culori**: paleta accent tan (`#B89063`) + neutrals e definita ca `tailwind.config` inline in `functions.php`. Trebuie sa ramana sincronizata cu `revizie-app/src/index.css` `:root` palette.
+- **Status features**: lista de "Functii disponibile" din front-page reflecta `FEATURES` din `revizie-app/src/lib/features.ts`. Cand activezi un feature flag in React, muta pagina aici din "In dezvoltare" in lista principala (vezi front-page.php).
+- **Email contact**: `office@revizie.ro` (sincronizat cu app-ul).
+
+## Coming Soon waitlist
+
+Cele 4 pagini in dezvoltare (servicii-auto, tractari, anvelope, piese-auto) au un formular care colecteaza email-uri prin AJAX intr-o optiune WordPress `revizie_waitlist`.
+
+**Vezi lista**:
+
+```sql
+SELECT option_value FROM wp_options WHERE option_name = 'revizie_waitlist';
+```
+
+Structura entry: `{ email, feature, ts }`. Cand lansezi un feature, exporta lista de email-uri pentru `feature` corespunzator si trimite-le notificare prin Resend.
+
+## Link-uri aplicatie
+
+Toate Login si Inregistrare duc la:
+- Login: `https://app.revizie.ro/login`
+- Register: `https://app.revizie.ro/register`
+
+Cardurile features active duc direct in app:
+- Anunturi masini: `https://app.revizie.ro/anunturi`
+- Asigurari RCA: `https://app.revizie.ro/asigurari/rca`
+- Istoric VIN: `https://app.revizie.ro` (carVertical via in-app card)
+
+## Update tema dupa schimbari
+
+Cand modifici fisiere pe local + push pe main:
+
+1. Pe Romarg, fie:
+   - **cPanel Git Version Control** (daca e setat): trigger automat la push
+   - **Manual**: ssh → `cd /var/www/wp-content/themes/<tema> && git pull`
+   - **FTP**: re-upload fisierele schimbate
+2. WP Admin → Themes → vezi noua versiune. Tema se refresheaza automat la urmatoarea cerere.
+
+**Cache busting**: bump `Version: X.Y.Z` in `style.css` + constanta `REVIZIE_THEME_VERSION` in `functions.php` la fiecare release vizibil. Forteaza re-descarcarea CSS-urilor.
 
 ## Structura fisiere
 
 ```
-revizie-theme/
+revizie-wordpress/
 ├── style.css              # Meta tema + import stiluri
-├── functions.php          # Functii tema, enqueue, meniu
-├── header.php             # Header comun
-├── footer.php             # Footer comun
+├── functions.php          # Functii tema, enqueue, Tailwind config, waitlist AJAX
+├── header.php             # Header comun (logo + nav + Login/Register)
+├── footer.php             # Footer comun (links + ANPC + Netopia)
 ├── index.php              # Template default
 ├── page.php               # Template pagina default
-├── front-page.php         # Homepage (acasa)
-├── page-despre-noi.php    # Despre Noi
+├── front-page.php         # Homepage
+├── page-despre-noi.php
 ├── page-cum-functioneaza.php
 ├── page-pentru-parteneri.php
 ├── page-termeni-si-conditii.php
 ├── page-politica-de-confidentialitate.php
 ├── page-politica-cookies.php
 ├── assets/
-│   ├── css/
-│   │   └── main.css       # Stiluri principale
-│   └── img/
-│       └── logo.png       # Logo (placeholder)
+│   ├── css/main.css       # Gradients + prose + scrollbar
+│   └── img/logo.png       # Logo placeholder
 └── functii/
-    ├── page-garaj-digital.php
-    ├── page-servicii-auto.php
-    ├── page-anvelope.php
-    ├── page-tractari.php
-    ├── page-piese-auto.php
-    └── page-remindere.php
+    ├── page-garaj-digital.php   # Live
+    ├── page-remindere.php       # Live
+    ├── page-servicii-auto.php   # Coming Soon + waitlist
+    ├── page-tractari.php        # Coming Soon + waitlist
+    ├── page-anvelope.php        # Coming Soon + waitlist
+    └── page-piese-auto.php      # Coming Soon + waitlist
 ```
-
-## Link-uri aplicatie
-
-Toate link-urile de Login si Inregistrare duc catre:
-- Login: `https://app.revizie.ro/login`
-- Register: `https://app.revizie.ro/register`
 
 ## Contact
 
-Pentru probleme tehnice: contact@revizie.ro
+Pentru probleme tehnice: office@revizie.ro

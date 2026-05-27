@@ -1,3 +1,13 @@
+/* =============================================================================
+ * Revizie.ro landing — base styles + brand-aligned gradients.
+ *
+ * Colors here mirror the React app's tan accent (#B89063) palette. The
+ * Tailwind utility classes (bg-accent, text-foreground, etc.) come from
+ * the inline tailwind.config in functions.php; this file owns the
+ * gradients and component-level overrides that Tailwind utilities can't
+ * cleanly express.
+ * ============================================================================= */
+
 * {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -10,61 +20,64 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Hero: warm cream → white → soft tan. Replaces the old dark navy
+   gradient — matches the React app's auth pages and dashboard hero. */
 .hero-gradient {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #1a1a2e 50%, #0f3460 75%, #1a1a2e 100%);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(184, 144, 99, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(245, 158, 11, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, #F8F5F0 0%, #FFFFFF 50%, #F5F7FA 100%);
 }
 
+/* Dark stats strip — keeps eye-stopping contrast without the navy/blue
+   tones. Neutral-800 base with tan accent halos. */
 .stats-gradient {
-  background: linear-gradient(90deg, #111827 0%, #1f2937 50%, #111827 100%);
+  background:
+    radial-gradient(circle at 20% 50%, rgba(184, 144, 99, 0.18) 0%, transparent 40%),
+    radial-gradient(circle at 80% 50%, rgba(184, 144, 99, 0.10) 0%, transparent 45%),
+    linear-gradient(90deg, #0F1113 0%, #1C1E21 50%, #0F1113 100%);
 }
 
+/* Bottom CTA strip — accent tan deepening into the strong tan. Drops
+   the old orange→teal multi-stop in favor of a single brand color. */
 .cta-gradient {
-  background: linear-gradient(135deg, #ea580c 0%, #f59e0b 30%, #14b8a6 70%, #0891b2 100%);
+  background: linear-gradient(135deg, #B89063 0%, #A57E54 50%, #8B6843 100%);
 }
 
-.feature-gradient-orange {
-  background: linear-gradient(135deg, #f97316 0%, #f59e0b 100%);
+/* Feature tile accent washes — use as bg-gradient-from on the inner icon. */
+.feature-gradient-tan {
+  background: linear-gradient(135deg, #B89063 0%, #A57E54 100%);
 }
 
-.feature-gradient-teal {
-  background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%);
+.feature-gradient-warning {
+  background: linear-gradient(135deg, #F59E0B 0%, #B89063 100%);
+}
+
+.feature-gradient-success {
+  background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+}
+
+.feature-gradient-info {
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50%      { transform: translateY(-8px); }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.5); }
+  0%, 100% { box-shadow: 0 0 20px rgba(184, 144, 99, 0.3); }
+  50%      { box-shadow: 0 0 40px rgba(184, 144, 99, 0.55); }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
+.animate-float      { animation: float 3s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: rgba(222, 226, 230, 0.5);
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #CED4DA;
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #ADB5BD;
-}
+::-webkit-scrollbar              { width: 6px; height: 6px; }
+::-webkit-scrollbar-track        { background-color: rgba(229, 231, 235, 0.5); }
+::-webkit-scrollbar-thumb        { background-color: #D1D5DB; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover  { background-color: #9CA3AF; }
 
 @media (max-width: 768px) {
   .hero-gradient h1 {
@@ -76,6 +89,8 @@ body {
   }
 }
 
+/* Long-form prose blocks (Termeni, Privacy, GDPR, Cookies). Link color
+   updated from orange to accent tan to match the rest of the site. */
 .prose {
   color: #374151;
   max-width: 65ch;
@@ -101,30 +116,18 @@ body {
   line-height: 1.6;
 }
 
-.prose p {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-}
-
-.prose ul {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-  padding-left: 1.625rem;
-}
-
-.prose li {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
+.prose p  { margin-top: 1.25rem; margin-bottom: 1.25rem; }
+.prose ul { margin-top: 1.25rem; margin-bottom: 1.25rem; padding-left: 1.625rem; }
+.prose li { margin-top: 0.5rem; margin-bottom: 0.5rem; }
 
 .prose a {
-  color: #f97316;
+  color: #A57E54;
   text-decoration: none;
   font-weight: 500;
 }
 
 .prose a:hover {
-  color: #ea580c;
+  color: #8B6843;
 }
 
 .prose table {
