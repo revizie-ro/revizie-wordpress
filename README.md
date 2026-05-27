@@ -61,15 +61,25 @@ Aceasta tema partajeaza identitate vizuala si lista de features cu React app-ul 
 
 ## Coming Soon waitlist
 
-Cele 4 pagini in dezvoltare (servicii-auto, tractari, anvelope, piese-auto) au un formular care colecteaza email-uri prin AJAX intr-o optiune WordPress `revizie_waitlist`.
+Toate formularele Coming Soon (homepage + 4 pagini feature) trimit email-urile la **Supabase** in tabela `public.waitlist_signups` (vezi migration `revizie-app/supabase/migrations/20260527050000_060_waitlist_signups.sql`).
 
-**Vezi lista**:
+**Storage path:**
+1. Primary: Supabase `waitlist_signups` table via RPC `upsert_waitlist_signup` (anon key, RLS INSERT-only public)
+2. Mirror local: `wp_options.revizie_waitlist` ca fallback cache in caz ca Supabase e unreachable
 
-```sql
-SELECT option_value FROM wp_options WHERE option_name = 'revizie_waitlist';
+**Vezi lista:** WP Admin → **Waitlist** (meniu top-level). Tabel sortabil + filtre + export CSV.
+
+### Configurare `SUPABASE_SERVICE_ROLE_KEY` (necesara pentru a citi din Supabase)
+
+Adauga in `wp-config.php` (in `public_html/`, niciodata in repo):
+
+```php
+define('SUPABASE_SERVICE_ROLE_KEY', 'eyJ...');
 ```
 
-Structura entry: `{ email, feature, ts }`. Cand lansezi un feature, exporta lista de email-uri pentru `feature` corespunzator si trimite-le notificare prin Resend.
+Cheia o iei din **Supabase Dashboard → Project Settings → API → service_role (secret)**. Fara ea, pagina admin afiseaza datele din wp_options cache (mai vechi, doar ce a trecut prin acest WordPress).
+
+**De ce service_role:** RLS pe `waitlist_signups` blocheaza SELECT pentru anon. Admin-ul trebuie sa bypasseze RLS via cheia de service. Nu pune cheia in cod sau in wp_options — doar in `wp-config.php` ca constanta PHP.
 
 ## Link-uri aplicatie
 

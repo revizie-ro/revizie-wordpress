@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('REVIZIE_THEME_VERSION', '1.5.0');
+define('REVIZIE_THEME_VERSION', '1.6.0');
 define('REVIZIE_THEME_DIR', get_template_directory());
 define('REVIZIE_THEME_URI', get_template_directory_uri());
 
@@ -188,13 +188,38 @@ add_filter('show_admin_bar', '__return_false');
  *
  * Each "feature in development" page renders an email form via
  * revizie_render_waitlist_form(). The form POSTs to admin-ajax.php with
- * action `revizie_waitlist_signup`. The handler validates email + feature
- * and appends to the `revizie_waitlist` option as [{email, feature, ts}].
- * No new DB table needed for a few hundred entries.
+ * action `revizie_waitlist_signup`. The handler:
+ *   1. Forwards the signup to Supabase via the `upsert_waitlist_signup`
+ *      RPC (anon key, public-allowed RLS). Supabase is the source of truth.
+ *   2. Also mirrors the entry to `wp_options.revizie_waitlist` as a local
+ *      cache + fallback if the Supabase call fails.
  *
- * Read list via WP-CLI or SQL:
- *   SELECT option_value FROM wp_options WHERE option_name = 'revizie_waitlist';
+ * Admin page reads from Supabase via the service_role key (defined as a
+ * `SUPABASE_SERVICE_ROLE_KEY` constant in wp-config.php — never in repo).
+ * If the constant is missing, the page falls back to the wp_options cache.
+ *
+ * See revizie-app/supabase/migrations/20260527050000_060_waitlist_signups.sql
+ * for the table + RLS + RPC definitions.
  * ============================================================================= */
+
+// Public Supabase project info — same values as the React app uses. Safe to
+// hardcode (anon key + URL are exposed in the React bundle anyway). RLS
+// keeps the anon role to INSERT-only on waitlist_signups; no SELECT path.
+define('REVIZIE_SUPABASE_URL',      'https://qciuaqezvpieohvgcmau.supabase.co');
+define('REVIZIE_SUPABASE_ANON_KEY', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFjaXVhcWV6dnBpZW9odmdjbWF1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNDU1NjMsImV4cCI6MjA5MjYyMTU2M30.cOnCbaw7gs7o6JLGcuVGKHgpc_XgNelyOYEARI8IWMY');
+
+/**
+ * Service-role key — only used server-side from the WP Admin "Waitlist"
+ * page to SELECT rows (bypasses RLS). MUST be set as a constant in
+ * wp-config.php, never committed:
+ *
+ *   define('SUPABASE_SERVICE_ROLE_KEY', 'eyJ...');
+ *
+ * If not defined, the admin page falls back to the local wp_options cache.
+ */
+function revizie_supabase_service_role_key() {
+    return defined('SUPABASE_SERVICE_ROLE_KEY') ? SUPABASE_SERVICE_ROLE_KEY : '';
+}
 
 function revizie_render_waitlist_form($feature_slug, $feature_label) {
     ?>
@@ -276,6 +301,59 @@ function revizie_print_waitlist_script() {
 }
 add_action('wp_footer', 'revizie_print_waitlist_script');
 
+/**
+ * Forwards the signup to Supabase via the `upsert_waitlist_signup` RPC.
+ * Returns true on success, false on any network / API error.
+ */
+function revizie_waitlist_push_to_supabase($email, $feature) {
+    $url = REVIZIE_SUPABASE_URL . '/rest/v1/rpc/upsert_waitlist_signup';
+    $response = wp_remote_post($url, array(
+        'timeout' => 8,
+        'headers' => array(
+            'apikey'        => REVIZIE_SUPABASE_ANON_KEY,
+            'Authorization' => 'Bearer ' . REVIZIE_SUPABASE_ANON_KEY,
+            'Content-Type'  => 'application/json',
+        ),
+        'body' => wp_json_encode(array(
+            'p_email'   => $email,
+            'p_feature' => $feature,
+            'p_source'  => 'wordpress-landing',
+        )),
+    ));
+
+    if (is_wp_error($response)) {
+        error_log('[revizie waitlist] Supabase RPC network error: ' . $response->get_error_message());
+        return false;
+    }
+    $code = wp_remote_retrieve_response_code($response);
+    if ($code < 200 || $code >= 300) {
+        $body = wp_remote_retrieve_body($response);
+        error_log("[revizie waitlist] Supabase RPC returned HTTP $code: " . substr($body, 0, 500));
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Mirrors the signup to wp_options as a local cache. Independent of the
+ * Supabase write — best-effort, never throws. Lets the admin page work
+ * even if Supabase is unreachable.
+ */
+function revizie_waitlist_cache_locally($email, $feature) {
+    $list = get_option('revizie_waitlist', array());
+    if (!is_array($list)) $list = array();
+
+    foreach ($list as $idx => $entry) {
+        if (isset($entry['email'], $entry['feature']) && $entry['email'] === $email && $entry['feature'] === $feature) {
+            $list[$idx]['ts'] = time();
+            update_option('revizie_waitlist', $list, false);
+            return;
+        }
+    }
+    $list[] = array('email' => $email, 'feature' => $feature, 'ts' => time());
+    update_option('revizie_waitlist', $list, false);
+}
+
 function revizie_handle_waitlist_signup() {
     // 'general' = home-page form (any upcoming feature). The 4 named features
     // remain for users who land on a specific Coming Soon page.
@@ -295,19 +373,14 @@ function revizie_handle_waitlist_signup() {
         wp_send_json_error(array('message' => 'Functie necunoscuta.'), 400);
     }
 
-    $list = get_option('revizie_waitlist', array());
-    if (!is_array($list)) $list = array();
+    // Primary write: Supabase (source of truth)
+    revizie_waitlist_push_to_supabase($email, $feature);
 
-    foreach ($list as $idx => $entry) {
-        if (isset($entry['email'], $entry['feature']) && $entry['email'] === $email && $entry['feature'] === $feature) {
-            $list[$idx]['ts'] = time();
-            update_option('revizie_waitlist', $list, false);
-            wp_send_json_success();
-        }
-    }
+    // Mirror to local cache regardless — keeps admin page usable even if
+    // Supabase is briefly unreachable, and gives us recovery data if the
+    // Supabase write silently regresses.
+    revizie_waitlist_cache_locally($email, $feature);
 
-    $list[] = array('email' => $email, 'feature' => $feature, 'ts' => time());
-    update_option('revizie_waitlist', $list, false);
     wp_send_json_success();
 }
 add_action('wp_ajax_revizie_waitlist_signup', 'revizie_handle_waitlist_signup');
@@ -338,6 +411,56 @@ function revizie_register_waitlist_admin_page() {
 }
 add_action('admin_menu', 'revizie_register_waitlist_admin_page');
 
+/**
+ * Returns the waitlist as a normalized array of `{ email, feature, ts, source }`
+ * sorted by ts desc. Tries Supabase first (source of truth); on any failure
+ * falls back to the local wp_options cache so the admin UI never goes blank.
+ */
+function revizie_waitlist_fetch_all() {
+    $service_key = revizie_supabase_service_role_key();
+    if ($service_key) {
+        $url = REVIZIE_SUPABASE_URL . '/rest/v1/waitlist_signups?select=email,feature,source,created_at&order=created_at.desc&limit=5000';
+        $response = wp_remote_get($url, array(
+            'timeout' => 8,
+            'headers' => array(
+                'apikey'        => $service_key,
+                'Authorization' => 'Bearer ' . $service_key,
+                'Accept'        => 'application/json',
+            ),
+        ));
+        if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
+            $rows = json_decode(wp_remote_retrieve_body($response), true);
+            if (is_array($rows)) {
+                $normalized = array();
+                foreach ($rows as $r) {
+                    $normalized[] = array(
+                        'email'   => $r['email']   ?? '',
+                        'feature' => $r['feature'] ?? '',
+                        'source'  => $r['source']  ?? '',
+                        'ts'      => isset($r['created_at']) ? strtotime($r['created_at']) : 0,
+                    );
+                }
+                return array('rows' => $normalized, 'source' => 'supabase');
+            }
+        }
+        // fall through to cache on any failure
+    }
+
+    $list = get_option('revizie_waitlist', array());
+    if (!is_array($list)) $list = array();
+    usort($list, function ($a, $b) { return ($b['ts'] ?? 0) - ($a['ts'] ?? 0); });
+    $normalized = array();
+    foreach ($list as $e) {
+        $normalized[] = array(
+            'email'   => $e['email']   ?? '',
+            'feature' => $e['feature'] ?? '',
+            'source'  => $e['source']  ?? 'wp-cache',
+            'ts'      => $e['ts']      ?? 0,
+        );
+    }
+    return array('rows' => $normalized, 'source' => 'wp_options');
+}
+
 function revizie_handle_waitlist_csv_export() {
     if (!isset($_GET['page'], $_GET['action']) || $_GET['page'] !== 'revizie-waitlist' || $_GET['action'] !== 'export_csv') {
         return;
@@ -347,9 +470,7 @@ function revizie_handle_waitlist_csv_export() {
     }
     check_admin_referer('revizie_waitlist_export');
 
-    $list = get_option('revizie_waitlist', array());
-    if (!is_array($list)) $list = array();
-    usort($list, function ($a, $b) { return ($b['ts'] ?? 0) - ($a['ts'] ?? 0); });
+    $data = revizie_waitlist_fetch_all();
 
     $filename = 'revizie-waitlist-' . date('Y-m-d-His') . '.csv';
     nocache_headers();
@@ -359,12 +480,13 @@ function revizie_handle_waitlist_csv_export() {
     $out = fopen('php://output', 'w');
     // BOM pentru Excel sa recunoasca UTF-8
     fwrite($out, "\xEF\xBB\xBF");
-    fputcsv($out, array('Email', 'Feature', 'Data inregistrarii (UTC)'));
-    foreach ($list as $entry) {
+    fputcsv($out, array('Email', 'Feature', 'Source', 'Data inregistrarii (UTC)'));
+    foreach ($data['rows'] as $entry) {
         fputcsv($out, array(
-            $entry['email']   ?? '',
-            $entry['feature'] ?? '',
-            isset($entry['ts']) ? gmdate('Y-m-d H:i:s', (int) $entry['ts']) : '',
+            $entry['email'],
+            $entry['feature'],
+            $entry['source'],
+            $entry['ts'] ? gmdate('Y-m-d H:i:s', (int) $entry['ts']) : '',
         ));
     }
     fclose($out);
@@ -373,10 +495,27 @@ function revizie_handle_waitlist_csv_export() {
 add_action('admin_init', 'revizie_handle_waitlist_csv_export');
 
 function revizie_render_waitlist_admin() {
-    // Handle row deletion (matches by email + feature, immune to sort order)
+    // Handle row deletion (Supabase + local cache, matched by email + feature)
     if (isset($_POST['revizie_delete_email'], $_POST['revizie_delete_feature']) && check_admin_referer('revizie_waitlist_delete')) {
         $del_email   = sanitize_email(wp_unslash($_POST['revizie_delete_email']));
         $del_feature = sanitize_key(wp_unslash($_POST['revizie_delete_feature']));
+
+        // Delete from Supabase (best-effort)
+        $service_key = revizie_supabase_service_role_key();
+        if ($service_key) {
+            wp_remote_request(
+                REVIZIE_SUPABASE_URL . '/rest/v1/waitlist_signups?email=eq.' . rawurlencode($del_email) . '&feature=eq.' . rawurlencode($del_feature),
+                array(
+                    'method'  => 'DELETE',
+                    'timeout' => 8,
+                    'headers' => array(
+                        'apikey'        => $service_key,
+                        'Authorization' => 'Bearer ' . $service_key,
+                    ),
+                )
+            );
+        }
+        // Delete from local cache
         $list = get_option('revizie_waitlist', array());
         if (!is_array($list)) $list = array();
         $list = array_values(array_filter($list, function ($e) use ($del_email, $del_feature) {
@@ -386,13 +525,14 @@ function revizie_render_waitlist_admin() {
         echo '<div class="notice notice-success is-dismissible"><p>Intrare stearsa.</p></div>';
     }
 
-    $all = get_option('revizie_waitlist', array());
-    if (!is_array($all)) $all = array();
+    $data = revizie_waitlist_fetch_all();
+    $all = $data['rows'];
+    $source_label = $data['source'] === 'supabase' ? 'Supabase (live)' : 'wp_options (fallback local)';
 
     // Per-feature counts for filter chips
     $counts = array();
     foreach ($all as $e) {
-        $f = $e['feature'] ?? 'general';
+        $f = $e['feature'] ?: 'general';
         $counts[$f] = ($counts[$f] ?? 0) + 1;
     }
     ksort($counts);
@@ -400,12 +540,11 @@ function revizie_render_waitlist_admin() {
     // Active filter
     $filter = isset($_GET['feature']) ? sanitize_key(wp_unslash($_GET['feature'])) : '';
 
-    // Sort by ts desc + apply filter
+    // Apply filter (already sorted desc by fetch_all)
     $list = $all;
-    usort($list, function ($a, $b) { return ($b['ts'] ?? 0) - ($a['ts'] ?? 0); });
     if ($filter !== '') {
         $list = array_values(array_filter($list, function ($e) use ($filter) {
-            return ($e['feature'] ?? '') === $filter;
+            return $e['feature'] === $filter;
         }));
     }
 
@@ -417,7 +556,16 @@ function revizie_render_waitlist_admin() {
         <a href="<?php echo esc_url($export_url); ?>" class="page-title-action">Exporta CSV</a>
         <hr class="wp-header-end">
 
-        <p>Email-uri colectate de la userii care vor sa fie anuntati cand lansam fiecare functionalitate. Total: <strong><?php echo count($all); ?></strong> intrari.</p>
+        <p>
+          Email-uri colectate de la userii care vor sa fie anuntati cand lansam fiecare functionalitate.
+          Total: <strong><?php echo count($all); ?></strong> intrari.
+          <span class="description" style="margin-left: 12px;">Sursa: <code><?php echo esc_html($source_label); ?></code></span>
+        </p>
+        <?php if ($data['source'] !== 'supabase'): ?>
+        <div class="notice notice-warning inline" style="margin-bottom: 12px;">
+          <p><strong>Atentie:</strong> Citesti din cache-ul local wp_options. Defineste <code>SUPABASE_SERVICE_ROLE_KEY</code> in <code>wp-config.php</code> pentru a vedea datele direct din Supabase.</p>
+        </div>
+        <?php endif; ?>
 
         <?php if (!empty($counts)): ?>
         <ul class="subsubsub">
