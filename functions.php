@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('REVIZIE_THEME_VERSION', '1.3.0');
+define('REVIZIE_THEME_VERSION', '1.4.0');
 define('REVIZIE_THEME_DIR', get_template_directory());
 define('REVIZIE_THEME_URI', get_template_directory_uri());
 
@@ -312,3 +312,114 @@ function revizie_handle_waitlist_signup() {
 }
 add_action('wp_ajax_revizie_waitlist_signup', 'revizie_handle_waitlist_signup');
 add_action('wp_ajax_nopriv_revizie_waitlist_signup', 'revizie_handle_waitlist_signup');
+
+/* =============================================================================
+ * Auto-provision pages
+ *
+ * WordPress decouples theme templates from actual Pages — a `page-X.php`
+ * template only renders if there's a published Page in the DB with the
+ * matching slug AND the template assigned via Page Attributes. New
+ * installs (or partial migrations) leave missing pages as 404s.
+ *
+ * This hook runs once per theme version on admin pageviews: it scans the
+ * page manifest, creates any missing entry with the correct slug + parent
+ * + template, and leaves existing pages untouched. After it runs, all
+ * routes resolve without manual WP Admin work.
+ *
+ * Bump REVIZIE_THEME_VERSION to re-trigger (e.g. when adding a new page
+ * to the manifest below).
+ * ============================================================================= */
+
+function revizie_page_manifest($functii_parent_id) {
+    return array(
+        // Top-level pages
+        array('title' => 'Acasa',                          'slug' => 'acasa',                          'template' => 'front-page.php',                          'parent' => 0),
+        array('title' => 'Despre Noi',                     'slug' => 'despre-noi',                     'template' => 'page-despre-noi.php',                     'parent' => 0),
+        array('title' => 'Cum Functioneaza',               'slug' => 'cum-functioneaza',               'template' => 'page-cum-functioneaza.php',               'parent' => 0),
+        array('title' => 'Pentru Parteneri',               'slug' => 'pentru-parteneri',               'template' => 'page-pentru-parteneri.php',               'parent' => 0),
+        array('title' => 'Termeni si Conditii',            'slug' => 'termeni-si-conditii',            'template' => 'page-termeni-si-conditii.php',            'parent' => 0),
+        array('title' => 'Politica de Confidentialitate',  'slug' => 'politica-de-confidentialitate',  'template' => 'page-politica-de-confidentialitate.php',  'parent' => 0),
+        array('title' => 'Politica Cookies',               'slug' => 'politica-cookies',               'template' => 'page-politica-cookies.php',               'parent' => 0),
+        // /functii/* subpages
+        array('title' => 'Garaj Digital',                  'slug' => 'garaj-digital',                  'template' => 'functii/page-garaj-digital.php',          'parent' => $functii_parent_id),
+        array('title' => 'Reminder-e',                     'slug' => 'remindere',                      'template' => 'functii/page-remindere.php',              'parent' => $functii_parent_id),
+        array('title' => 'Servicii Auto',                  'slug' => 'servicii-auto',                  'template' => 'functii/page-servicii-auto.php',          'parent' => $functii_parent_id),
+        array('title' => 'Tractari',                       'slug' => 'tractari',                       'template' => 'functii/page-tractari.php',               'parent' => $functii_parent_id),
+        array('title' => 'Anvelope',                       'slug' => 'anvelope',                       'template' => 'functii/page-anvelope.php',               'parent' => $functii_parent_id),
+        array('title' => 'Piese Auto',                     'slug' => 'piese-auto',                     'template' => 'functii/page-piese-auto.php',             'parent' => $functii_parent_id),
+    );
+}
+
+function revizie_find_page_by_slug_and_parent($slug, $parent_id) {
+    $existing = get_posts(array(
+        'post_type'      => 'page',
+        'name'           => $slug,
+        'post_parent'    => (int) $parent_id,
+        'posts_per_page' => 1,
+        'post_status'    => array('publish', 'draft', 'pending', 'private'),
+    ));
+    return $existing ? $existing[0] : null;
+}
+
+function revizie_provision_pages() {
+    // Cheap idempotency: skip when this exact theme version already provisioned.
+    if (get_option('revizie_pages_provisioned_version') === REVIZIE_THEME_VERSION) {
+        return;
+    }
+
+    // Ensure the "Functii" container page exists so child URLs resolve at /functii/X/.
+    $functii = revizie_find_page_by_slug_and_parent('functii', 0);
+    if (!$functii) {
+        $functii_id = wp_insert_post(array(
+            'post_title'   => 'Functii',
+            'post_name'    => 'functii',
+            'post_type'    => 'page',
+            'post_status'  => 'publish',
+            'post_content' => '<!-- Container page; child pages render their own templates. -->',
+        ));
+    } else {
+        $functii_id = $functii->ID;
+    }
+
+    if (!$functii_id || is_wp_error($functii_id)) {
+        // Don't mark as provisioned — let it retry next admin pageview.
+        return;
+    }
+
+    foreach (revizie_page_manifest($functii_id) as $page) {
+        $existing = revizie_find_page_by_slug_and_parent($page['slug'], $page['parent']);
+
+        if (!$existing) {
+            $new_id = wp_insert_post(array(
+                'post_title'   => $page['title'],
+                'post_name'    => $page['slug'],
+                'post_type'    => 'page',
+                'post_status'  => 'publish',
+                'post_parent'  => (int) $page['parent'],
+                'post_content' => '<!-- Rendered by template ' . esc_attr($page['template']) . ' -->',
+            ));
+            if ($new_id && !is_wp_error($new_id)) {
+                update_post_meta($new_id, '_wp_page_template', $page['template']);
+            }
+        } else {
+            // Existing page — only enforce the template (don't overwrite content / title).
+            $current_template = get_post_meta($existing->ID, '_wp_page_template', true);
+            if ($current_template !== $page['template']) {
+                update_post_meta($existing->ID, '_wp_page_template', $page['template']);
+            }
+        }
+    }
+
+    // If the user hasn't pointed the front page at "Acasa" yet, do it now.
+    if (get_option('show_on_front') !== 'page' || !get_option('page_on_front')) {
+        $acasa = revizie_find_page_by_slug_and_parent('acasa', 0);
+        if ($acasa) {
+            update_option('show_on_front', 'page');
+            update_option('page_on_front', $acasa->ID);
+        }
+    }
+
+    update_option('revizie_pages_provisioned_version', REVIZIE_THEME_VERSION);
+}
+add_action('admin_init', 'revizie_provision_pages');
+
