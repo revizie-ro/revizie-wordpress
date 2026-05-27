@@ -5,7 +5,7 @@
           <div class="bg-logo rounded-xl p-2 inline-block mb-4">
             <img src="<?php echo esc_url(revizie_get_logo_url()); ?>" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto object-contain">
           </div>
-          <p class="text-foreground-subtle text-sm mb-4">Platforma ta completa pentru intretinerea auto, alimentata de AI.</p>
+          <p class="text-foreground-subtle text-sm mb-4">Tot ce ai nevoie pentru intretinerea masinii, intr-un singur cont.</p>
         </div>
 
         <div>
@@ -30,7 +30,6 @@
           <ul class="space-y-2">
             <li><a href="<?php echo home_url('/despre-noi/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Despre Noi</a></li>
             <li><a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Cum Functioneaza</a></li>
-            <li><a href="<?php echo home_url('/pentru-parteneri/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Pentru Parteneri</a></li>
           </ul>
         </div>
 

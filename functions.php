@@ -102,7 +102,6 @@ function revizie_main_menu_fallback() {
     <nav class="hidden md:flex items-center gap-8">
         <a href="<?php echo home_url('/despre-noi/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Despre Noi</a>
         <a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Cum Functioneaza</a>
-        <a href="<?php echo home_url('/pentru-parteneri/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Pentru Parteneri</a>
     </nav>
     <?php
 }
@@ -238,7 +237,9 @@ function revizie_print_waitlist_script() {
 add_action('wp_footer', 'revizie_print_waitlist_script');
 
 function revizie_handle_waitlist_signup() {
-    $allowed_features = array('servicii-auto', 'tractari', 'anvelope', 'piese-auto');
+    // 'general' = home-page form (any upcoming feature). The 4 named features
+    // remain for users who land on a specific Coming Soon page.
+    $allowed_features = array('general', 'servicii-auto', 'tractari', 'anvelope', 'piese-auto');
 
     if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'revizie_waitlist')) {
         wp_send_json_error(array('message' => 'Sesiune expirata, reincarca pagina.'), 403);
