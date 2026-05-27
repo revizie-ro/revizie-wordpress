@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('REVIZIE_THEME_VERSION', '1.4.1');
+define('REVIZIE_THEME_VERSION', '1.5.0');
 define('REVIZIE_THEME_DIR', get_template_directory());
 define('REVIZIE_THEME_URI', get_template_directory_uri());
 
@@ -312,6 +312,167 @@ function revizie_handle_waitlist_signup() {
 }
 add_action('wp_ajax_revizie_waitlist_signup', 'revizie_handle_waitlist_signup');
 add_action('wp_ajax_nopriv_revizie_waitlist_signup', 'revizie_handle_waitlist_signup');
+
+/* =============================================================================
+ * Waitlist admin page
+ *
+ * Renders a sortable table of every email collected via the Coming Soon
+ * forms, with filter chips per feature and a CSV export. Lives at
+ * /wp-admin/admin.php?page=revizie-waitlist (top-level "Waitlist" menu).
+ *
+ * Storage: wp_options.revizie_waitlist as JSON-encoded array of
+ * `{ email, feature, ts }`. Fine up to a few thousand entries; if the
+ * list grows past ~10k we should migrate to a proper custom table.
+ * ============================================================================= */
+
+function revizie_register_waitlist_admin_page() {
+    add_menu_page(
+        'Waitlist revizie.ro',
+        'Waitlist',
+        'manage_options',
+        'revizie-waitlist',
+        'revizie_render_waitlist_admin',
+        'dashicons-email-alt',
+        25
+    );
+}
+add_action('admin_menu', 'revizie_register_waitlist_admin_page');
+
+function revizie_handle_waitlist_csv_export() {
+    if (!isset($_GET['page'], $_GET['action']) || $_GET['page'] !== 'revizie-waitlist' || $_GET['action'] !== 'export_csv') {
+        return;
+    }
+    if (!current_user_can('manage_options')) {
+        wp_die('Nu ai permisiunea sa exporti.');
+    }
+    check_admin_referer('revizie_waitlist_export');
+
+    $list = get_option('revizie_waitlist', array());
+    if (!is_array($list)) $list = array();
+    usort($list, function ($a, $b) { return ($b['ts'] ?? 0) - ($a['ts'] ?? 0); });
+
+    $filename = 'revizie-waitlist-' . date('Y-m-d-His') . '.csv';
+    nocache_headers();
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+
+    $out = fopen('php://output', 'w');
+    // BOM pentru Excel sa recunoasca UTF-8
+    fwrite($out, "\xEF\xBB\xBF");
+    fputcsv($out, array('Email', 'Feature', 'Data inregistrarii (UTC)'));
+    foreach ($list as $entry) {
+        fputcsv($out, array(
+            $entry['email']   ?? '',
+            $entry['feature'] ?? '',
+            isset($entry['ts']) ? gmdate('Y-m-d H:i:s', (int) $entry['ts']) : '',
+        ));
+    }
+    fclose($out);
+    exit;
+}
+add_action('admin_init', 'revizie_handle_waitlist_csv_export');
+
+function revizie_render_waitlist_admin() {
+    // Handle row deletion (matches by email + feature, immune to sort order)
+    if (isset($_POST['revizie_delete_email'], $_POST['revizie_delete_feature']) && check_admin_referer('revizie_waitlist_delete')) {
+        $del_email   = sanitize_email(wp_unslash($_POST['revizie_delete_email']));
+        $del_feature = sanitize_key(wp_unslash($_POST['revizie_delete_feature']));
+        $list = get_option('revizie_waitlist', array());
+        if (!is_array($list)) $list = array();
+        $list = array_values(array_filter($list, function ($e) use ($del_email, $del_feature) {
+            return !(isset($e['email'], $e['feature']) && $e['email'] === $del_email && $e['feature'] === $del_feature);
+        }));
+        update_option('revizie_waitlist', $list, false);
+        echo '<div class="notice notice-success is-dismissible"><p>Intrare stearsa.</p></div>';
+    }
+
+    $all = get_option('revizie_waitlist', array());
+    if (!is_array($all)) $all = array();
+
+    // Per-feature counts for filter chips
+    $counts = array();
+    foreach ($all as $e) {
+        $f = $e['feature'] ?? 'general';
+        $counts[$f] = ($counts[$f] ?? 0) + 1;
+    }
+    ksort($counts);
+
+    // Active filter
+    $filter = isset($_GET['feature']) ? sanitize_key(wp_unslash($_GET['feature'])) : '';
+
+    // Sort by ts desc + apply filter
+    $list = $all;
+    usort($list, function ($a, $b) { return ($b['ts'] ?? 0) - ($a['ts'] ?? 0); });
+    if ($filter !== '') {
+        $list = array_values(array_filter($list, function ($e) use ($filter) {
+            return ($e['feature'] ?? '') === $filter;
+        }));
+    }
+
+    $base_url   = admin_url('admin.php?page=revizie-waitlist');
+    $export_url = wp_nonce_url(add_query_arg(array('action' => 'export_csv'), $base_url), 'revizie_waitlist_export');
+    ?>
+    <div class="wrap">
+        <h1 class="wp-heading-inline">Waitlist revizie.ro</h1>
+        <a href="<?php echo esc_url($export_url); ?>" class="page-title-action">Exporta CSV</a>
+        <hr class="wp-header-end">
+
+        <p>Email-uri colectate de la userii care vor sa fie anuntati cand lansam fiecare functionalitate. Total: <strong><?php echo count($all); ?></strong> intrari.</p>
+
+        <?php if (!empty($counts)): ?>
+        <ul class="subsubsub">
+            <li>
+                <a href="<?php echo esc_url($base_url); ?>" class="<?php echo $filter === '' ? 'current' : ''; ?>">
+                    Toate <span class="count">(<?php echo count($all); ?>)</span>
+                </a>
+                <?php if (!empty($counts)) echo ' |'; ?>
+            </li>
+            <?php $keys = array_keys($counts); $last_key = end($keys); foreach ($counts as $feat => $count): ?>
+                <li>
+                    <a href="<?php echo esc_url(add_query_arg('feature', $feat, $base_url)); ?>" class="<?php echo $filter === $feat ? 'current' : ''; ?>">
+                        <code><?php echo esc_html($feat); ?></code> <span class="count">(<?php echo $count; ?>)</span>
+                    </a>
+                    <?php if ($feat !== $last_key) echo ' |'; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <br class="clear">
+        <?php endif; ?>
+
+        <table class="wp-list-table widefat fixed striped">
+            <thead>
+                <tr>
+                    <th style="width: 35%;">Email</th>
+                    <th style="width: 25%;">Functie</th>
+                    <th style="width: 25%;">Data inregistrarii</th>
+                    <th style="width: 15%;">Actiune</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (empty($list)): ?>
+                    <tr><td colspan="4"><em>Nicio intrare in lista pentru filtrul curent.</em></td></tr>
+                <?php else: ?>
+                    <?php foreach ($list as $entry): ?>
+                        <tr>
+                            <td><a href="mailto:<?php echo esc_attr($entry['email'] ?? ''); ?>"><?php echo esc_html($entry['email'] ?? ''); ?></a></td>
+                            <td><code><?php echo esc_html($entry['feature'] ?? ''); ?></code></td>
+                            <td><?php echo esc_html(isset($entry['ts']) ? date('Y-m-d H:i', (int) $entry['ts']) : '—'); ?></td>
+                            <td>
+                                <form method="post" style="display:inline;" onsubmit="return confirm('Sigur stergi intrarea pentru <?php echo esc_js($entry['email'] ?? ''); ?>?');">
+                                    <?php wp_nonce_field('revizie_waitlist_delete'); ?>
+                                    <input type="hidden" name="revizie_delete_email" value="<?php echo esc_attr($entry['email'] ?? ''); ?>">
+                                    <input type="hidden" name="revizie_delete_feature" value="<?php echo esc_attr($entry['feature'] ?? ''); ?>">
+                                    <button type="submit" class="button button-small button-link-delete">Sterge</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php
+}
 
 /* =============================================================================
  * Auto-provision pages
