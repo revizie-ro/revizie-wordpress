@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('REVIZIE_THEME_VERSION', '1.4.0');
+define('REVIZIE_THEME_VERSION', '1.4.1');
 define('REVIZIE_THEME_DIR', get_template_directory());
 define('REVIZIE_THEME_URI', get_template_directory_uri());
 
@@ -363,8 +363,14 @@ function revizie_find_page_by_slug_and_parent($slug, $parent_id) {
 
 function revizie_provision_pages() {
     // Cheap idempotency: skip when this exact theme version already provisioned.
-    if (get_option('revizie_pages_provisioned_version') === REVIZIE_THEME_VERSION) {
+    // Bypass with ?revizie_reprovision=1 (any logged-in user) when you need
+    // to force a re-run without bumping the version constant.
+    $force = isset($_GET['revizie_reprovision']) && is_user_logged_in();
+    if (!$force && get_option('revizie_pages_provisioned_version') === REVIZIE_THEME_VERSION) {
         return;
+    }
+    if ($force) {
+        delete_option('revizie_pages_provisioned_version');
     }
 
     // Ensure the "Functii" container page exists so child URLs resolve at /functii/X/.
@@ -421,5 +427,8 @@ function revizie_provision_pages() {
 
     update_option('revizie_pages_provisioned_version', REVIZIE_THEME_VERSION);
 }
-add_action('admin_init', 'revizie_provision_pages');
+// Fire on `init` (not `admin_init`) so the very first frontend pageview after
+// a deploy also triggers provisioning. The option check makes subsequent
+// pageviews zero-cost (single get_option call).
+add_action('init', 'revizie_provision_pages');
 
