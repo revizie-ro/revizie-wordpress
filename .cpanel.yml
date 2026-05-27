@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    # Repository is cloned directly into wp-content/themes/revizie-theme/.
+    # The git pull already places files at their final destination, so this
+    # deploy step is a no-op confirmation. Without this file cPanel refuses
+    # to fire the "Deploy HEAD Commit" button + webhook.
+    - /bin/echo "revizie-theme deployed at $(date)"
