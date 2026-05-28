@@ -1,0 +1,20 @@
+# Force binary handling for assets so the cPanel deploy (git pull on a
+# Linux box) never applies CRLF/text normalization that would corrupt them.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.webp  binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.eot   binary
+
+# SVG is XML — keep it text but never convert line endings.
+*.svg   -text
+
+# PHP/CSS/JS: normalize to LF in the repo, regardless of OS.
+*.php   text eol=lf
+*.css   text eol=lf
+*.js    text eol=lf
