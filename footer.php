@@ -54,8 +54,8 @@
             <span class="text-foreground-subtle text-sm whitespace-nowrap">Plati securizate:</span>
             <?php revizie_render_netopia_logo('0F1113', 'orizontal', 170, 42); ?>
           </div>
-          <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs">
-            <?php revizie_render_anpc_links(); ?>
+          <div class="flex items-center">
+            <?php revizie_render_anpc_sal(); ?>
           </div>
         </div>
 

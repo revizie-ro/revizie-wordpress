@@ -157,23 +157,36 @@ function revizie_render_netopia_logo($color = 'ffffff', $version = 'vertical', $
 }
 
 /**
- * ANPC consumer-protection links, mandatory for RO e-commerce under
- * OG 27/2002 and EU Regulation 524/2013:
- *   - SAL  = Solutionarea Alternativa a Litigiilor (anpc.ro)
- *   - SOL  = Solutionarea Online a Litigiilor / ODR (ec.europa.eu)
- * URLs kept in sync with the React app footer (src/components/layout/Footer.tsx).
+ * Official ANPC SAL pictogram, mandatory on the home page for RO
+ * e-commerce per ORDIN ANPC 449/2022 art. 2 (as amended by Ordinul
+ * 270/2026): a 250x50 px pictogram linking to the SAL platform at
+ * https://reclamatiisal.anpc.ro. The image must be the official one
+ * downloaded for free from https://anpc.ro — do NOT recolor or resize
+ * it, the law requires the facsimile from Anexa nr. 2.
+ *
+ * The old EU ODR pictogram (ec.europa.eu/consumers/odr) is intentionally
+ * gone: the EU shut that platform down in July 2025 and the 2026
+ * amendment dropped it, leaving only the national SAL pictogram.
+ *
+ * Until the PNG is dropped at assets/img/anpc-sal.png we render a text
+ * link fallback so nothing appears broken.
  */
-function revizie_render_anpc_links() {
-    $links = array(
-        'ANPC'    => 'https://anpc.ro',
-        'ANPC SAL' => 'https://reclamatiisal.anpc.ro/',
-        'ANPC SOL' => 'https://ec.europa.eu/consumers/odr/',
-    );
-    $out = array();
-    foreach ($links as $label => $url) {
-        $out[] = '<a href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer" class="text-foreground-subtle hover:text-white transition-colors">' . esc_html($label) . '</a>';
+function revizie_render_anpc_sal() {
+    $sal_url  = 'https://reclamatiisal.anpc.ro';
+    $img_path = REVIZIE_THEME_DIR . '/assets/img/anpc-sal.png';
+
+    if (file_exists($img_path)) {
+        printf(
+            '<a href="%s" target="_blank" rel="noopener noreferrer" aria-label="ANPC - Solutionarea Alternativa a Litigiilor"><img src="%s" alt="ANPC - Solutionarea Alternativa a Litigiilor" width="250" height="50" loading="lazy" class="block"></a>',
+            esc_url($sal_url),
+            esc_url(REVIZIE_THEME_URI . '/assets/img/anpc-sal.png')
+        );
+    } else {
+        printf(
+            '<a href="%s" target="_blank" rel="noopener noreferrer" class="text-foreground-subtle hover:text-white transition-colors">ANPC &middot; Solutionarea Alternativa a Litigiilor</a>',
+            esc_url($sal_url)
+        );
     }
-    echo implode('<span class="text-white/20" aria-hidden="true">·</span>', $out);
 }
 
 function revizie_get_logo_url() {
