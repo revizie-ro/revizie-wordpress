@@ -176,13 +176,19 @@ function revizie_render_anpc_sal() {
     $img_path = REVIZIE_THEME_DIR . '/assets/img/anpc-sal.png';
 
     if (file_exists($img_path)) {
-        // Native size of ANPC's official file is 201x50. Render 1:1 — do not
-        // stretch to the 250 width the order's text mentions, that would
-        // distort the facsimile mark.
+        // Inline the pictogram as a base64 data URI instead of linking to its
+        // theme URL. On this host, static files under the theme folder are NOT
+        // served over HTTP — the request falls through to WordPress (returns
+        // the blog/404 page) even though the file exists on disk. Embedding
+        // sidesteps that entirely. PHP reads the file server-side (works), so
+        // the image always renders. ~4.5KB, negligible inline.
+        // Native size is 201x50; render 1:1 so the facsimile mark isn't
+        // distorted.
+        $data_uri = 'data:image/png;base64,' . base64_encode(file_get_contents($img_path));
         printf(
             '<a href="%s" target="_blank" rel="noopener noreferrer" aria-label="ANPC - Solutionarea Alternativa a Litigiilor"><img src="%s" alt="ANPC - Solutionarea Alternativa a Litigiilor" width="201" height="50" loading="lazy" class="block"></a>',
             esc_url($sal_url),
-            esc_url(REVIZIE_THEME_URI . '/assets/img/anpc-sal.png')
+            $data_uri
         );
     } else {
         printf(
