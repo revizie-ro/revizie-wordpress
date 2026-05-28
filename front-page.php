@@ -369,6 +369,26 @@ get_header();
     </div>
   </section>
 
+  <!-- Plati securizate (NETOPIA trust strip) -->
+  <section class="py-12 bg-surface-muted">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="bg-foreground rounded-3xl px-6 py-8 sm:px-10 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 text-white">
+        <div class="flex items-center gap-3 text-center sm:text-left">
+          <svg class="w-8 h-8 text-success shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+          <div>
+            <div class="font-semibold text-lg">Plati 100% securizate</div>
+            <div class="text-sm text-white/70">Procesate prin NETOPIA Payments &middot; Visa &amp; Mastercard</div>
+          </div>
+        </div>
+        <div class="shrink-0">
+          <?php revizie_render_netopia_logo('ffffff', 'vertical', 100, 80); ?>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Final CTA -->
   <section class="py-24 bg-gradient-to-br from-accent via-accent-hover to-accent-strong">
     <div class="max-w-4xl mx-auto px-6 text-center">

@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('REVIZIE_THEME_VERSION', '1.8.0');
+define('REVIZIE_THEME_VERSION', '1.9.0');
 define('REVIZIE_THEME_DIR', get_template_directory());
 define('REVIZIE_THEME_URI', get_template_directory_uri());
 
@@ -126,6 +126,48 @@ function revizie_render_social_links($variant = 'light') {
     foreach ($links as $key => $url) {
         echo '<a href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr($labels[$key]) . '" class="' . esc_attr($base) . '">' . $icons[$key] . '</a>';
     }
+}
+
+/**
+ * Official NETOPIA Payments logo widget (iframe served from mny.ro). The
+ * snippet + `secret` (POS id for revizie.ro) come from the NETOPIA merchant
+ * panel → Identitate vizuala. The widget bundles the NETOPIA wordmark plus
+ * the Mastercard + Visa marks in one image, so no separate card SVGs needed.
+ *
+ * The logo renders in `$color` (hex without #) on a transparent background,
+ * so always place it on a contrasting surface. We use white (`ffffff`) and
+ * mount it on dark containers (footer chrome + dark trust card on home).
+ */
+function revizie_render_netopia_logo($color = 'ffffff', $version = 'vertical', $width = 100, $height = 80) {
+    $src = 'https://mny.ro/npId.html?color=%23' . sanitize_hex_color_no_hash($color)
+        . '&version=' . rawurlencode($version)
+        . '&secret=165293';
+    printf(
+        '<iframe src="%s" style="border:none;width:%dpx;height:%dpx;" title="NETOPIA Payments" loading="lazy"></iframe>',
+        esc_url($src),
+        (int) $width,
+        (int) $height
+    );
+}
+
+/**
+ * ANPC consumer-protection links, mandatory for RO e-commerce under
+ * OG 27/2002 and EU Regulation 524/2013:
+ *   - SAL  = Solutionarea Alternativa a Litigiilor (anpc.ro)
+ *   - SOL  = Solutionarea Online a Litigiilor / ODR (ec.europa.eu)
+ * URLs kept in sync with the React app footer (src/components/layout/Footer.tsx).
+ */
+function revizie_render_anpc_links() {
+    $links = array(
+        'ANPC'    => 'https://anpc.ro',
+        'ANPC SAL' => 'https://reclamatiisal.anpc.ro/',
+        'ANPC SOL' => 'https://ec.europa.eu/consumers/odr/',
+    );
+    $out = array();
+    foreach ($links as $label => $url) {
+        $out[] = '<a href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer" class="text-foreground-subtle hover:text-white transition-colors">' . esc_html($label) . '</a>';
+    }
+    echo implode('<span class="text-white/20" aria-hidden="true">·</span>', $out);
 }
 
 function revizie_get_logo_url() {
