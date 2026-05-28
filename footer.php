@@ -6,6 +6,13 @@
             <img src="<?php echo esc_url(revizie_get_logo_url()); ?>" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto object-contain">
           </div>
           <p class="text-foreground-subtle text-sm mb-4">Tot ce ai nevoie pentru intretinerea masinii, intr-un singur cont.</p>
+          <div class="text-foreground-subtle text-xs space-y-1 mb-5">
+            <p class="font-medium text-white/80">Operat de SMART HAGGLING SRL</p>
+            <p>CUI: RO34531325</p>
+            <p>Reg. Com.: J2015006020404</p>
+            <p>CAEN 6622 — Asistent in brokeraj de asigurari</p>
+            <p>Sediu social si punct de lucru: Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti</p>
+          </div>
           <div class="flex items-center gap-2">
             <?php revizie_render_social_links('light'); ?>
           </div>
@@ -47,26 +54,36 @@
       </div>
 
       <div class="border-t border-white/10 pt-8">
-        <!-- Plati securizate (NETOPIA) + ANPC compliance -->
+        <!-- Plati securizate (NETOPIA) + contact -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pb-8 mb-8 border-b border-white/10">
           <div class="flex items-center gap-3">
             <svg class="w-5 h-5 text-success shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <span class="text-foreground-subtle text-sm whitespace-nowrap">Plati securizate:</span>
+            <span class="text-foreground-subtle text-sm whitespace-nowrap">Plati securizate 3D Secure</span>
             <?php revizie_render_netopia_logo('0F1113', 'orizontal', 170, 42); ?>
           </div>
-          <div class="flex items-center">
-            <?php revizie_render_anpc_sal(); ?>
-          </div>
-        </div>
-
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p class="text-foreground-subtle text-sm">
-            &copy; <?php echo date('Y'); ?> revizie.ro. Toate drepturile rezervate.
-          </p>
           <div class="flex items-center gap-4">
             <span class="text-foreground-subtle text-sm">Contact: 0758 500 700</span>
             <span class="text-foreground-subtle text-sm">|</span>
             <a href="mailto:office@revizie.ro" class="text-foreground-subtle hover:text-white text-sm transition-colors">office@revizie.ro</a>
+          </div>
+        </div>
+
+        <!-- Copyright + broker notice -->
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3 mb-6">
+          <p class="text-foreground-subtle text-sm">
+            &copy; <?php echo date('Y'); ?> revizie.ro &middot; Toate drepturile rezervate.
+          </p>
+          <p class="text-foreground-subtle text-xs md:text-right max-w-xl">
+            SMART HAGGLING SRL este asistent in brokeraj, afiliat al brokerului Transilvania Broker de Asigurare-Reasigurare SA.
+          </p>
+        </div>
+
+        <!-- Protectia consumatorilor: ANPC SAL pictogram + links -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+          <?php revizie_render_anpc_sal(); ?>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs">
+            <span class="text-foreground-subtle">Protectia consumatorilor:</span>
+            <?php revizie_render_anpc_links(); ?>
           </div>
         </div>
       </div>

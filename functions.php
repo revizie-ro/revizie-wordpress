@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('REVIZIE_THEME_VERSION', '1.9.0');
+define('REVIZIE_THEME_VERSION', '1.10.0');
 define('REVIZIE_THEME_DIR', get_template_directory());
 define('REVIZIE_THEME_URI', get_template_directory_uri());
 
@@ -196,6 +196,24 @@ function revizie_render_anpc_sal() {
             esc_url($sal_url)
         );
     }
+}
+
+/**
+ * The three consumer-protection text links shown next to the SAL
+ * pictogram, identical to the React app footer (ANPC / SAL / ODR).
+ * Kept in sync with src/components/layout/Footer.tsx and translations.ts.
+ */
+function revizie_render_anpc_links() {
+    $links = array(
+        'ANPC'                                  => 'https://anpc.ro',
+        'ANPC — SAL Reclamatii'                 => 'https://reclamatiisal.anpc.ro/',
+        'Solutionarea Online a Litigiilor (UE)' => 'https://ec.europa.eu/consumers/odr/',
+    );
+    $out = array();
+    foreach ($links as $label => $url) {
+        $out[] = '<a href="' . esc_url($url) . '" target="_blank" rel="noopener noreferrer" class="text-foreground-subtle hover:text-white transition-colors">' . esc_html($label) . '</a>';
+    }
+    echo implode('<span class="text-white/20" aria-hidden="true">·</span>', $out);
 }
 
 function revizie_get_logo_url() {

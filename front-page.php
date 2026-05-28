@@ -389,6 +389,15 @@ get_header();
             <?php revizie_render_netopia_logo('0F1113', 'orizontal', 220, 56); ?>
           </div>
         </div>
+
+        <!-- Protectia consumatorilor: ANPC SAL pictogram + links -->
+        <div class="mt-6 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+          <?php revizie_render_anpc_sal(); ?>
+          <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs">
+            <span class="text-white/50">Protectia consumatorilor:</span>
+            <?php revizie_render_anpc_links(); ?>
+          </div>
+        </div>
       </div>
     </div>
   </section>
