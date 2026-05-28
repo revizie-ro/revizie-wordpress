@@ -49,12 +49,10 @@
       <div class="border-t border-white/10 pt-8">
         <!-- Plati securizate (NETOPIA) + ANPC compliance -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pb-8 mb-8 border-b border-white/10">
-          <div class="flex items-center gap-4">
-            <div class="flex items-center gap-2 text-foreground-subtle text-sm">
-              <svg class="w-5 h-5 text-success shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              Plati securizate prin NETOPIA Payments
-            </div>
-            <?php revizie_render_netopia_logo('ffffff', 'vertical', 100, 80); ?>
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-success shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <span class="text-foreground-subtle text-sm whitespace-nowrap">Plati securizate:</span>
+            <?php revizie_render_netopia_logo('0F1113', 'orizontal', 170, 42); ?>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs">
             <?php revizie_render_anpc_links(); ?>

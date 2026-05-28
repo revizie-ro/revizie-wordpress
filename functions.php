@@ -134,9 +134,15 @@ function revizie_render_social_links($variant = 'light') {
  * panel → Identitate vizuala. The widget bundles the NETOPIA wordmark plus
  * the Mastercard + Visa marks in one image, so no separate card SVGs needed.
  *
- * The logo renders in `$color` (hex without #) on a transparent background,
- * so always place it on a contrasting surface. We use white (`ffffff`) and
- * mount it on dark containers (footer chrome + dark trust card on home).
+ * IMPORTANT: `$color` is the BACKGROUND color of YOUR surface (hex without
+ * #), not the logo color. NETOPIA auto-inverts the logo to contrast against
+ * it — pass a dark bg and you get a light logo, pass white and you get a dark
+ * logo. Both placements sit on `bg-foreground` (#0F1113), so we pass 0F1113
+ * and NETOPIA renders the light logo variant.
+ *
+ * `$version` accepts 'vertical' or 'orizontal' (NETOPIA's Romanian spelling —
+ * NOT 'horizontal', which renders blank). Orizontal is ~4:1, so give it a
+ * wide box (e.g. 220x56); vertical is ~5:4 (e.g. 100x80).
  */
 function revizie_render_netopia_logo($color = 'ffffff', $version = 'vertical', $width = 100, $height = 80) {
     $src = 'https://mny.ro/npId.html?color=%23' . sanitize_hex_color_no_hash($color)
