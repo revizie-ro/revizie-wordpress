@@ -37,9 +37,12 @@ function revizie_tailwind_config() {
             'card-elevated': '#F5F7FA',
             foreground:           '#0F1113',
             'foreground-muted':   '#4B5563',
-            'foreground-subtle':  '#9CA3AF',
-            border:         '#E5E7EB',
-            'border-subtle':'#F3F4F6',
+            // Matches app light theme: subtle text bumped from #9CA3AF so it
+            // no longer reads gray-on-gray over surface-muted boxes, and the
+            // border scale stepped one shade darker for clearer card edges.
+            'foreground-subtle':  '#4B5563',
+            border:         '#D1D5DB',
+            'border-subtle':'#E5E7EB',
             logo:           '#F8F5F0',
             success: '#22C55E',
             warning: '#F59E0B',
