@@ -33,9 +33,13 @@ Creeaza urmatoarele pagini si atribuie template-ul corespunzator din **Page Attr
 | Despre Noi | `despre-noi` | Despre Noi |
 | Cum Functioneaza | `cum-functioneaza` | Cum Functioneaza |
 | Pentru Parteneri | `pentru-parteneri` | Pentru Parteneri |
+| Produse si Preturi | `produse-si-preturi` | Produse si Preturi |
 | Termeni si Conditii | `termeni-si-conditii` | Termeni si Conditii |
 | Politica de Confidentialitate | `politica-de-confidentialitate` | Politica de Confidentialitate |
+| Politica GDPR | `politica-gdpr` | Politica GDPR |
 | Politica Cookies | `politica-cookies` | Politica Cookies |
+| Politica de livrare | `politica-de-livrare` | Politica de livrare |
+| Politica de anulare | `politica-de-anulare` | Politica de anulare |
 | Garaj Digital | `functii/garaj-digital` | Functie - Garaj Digital |
 | Reminder-e | `functii/remindere` | Functie - Remindere |
 | Programari Service *(Coming Soon)* | `functii/servicii-auto` | Functie - Servicii Auto |

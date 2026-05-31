@@ -46,9 +46,13 @@
         <div>
           <h4 class="text-white font-semibold mb-4">Legal</h4>
           <ul class="space-y-2">
+            <li><a href="<?php echo home_url('/produse-si-preturi/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Produse si preturi</a></li>
             <li><a href="<?php echo home_url('/termeni-si-conditii/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Termeni si Conditii</a></li>
             <li><a href="<?php echo home_url('/politica-de-confidentialitate/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Politica de Confidentialitate</a></li>
+            <li><a href="<?php echo home_url('/politica-gdpr/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Politica GDPR</a></li>
             <li><a href="<?php echo home_url('/politica-cookies/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Politica Cookies</a></li>
+            <li><a href="<?php echo home_url('/politica-de-livrare/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Politica de livrare</a></li>
+            <li><a href="<?php echo home_url('/politica-de-anulare/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Politica de anulare</a></li>
           </ul>
         </div>
       </div>

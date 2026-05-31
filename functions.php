@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('REVIZIE_THEME_VERSION', '1.10.0');
+define('REVIZIE_THEME_VERSION', '1.11.0');
 define('REVIZIE_THEME_DIR', get_template_directory());
 define('REVIZIE_THEME_URI', get_template_directory_uri());
 
@@ -739,9 +739,13 @@ function revizie_page_manifest($functii_parent_id) {
         array('title' => 'Despre Noi',                     'slug' => 'despre-noi',                     'template' => 'page-despre-noi.php',                     'parent' => 0),
         array('title' => 'Cum Functioneaza',               'slug' => 'cum-functioneaza',               'template' => 'page-cum-functioneaza.php',               'parent' => 0),
         array('title' => 'Pentru Parteneri',               'slug' => 'pentru-parteneri',               'template' => 'page-pentru-parteneri.php',               'parent' => 0),
+        array('title' => 'Produse si Preturi',             'slug' => 'produse-si-preturi',             'template' => 'page-produse-si-preturi.php',             'parent' => 0),
         array('title' => 'Termeni si Conditii',            'slug' => 'termeni-si-conditii',            'template' => 'page-termeni-si-conditii.php',            'parent' => 0),
         array('title' => 'Politica de Confidentialitate',  'slug' => 'politica-de-confidentialitate',  'template' => 'page-politica-de-confidentialitate.php',  'parent' => 0),
+        array('title' => 'Politica GDPR',                  'slug' => 'politica-gdpr',                  'template' => 'page-politica-gdpr.php',                  'parent' => 0),
         array('title' => 'Politica Cookies',               'slug' => 'politica-cookies',               'template' => 'page-politica-cookies.php',               'parent' => 0),
+        array('title' => 'Politica de livrare',            'slug' => 'politica-de-livrare',            'template' => 'page-politica-de-livrare.php',            'parent' => 0),
+        array('title' => 'Politica de anulare',            'slug' => 'politica-de-anulare',            'template' => 'page-politica-de-anulare.php',            'parent' => 0),
         // /functii/* subpages
         array('title' => 'Garaj Digital',                  'slug' => 'garaj-digital',                  'template' => 'functii/page-garaj-digital.php',          'parent' => $functii_parent_id),
         array('title' => 'Reminder-e',                     'slug' => 'remindere',                      'template' => 'functii/page-remindere.php',              'parent' => $functii_parent_id),
