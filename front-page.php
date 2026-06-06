@@ -229,7 +229,7 @@ get_header();
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
             </a>
-            <p class="text-xs text-foreground-subtle mt-3">Te redirectionam direct pe carVertical, cu codul aplicat automat.</p>
+            <p class="text-xs text-foreground-subtle mt-3">Te redirectionam direct pe carVertical, cu codul <span class="font-mono font-semibold text-foreground">REVIZIE</span> aplicat automat.</p>
           </div>
 
           <!-- Right: discount badge visual -->
@@ -242,7 +242,19 @@ get_header();
               <div class="text-sm font-medium uppercase tracking-wider mb-2 opacity-90">Reducere exclusiva</div>
               <div class="text-7xl md:text-8xl font-bold leading-none mb-2">-20%</div>
               <div class="text-lg font-semibold mb-1">la rapoartele carVertical</div>
-              <div class="text-sm opacity-90">doar pentru utilizatorii revizie.ro</div>
+              <div class="text-sm opacity-90 mb-6">doar pentru utilizatorii revizie.ro</div>
+
+              <!-- Promo code coupon — auto-applied via the link, shown so it can be copied/used too -->
+              <div class="inline-flex items-center gap-2.5 rounded-xl border border-dashed border-white/60 bg-white/15 px-4 py-2.5 backdrop-blur-sm">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 9h.01"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m15 9-6 6"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 15h.01"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2 9a3 3 0 1 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 1 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+                </svg>
+                <span class="text-xs uppercase tracking-wider opacity-80">Cod</span>
+                <span class="font-mono text-lg font-bold tracking-[0.2em]">REVIZIE</span>
+              </div>
             </div>
           </div>
         </div>
