@@ -2,9 +2,9 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-4 gap-12 mb-12">
         <div class="md:col-span-1">
-          <div class="bg-logo rounded-xl p-2 inline-block mb-4">
-            <img src="<?php echo esc_url(revizie_get_logo_url()); ?>" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto object-contain">
-          </div>
+          <?php // Dark-bg wordmark on the dark footer (bg-foreground) — bigger and
+                // without a card box, so its background melts into the footer. ?>
+          <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/dark_logo.jpeg'); ?>" alt="<?php bloginfo('name'); ?>" class="h-20 w-auto object-contain -ml-2 mb-4">
           <p class="text-foreground-subtle text-sm mb-4">Tot ce ai nevoie pentru intretinerea masinii, intr-un singur cont.</p>
           <div class="text-foreground-subtle text-xs space-y-1 mb-5">
             <p class="font-medium text-white/80">Operat de SMART HAGGLING SRL</p>

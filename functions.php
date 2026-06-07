@@ -225,7 +225,9 @@ function revizie_get_logo_url() {
         $logo_image = wp_get_attachment_image_src($custom_logo_id, 'full');
         return $logo_image[0];
     }
-    return REVIZIE_THEME_URI . '/assets/img/logo.png';
+    // Default to the white-background wordmark (same logo as the app). It sits
+    // on the white header, so the baked-in white background blends in.
+    return REVIZIE_THEME_URI . '/assets/img/white_logo.jpeg';
 }
 
 function revizie_main_menu_fallback() {
