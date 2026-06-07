@@ -11,6 +11,10 @@ define('REVIZIE_THEME_VERSION', '1.11.0');
 define('REVIZIE_THEME_DIR', get_template_directory());
 define('REVIZIE_THEME_URI', get_template_directory_uri());
 
+// Logo wordmarks inlined as base64 (the host doesn't reliably serve the theme's
+// binary image files). Provides REVIZIE_LOGO_DARK_DATAURI / *_LIGHT_DATAURI.
+require_once REVIZIE_THEME_DIR . '/inc/logo-data.php';
+
 /**
  * Tailwind config injected as inline script after the CDN tag.
  * Mirrors the React app's semantic tokens (tan accent + neutrals)

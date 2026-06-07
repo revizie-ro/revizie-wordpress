@@ -2,8 +2,9 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-4 gap-12 mb-12">
         <div class="md:col-span-1">
-          <?php // Transparent wordmark (light text) — big, blends on the dark footer. ?>
-          <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/logo-light.png'); ?>" alt="<?php bloginfo('name'); ?>" class="h-16 w-auto object-contain mb-5">
+          <?php // Transparent wordmark (light text) — big, blends on the dark footer.
+                // Inlined (base64) so it renders even though the host doesn't serve the binary file. ?>
+          <img src="<?php echo REVIZIE_LOGO_LIGHT_DATAURI; ?>" alt="<?php bloginfo('name'); ?>" class="h-16 w-auto object-contain mb-5">
           <p class="text-foreground-subtle text-sm mb-4">Tot ce ai nevoie pentru intretinerea masinii, intr-un singur cont.</p>
           <div class="text-foreground-subtle text-xs space-y-1 mb-5">
             <p class="font-medium text-white/80">Operat de SMART HAGGLING SRL</p>
