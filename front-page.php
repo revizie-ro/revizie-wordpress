@@ -232,20 +232,21 @@ get_header();
             <p class="text-xs text-foreground-subtle mt-3">Te redirectionam direct pe carVertical, cu codul <span class="font-mono font-semibold text-foreground">REVIZIE</span> aplicat automat.</p>
           </div>
 
-          <!-- Right: discount badge visual -->
-          <div class="lg:col-span-2 bg-gradient-to-br from-info via-info/80 to-accent flex items-center justify-center p-8 sm:p-12 relative">
-            <div class="absolute inset-0 opacity-20">
-              <div class="absolute top-8 right-8 w-32 h-32 bg-white rounded-full blur-2xl"></div>
-              <div class="absolute bottom-8 left-8 w-24 h-24 bg-white rounded-full blur-xl"></div>
-            </div>
-            <div class="relative text-center text-white">
+          <!-- Right: carVertical report visual (same asset as the app). A dark
+               scrim over it keeps the white copy clearly legible. -->
+          <div
+            class="lg:col-span-2 relative flex items-center justify-center p-8 sm:p-12 bg-cover bg-center"
+            style="background-image: url('<?php echo REVIZIE_CARVERTICAL_ASSET_DATAURI; ?>');"
+          >
+            <div class="absolute inset-0 bg-foreground/60"></div>
+            <div class="relative text-center text-white" style="text-shadow: 0 1px 4px rgba(0,0,0,0.55);">
               <div class="text-sm font-medium uppercase tracking-wider mb-2 opacity-90">Reducere exclusiva</div>
               <div class="text-7xl md:text-8xl font-bold leading-none mb-2">-20%</div>
               <div class="text-lg font-semibold mb-1">la rapoartele carVertical</div>
               <div class="text-sm opacity-90 mb-6">doar pentru utilizatorii revizie.ro</div>
 
               <!-- Promo code coupon — auto-applied via the link, shown so it can be copied/used too -->
-              <div class="inline-flex items-center gap-2.5 rounded-xl border border-dashed border-white/60 bg-white/15 px-4 py-2.5 backdrop-blur-sm">
+              <div class="inline-flex items-center gap-2.5 rounded-xl border border-dashed border-white/70 bg-white/20 px-4 py-2.5 backdrop-blur-sm">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 9h.01"/>
                   <path stroke-linecap="round" stroke-linejoin="round" d="m15 9-6 6"/>
@@ -255,6 +256,8 @@ get_header();
                 <span class="text-xs uppercase tracking-wider opacity-80">Cod</span>
                 <span class="font-mono text-lg font-bold tracking-[0.2em]">REVIZIE</span>
               </div>
+
+              <div class="mt-5 text-[10px] uppercase tracking-wider opacity-70">Sursă: carVertical</div>
             </div>
           </div>
         </div>
