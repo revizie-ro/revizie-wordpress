@@ -14,7 +14,7 @@
         <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-3">
           <?php // Transparent wordmark (dark text) — big, blends on the white header.
                 // Inlined (base64) so it renders even though the host doesn't serve the binary file. ?>
-          <img src="<?php echo REVIZIE_LOGO_DARK_DATAURI; ?>" alt="<?php bloginfo('name'); ?>" class="h-12 w-auto object-contain">
+          <img src="<?php echo REVIZIE_LOGO_DARK_DATAURI; ?>" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto object-contain">
         </a>
 
         <?php revizie_display_main_menu(); ?>
