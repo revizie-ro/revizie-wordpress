@@ -12,8 +12,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <div class="flex items-center gap-10">
         <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-3">
-          <?php // White-bg wordmark on the white header — no card box, it blends into the background. ?>
-          <img src="<?php echo esc_url(revizie_get_logo_url()); ?>" alt="<?php bloginfo('name'); ?>" class="h-12 w-auto object-contain">
+          <?php // Transparent wordmark (dark text) — big, blends on the white header. ?>
+          <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/logo-dark.png'); ?>" alt="<?php bloginfo('name'); ?>" class="h-12 w-auto object-contain">
         </a>
 
         <?php revizie_display_main_menu(); ?>
