@@ -28,7 +28,7 @@ get_header();
           </h1>
 
           <p class="text-xl text-foreground-muted mb-10 leading-relaxed max-w-2xl mx-auto">
-            Garaj digital, marketplace de masini second-hand, asigurari RCA &amp; CASCO online si verificare istoric prin VIN. Toate intr-o singura aplicatie.
+            Garaj digital, marketplace de masini noi sau second-hand, asigurari RCA &amp; CASCO online si verificare istoric prin VIN. Toate intr-o singura aplicatie.
           </p>
 
           <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -108,7 +108,7 @@ get_header();
             </svg>
           </div>
           <h3 class="text-xl font-bold text-foreground mb-3">Anunturi masini</h3>
-          <p class="text-foreground-muted mb-4">Marketplace pentru masini second-hand. Vinde-ti masina cu un click din garaj sau cauta urmatoarea ta masina cu filtre detaliate.</p>
+          <p class="text-foreground-muted mb-4">Marketplace pentru masini noi sau second-hand. Vinde-ti masina cu un click din garaj sau cauta urmatoarea ta masina cu filtre detaliate.</p>
           <span class="inline-flex items-center gap-2 text-warning font-medium group-hover:gap-3 transition-all">
             Descopera
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
