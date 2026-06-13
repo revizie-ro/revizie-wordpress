@@ -181,8 +181,8 @@ function revizie_render_netopia_logo($color = 'ffffff', $version = 'vertical', $
  */
 function revizie_render_wallet_pay_marks() {
     $tile = 'display:inline-flex;align-items:center;background:#fff;border-radius:6px;'
-        . 'padding:4px 8px;box-shadow:0 1px 2px rgba(0,0,0,.15);';
-    $img  = 'height:20px;width:auto;display:block;';
+        . 'padding:4px 10px;box-shadow:0 1px 2px rgba(0,0,0,.15);';
+    $img  = 'height:32px;width:auto;display:block;';
     ?>
     <span style="display:inline-flex;align-items:center;gap:8px;">
         <span style="<?php echo esc_attr($tile); ?>">
