@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+  <!-- Google tag (gtag.js) — GA4, same stream as app.revizie.ro -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZC6YWQC5L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZZC6YWQC5L');
+  </script>
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php wp_head(); ?>
