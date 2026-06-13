@@ -174,25 +174,18 @@ function revizie_render_netopia_logo($color = 'ffffff', $version = 'vertical', $
  * surfaces stay consistent.
  *
  * Uses the OFFICIAL, unmodified acceptance marks (assets/img/*-pay-mark.svg):
- * Apple Pay Marketing Guidelines + Google Pay API brand guidelines. Apple's is
- * a black badge and Google's a white pill, so each sits on an identical white
- * tile — never recolour the artwork, just give it a neutral surface so both
- * read on the dark footer (#0F1113).
+ * Apple Pay Marketing Guidelines + Google Pay API brand guidelines. Both ship as
+ * self-contained white rounded badges, so they render directly on the dark
+ * footer — no wrapper (an extra tile double-boxed them and looked off).
  */
 function revizie_render_wallet_pay_marks() {
-    $tile = 'display:inline-flex;align-items:center;background:#fff;border-radius:6px;'
-        . 'padding:4px 10px;box-shadow:0 1px 2px rgba(0,0,0,.15);';
-    $img  = 'height:32px;width:auto;display:block;';
+    $img = 'height:40px;width:auto;display:block;';
     ?>
     <span style="display:inline-flex;align-items:center;gap:8px;">
-        <span style="<?php echo esc_attr($tile); ?>">
-            <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/google-pay-mark.svg'); ?>"
-                 alt="Google Pay" style="<?php echo esc_attr($img); ?>" loading="lazy">
-        </span>
-        <span style="<?php echo esc_attr($tile); ?>">
-            <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/apple-pay-mark.svg'); ?>"
-                 alt="Apple Pay" style="<?php echo esc_attr($img); ?>" loading="lazy">
-        </span>
+        <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/google-pay-mark.svg'); ?>"
+             alt="Google Pay" style="<?php echo esc_attr($img); ?>" loading="lazy">
+        <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/apple-pay-mark.svg'); ?>"
+             alt="Apple Pay" style="<?php echo esc_attr($img); ?>" loading="lazy">
     </span>
     <?php
 }
