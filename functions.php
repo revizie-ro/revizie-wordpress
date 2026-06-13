@@ -173,28 +173,25 @@ function revizie_render_netopia_logo($color = 'ffffff', $version = 'vertical', $
  * next to the NETOPIA badge. Mirrors the React app's <WalletPayMarks /> so both
  * surfaces stay consistent.
  *
- * Sits on the dark footer surface (#0F1113): the Apple glyph + both "Pay"
- * wordmarks render white; Google's "G" keeps its four brand colours.
+ * Uses the OFFICIAL, unmodified acceptance marks (assets/img/*-pay-mark.svg):
+ * Apple Pay Marketing Guidelines + Google Pay API brand guidelines. Apple's is
+ * a black badge and Google's a white pill, so each sits on an identical white
+ * tile — never recolour the artwork, just give it a neutral surface so both
+ * read on the dark footer (#0F1113).
  */
 function revizie_render_wallet_pay_marks() {
-    $chip = 'display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.2);'
-        . 'border-radius:6px;padding:4px 10px;color:#fff;font-size:14px;font-weight:500;line-height:1;';
+    $tile = 'display:inline-flex;align-items:center;background:#fff;border-radius:6px;'
+        . 'padding:4px 8px;box-shadow:0 1px 2px rgba(0,0,0,.15);';
+    $img  = 'height:20px;width:auto;display:block;';
     ?>
     <span style="display:inline-flex;align-items:center;gap:8px;">
-        <span style="<?php echo esc_attr($chip); ?>" aria-label="Google Pay">
-            <svg viewBox="0 0 48 48" style="width:16px;height:16px;" aria-hidden="true">
-                <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
-                <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
-                <path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/>
-                <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
-            </svg>
-            Pay
+        <span style="<?php echo esc_attr($tile); ?>">
+            <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/google-pay-mark.svg'); ?>"
+                 alt="Google Pay" style="<?php echo esc_attr($img); ?>" loading="lazy">
         </span>
-        <span style="<?php echo esc_attr($chip); ?>" aria-label="Apple Pay">
-            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:#fff;" aria-hidden="true">
-                <path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"/>
-            </svg>
-            Pay
+        <span style="<?php echo esc_attr($tile); ?>">
+            <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/apple-pay-mark.svg'); ?>"
+                 alt="Apple Pay" style="<?php echo esc_attr($img); ?>" loading="lazy">
         </span>
     </span>
     <?php
