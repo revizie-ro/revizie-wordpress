@@ -177,17 +177,39 @@ function revizie_render_netopia_logo($color = 'ffffff', $version = 'vertical', $
  * Apple Pay Marketing Guidelines + Google Pay API brand guidelines. Both ship as
  * self-contained white rounded badges, so they render directly on the dark
  * footer — no wrapper (an extra tile double-boxed them and looked off).
+ *
+ * The SVGs are INLINED (not <img src>) on purpose: the host doesn't serve .svg
+ * files reliably (broken-image icons in the footer while .png logos load fine —
+ * a MIME/serving gap), so embedding the markup straight into the HTML sidesteps
+ * the separate request entirely. A fixed 40px height is forced on the root
+ * <svg> so it sits at the NETOPIA badge's scale.
  */
 function revizie_render_wallet_pay_marks() {
-    $img = 'height:40px;width:auto;display:block;';
-    ?>
-    <span style="display:inline-flex;align-items:center;gap:8px;">
-        <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/google-pay-mark.svg'); ?>"
-             alt="Google Pay" style="<?php echo esc_attr($img); ?>" loading="lazy">
-        <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/apple-pay-mark.svg'); ?>"
-             alt="Apple Pay" style="<?php echo esc_attr($img); ?>" loading="lazy">
-    </span>
-    <?php
+    $marks = array(
+        'google-pay-mark.svg' => 'Google Pay',
+        'apple-pay-mark.svg'  => 'Apple Pay',
+    );
+    echo '<span style="display:inline-flex;align-items:center;gap:8px;">';
+    foreach ($marks as $file => $label) {
+        $path = REVIZIE_THEME_DIR . '/assets/img/' . $file;
+        if (!is_readable($path)) {
+            continue;
+        }
+        $svg = file_get_contents($path);
+        // Drop the XML prolog/comments so the markup inlines cleanly mid-HTML.
+        $svg = preg_replace('/<\?xml.*?\?>|<!--.*?-->/s', '', $svg);
+        // Force our height + an accessible label on the root <svg>. The inline
+        // style overrides the file's own width/height attributes (CSS wins),
+        // and viewBox keeps the aspect ratio.
+        $svg = preg_replace(
+            '/<svg\b/',
+            '<svg role="img" aria-label="' . esc_attr($label) . '" style="height:40px;width:auto;display:block;"',
+            $svg,
+            1
+        );
+        echo $svg; // trusted, repo-controlled brand asset
+    }
+    echo '</span>';
 }
 
 /**

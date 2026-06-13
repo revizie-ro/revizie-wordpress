@@ -400,8 +400,9 @@ get_header();
               <div class="text-sm text-white/60">Procesare prin NETOPIA Payments</div>
             </div>
           </div>
-          <div class="shrink-0 sm:pl-8 sm:border-l sm:border-white/10">
+          <div class="shrink-0 sm:pl-8 sm:border-l sm:border-white/10 flex flex-col items-center sm:items-end gap-3">
             <?php revizie_render_netopia_logo('0F1113', 'orizontal', 220, 56); ?>
+            <?php revizie_render_wallet_pay_marks(); ?>
           </div>
         </div>
 
