@@ -59,8 +59,8 @@
       <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-1">
         <p class="text-xs font-semibold uppercase tracking-wider text-foreground-subtle px-3 mb-1">Functii</p>
         <a href="<?php echo home_url('/functii/garaj-digital/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Garaj Digital</a>
-        <a href="https://app.revizie.ro/anunturi" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Anunturi masini</a>
-        <a href="https://app.revizie.ro/asigurari/rca" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Asigurari RCA &amp; CASCO</a>
+        <a href="https://revizie.ro/anunturi" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Anunturi masini</a>
+        <a href="https://revizie.ro/rca" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Asigurari RCA &amp; CASCO</a>
         <a href="<?php echo home_url('/functii/remindere/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Reminder-e</a>
 
         <div class="h-px bg-border-subtle my-3"></div>

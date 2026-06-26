@@ -22,8 +22,8 @@
           <h4 class="text-white font-semibold mb-4">Functii disponibile</h4>
           <ul class="space-y-2">
             <li><a href="<?php echo home_url('/functii/garaj-digital/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Garaj Digital</a></li>
-            <li><a href="https://app.revizie.ro/anunturi" class="text-foreground-subtle hover:text-white transition-colors text-sm">Anunturi masini</a></li>
-            <li><a href="https://app.revizie.ro/asigurari/rca" class="text-foreground-subtle hover:text-white transition-colors text-sm">Asigurari RCA</a></li>
+            <li><a href="https://revizie.ro/anunturi" class="text-foreground-subtle hover:text-white transition-colors text-sm">Anunturi masini</a></li>
+            <li><a href="https://revizie.ro/rca" class="text-foreground-subtle hover:text-white transition-colors text-sm">Asigurari RCA</a></li>
             <li><a href="<?php echo home_url('/functii/remindere/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Reminder-e</a></li>
           </ul>
           <h4 class="text-white font-semibold mt-6 mb-3">In curand</h4>
