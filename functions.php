@@ -20,10 +20,10 @@ require_once REVIZIE_THEME_DIR . '/inc/carvertical-asset.php';
 
 /**
  * Tailwind config injected as inline script after the CDN tag.
- * Mirrors the React app's semantic tokens (tan accent + neutrals)
+ * Mirrors the React app's semantic tokens (orange brand accent + neutrals)
  * so both surfaces feel like the same brand.
  *
- * Keep in sync with revizie-app/src/index.css :root palette.
+ * Keep in sync with revizie-app/src/index.css :root palette (#f26a1b).
  */
 function revizie_tailwind_config() {
     return <<<JS
@@ -32,10 +32,10 @@ function revizie_tailwind_config() {
         extend: {
           colors: {
             accent: {
-              DEFAULT: '#B89063',
-              hover:   '#A57E54',
-              strong:  '#8B6843',
-              soft:    '#F4EDE1',
+              DEFAULT: '#f26a1b',
+              hover:   '#d5560a',
+              strong:  '#b0470c',
+              soft:    '#fde3d0',
               fg:      '#FFFFFF',
             },
             surface:         '#FFFFFF',
@@ -210,6 +210,64 @@ function revizie_render_wallet_pay_marks() {
         echo $svg; // trusted, repo-controlled brand asset
     }
     echo '</span>';
+}
+
+/**
+ * Inline an image from the theme's assets/img/ as a base64 data URI.
+ *
+ * The host doesn't reliably serve some of the theme's binary assets over HTTP,
+ * so the landing inlines its key imagery (hero car, insurer marks) straight
+ * into the HTML the same way the wordmark + carVertical asset already do.
+ * Results are memoised per request so a file used more than once on a page is
+ * only read + encoded once.
+ *
+ * @param string $relative Path under assets/img/, e.g. 'audi-car.webp'.
+ * @return string A `data:` URI, or '' if the file is missing/unreadable.
+ */
+function revizie_img_datauri($relative) {
+    static $cache = array();
+    if (array_key_exists($relative, $cache)) {
+        return $cache[$relative];
+    }
+    $path = REVIZIE_THEME_DIR . '/assets/img/' . ltrim($relative, '/');
+    if (!is_readable($path)) {
+        return $cache[$relative] = '';
+    }
+    $mimes = array(
+        'png'  => 'image/png',
+        'jpg'  => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'webp' => 'image/webp',
+        'avif' => 'image/avif',
+    );
+    $ext  = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+    $type = isset($mimes[$ext]) ? $mimes[$ext] : 'application/octet-stream';
+    return $cache[$relative] = 'data:' . $type . ';base64,' . base64_encode(file_get_contents($path));
+}
+
+/**
+ * RCA insurer logo strip for the homepage. Logos live in assets/img/insurers/
+ * (copied from the React app's public/insurers/) and are inlined via
+ * revizie_img_datauri so they render even where the host won't serve the
+ * binaries. Pass the ordered slugs to show; any missing file is skipped.
+ */
+function revizie_render_insurer_logos($slugs = array('groupama', 'omniasig', 'allianz', 'generali', 'asirom')) {
+    $labels = array(
+        'groupama' => 'Groupama',
+        'omniasig' => 'Omniasig',
+        'allianz'  => 'Allianz Tiriac',
+        'generali' => 'Generali',
+        'asirom'   => 'Asirom',
+    );
+    foreach ($slugs as $slug) {
+        $uri = revizie_img_datauri('insurers/' . $slug . '.webp');
+        if ($uri === '') {
+            continue;
+        }
+        $label = isset($labels[$slug]) ? $labels[$slug] : ucfirst($slug);
+        echo '<img src="' . esc_attr($uri) . '" alt="' . esc_attr($label) . '" '
+            . 'class="h-6 sm:h-7 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" loading="lazy">';
+    }
 }
 
 /**

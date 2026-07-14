@@ -1,7 +1,7 @@
 /* =============================================================================
  * Revizie.ro landing — base styles + brand-aligned gradients.
  *
- * Colors here mirror the React app's tan accent (#B89063) palette. The
+ * Colors here mirror the React app's orange accent (#f26a1b) palette. The
  * Tailwind utility classes (bg-accent, text-foreground, etc.) come from
  * the inline tailwind.config in functions.php; this file owns the
  * gradients and component-level overrides that Tailwind utilities can't
@@ -20,11 +20,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Never allow horizontal scroll on mobile — a runaway max-content child (e.g.
+   the insurer marquee) must be clipped, not push the page wider than the
+   viewport. Applies site-wide. */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* Hero: warm cream → white → soft tan. Replaces the old dark navy
    gradient — matches the React app's auth pages and dashboard hero. */
 .hero-gradient {
   background:
-    radial-gradient(circle at 15% 20%, rgba(184, 144, 99, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 15% 20%, rgba(242, 106, 27, 0.18) 0%, transparent 45%),
     radial-gradient(circle at 85% 80%, rgba(245, 158, 11, 0.12) 0%, transparent 50%),
     linear-gradient(180deg, #F8F5F0 0%, #FFFFFF 50%, #F5F7FA 100%);
 }
@@ -33,24 +41,24 @@ body {
    tones. Neutral-800 base with tan accent halos. */
 .stats-gradient {
   background:
-    radial-gradient(circle at 20% 50%, rgba(184, 144, 99, 0.18) 0%, transparent 40%),
-    radial-gradient(circle at 80% 50%, rgba(184, 144, 99, 0.10) 0%, transparent 45%),
+    radial-gradient(circle at 20% 50%, rgba(242, 106, 27, 0.18) 0%, transparent 40%),
+    radial-gradient(circle at 80% 50%, rgba(242, 106, 27, 0.10) 0%, transparent 45%),
     linear-gradient(90deg, #0F1113 0%, #1C1E21 50%, #0F1113 100%);
 }
 
 /* Bottom CTA strip — accent tan deepening into the strong tan. Drops
    the old orange→teal multi-stop in favor of a single brand color. */
 .cta-gradient {
-  background: linear-gradient(135deg, #B89063 0%, #A57E54 50%, #8B6843 100%);
+  background: linear-gradient(135deg, #f26a1b 0%, #d5560a 50%, #b0470c 100%);
 }
 
 /* Feature tile accent washes — use as bg-gradient-from on the inner icon. */
 .feature-gradient-tan {
-  background: linear-gradient(135deg, #B89063 0%, #A57E54 100%);
+  background: linear-gradient(135deg, #f26a1b 0%, #d5560a 100%);
 }
 
 .feature-gradient-warning {
-  background: linear-gradient(135deg, #F59E0B 0%, #B89063 100%);
+  background: linear-gradient(135deg, #F59E0B 0%, #f26a1b 100%);
 }
 
 .feature-gradient-success {
@@ -67,8 +75,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(184, 144, 99, 0.3); }
-  50%      { box-shadow: 0 0 40px rgba(184, 144, 99, 0.55); }
+  0%, 100% { box-shadow: 0 0 20px rgba(242, 106, 27, 0.3); }
+  50%      { box-shadow: 0 0 40px rgba(242, 106, 27, 0.55); }
 }
 
 .animate-float      { animation: float 3s ease-in-out infinite; }
@@ -121,13 +129,13 @@ body {
 .prose li { margin-top: 0.5rem; margin-bottom: 0.5rem; }
 
 .prose a {
-  color: #A57E54;
+  color: #d5560a;
   text-decoration: none;
   font-weight: 500;
 }
 
 .prose a:hover {
-  color: #8B6843;
+  color: #b0470c;
 }
 
 .prose table {
