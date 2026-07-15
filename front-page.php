@@ -2,168 +2,314 @@
 /**
  * Template Name: Home Page
  * Template for the front page / home
+ *
+ * Redesign 2026-07 (client concept): realistic device mockups (app UI
+ * composited into a real phone + laptop, inlined as transparent WebP),
+ * revizie.ro-branded hero car, continuous insurer-logo marquee. The
+ * carVertical (VIN), mobile-apps, social and NETOPIA/ANPC sections are kept
+ * from the previous landing per client request. No fabricated stats/prices.
  */
 get_header();
+
+// Inlined imagery (host doesn't reliably serve theme binaries — same pattern
+// as the wordmark + carVertical asset).
+$hero_car   = revizie_img_datauri('audi-car.webp');   // branded RS6, bg removed
+$hero_phone = revizie_img_datauri('phone-app.webp');  // app UI in a real phone
+$showcase_laptop = revizie_img_datauri('laptop-app.webp'); // dashboard in a real laptop
+
+// Insurers shown in the continuous marquee (all logos we carry).
+$marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','grawe','axeria','eazy_insure','hellas_autonom');
 ?>
 
-  <section class="min-h-screen hero-gradient relative overflow-hidden">
-    <div class="absolute inset-0 opacity-40">
-      <div class="absolute top-20 left-10 w-96 h-96 bg-accent/15 rounded-full blur-[120px]"></div>
-      <div class="absolute bottom-20 right-10 w-80 h-80 bg-warning/15 rounded-full blur-[100px]"></div>
+<style>
+  /* Slight global zoom-out for a calmer, less in-your-face layout (all rem-based
+     sizes + spacing scale down ~6%). Scoped to the homepage document. */
+  html { font-size: 15px; }
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  @keyframes revizie-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .rv-marquee { overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+  .rv-marquee-track { display: flex; align-items: center; gap: 3.5rem; width: max-content;
+    animation: revizie-marquee 38s linear infinite; }
+  @media (prefers-reduced-motion: reduce) { .rv-marquee-track { animation: none; } }
+</style>
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero-gradient relative overflow-hidden">
+    <div class="absolute inset-0 opacity-50 pointer-events-none">
+      <div class="absolute top-24 left-10 w-96 h-96 bg-accent/15 rounded-full blur-[120px]"></div>
+      <div class="absolute bottom-10 right-16 w-80 h-80 bg-warning/15 rounded-full blur-[110px]"></div>
     </div>
 
-    <div class="relative pt-32 pb-20">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center">
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-soft border border-accent/20 mb-8">
-            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
-            </svg>
-            <span class="text-sm text-accent-strong font-medium">Platforma inteligenta pentru intretinerea auto</span>
-          </div>
+    <div class="relative max-w-7xl mx-auto px-6 pt-28 pb-16 lg:pt-32 lg:pb-24">
+      <div class="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-6 items-center">
 
-          <h1 class="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-[1.1]">
-            Totul pentru masina ta,
-            <span class="block bg-gradient-to-r from-accent via-accent-hover to-warning bg-clip-text text-transparent leading-[1.15] pb-2">intr-un singur loc</span>
+        <!-- Left -->
+        <div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-[1.1]">
+            Tot ce ai nevoie pentru masina ta,
+            <span class="block bg-gradient-to-r from-accent via-accent-hover to-accent-strong bg-clip-text text-transparent">intr-un singur loc</span>
           </h1>
 
-          <p class="text-xl text-foreground-muted mb-10 leading-relaxed max-w-2xl mx-auto">
-            Garaj digital, marketplace de masini noi sau second-hand, asigurari RCA &amp; CASCO online si verificare istoric prin VIN. Toate intr-o singura aplicatie.
+          <p class="text-lg md:text-xl text-foreground-muted mb-6 leading-relaxed max-w-xl">
+            Compari RCA, verifici istoricul prin VIN, tii documentele si scadentele la zi si primesti notificari inainte de expirare.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <a href="https://app.revizie.ro/register" class="group px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-2xl font-semibold shadow-lg hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 inline-flex items-center justify-center gap-2">
-              Incepe gratuit
+          <!-- Feature pills -->
+          <div class="flex flex-wrap gap-2 mb-9">
+            <?php
+            $hero_pills = array(
+              array('RCA',           'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'),
+              array('ITP',           'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'),
+              array('Istoric VIN',   'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'),
+              array('Notificari',    'M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9'),
+              array('Garaj digital', 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'),
+            );
+            foreach ($hero_pills as $pill) : ?>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card border border-border-subtle text-sm font-medium text-foreground-muted">
+                <svg class="w-4 h-4 text-accent-strong" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="<?php echo $pill[1]; ?>"/></svg>
+                <?php echo $pill[0]; ?>
+              </span>
+            <?php endforeach; ?>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 mb-10">
+            <a href="https://revizie.ro/rca" class="group px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-2xl font-semibold shadow-lg hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 inline-flex items-center justify-center gap-2">
+              Compara RCA acum
               <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
             </a>
-            <a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="px-8 py-4 bg-card border border-border text-foreground rounded-2xl font-semibold hover:border-accent hover:text-accent transition-all inline-flex items-center justify-center gap-2">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              Cum functioneaza
+            <a href="https://app.revizie.ro/register" class="px-8 py-4 bg-card border border-border text-foreground rounded-2xl font-semibold hover:border-accent hover:text-accent transition-all inline-flex items-center justify-center gap-2">
+              Creeaza cont gratuit
             </a>
           </div>
 
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-            <div class="text-center">
-              <div class="text-2xl md:text-3xl font-bold text-foreground mb-1">RCA &amp; CASCO</div>
-              <div class="text-sm text-foreground-subtle">Polite online</div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-3">
+            <div class="flex items-center gap-2.5">
+              <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-success/10 text-success">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </span>
+              <div>
+                <div class="text-sm font-semibold text-foreground leading-tight">100% gratuit</div>
+                <div class="text-xs text-foreground-subtle leading-tight">Fara card la inregistrare</div>
+              </div>
             </div>
-            <div class="text-center">
-              <div class="text-2xl md:text-3xl font-bold text-foreground mb-1">Multi-vehicul</div>
-              <div class="text-sm text-foreground-subtle">Pana la 50 masini</div>
+            <div class="flex items-center gap-2.5">
+              <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-accent-soft text-accent-strong">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+              <div>
+                <div class="text-sm font-semibold text-foreground leading-tight">Date in siguranta</div>
+                <div class="text-xs text-foreground-subtle leading-tight">Protejate si confidentiale</div>
+              </div>
             </div>
-            <div class="text-center">
-              <div class="text-2xl md:text-3xl font-bold text-foreground mb-1">VIN decoder</div>
-              <div class="text-sm text-foreground-subtle">Date oficiale DRPCIV</div>
-            </div>
-            <div class="text-center">
-              <div class="text-2xl md:text-3xl font-bold text-foreground mb-1">GDPR</div>
-              <div class="text-sm text-foreground-subtle">Date in UE</div>
+            <div class="flex items-center gap-2.5">
+              <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-info/10 text-info">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </span>
+              <div>
+                <div class="text-sm font-semibold text-foreground leading-tight">Rapid si simplu</div>
+                <div class="text-xs text-foreground-subtle leading-tight">RCA in 2 minute</div>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Right: branded car + realistic app phone overlapping -->
+        <div class="relative mt-4 lg:mt-0">
+          <div class="relative">
+            <div class="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+              <div class="w-[90%] h-[75%] bg-accent/10 rounded-full blur-[90px]"></div>
+            </div>
+            <?php if ($hero_car !== '') : ?>
+              <img src="<?php echo esc_attr($hero_car); ?>" alt="Masina ta, gestionata cu revizie.ro"
+                   class="w-full max-w-none ml-auto lg:w-[120%] lg:-mr-[10%] select-none pointer-events-none" style="filter: drop-shadow(0 30px 45px rgba(15,17,19,.28));" />
+            <?php endif; ?>
+            <?php if ($hero_phone !== '') : ?>
+              <img src="<?php echo esc_attr($hero_phone); ?>" alt="Aplicatia revizie.ro"
+                   class="absolute top-1/2 -translate-y-1/2 left-0 lg:-left-4 w-[128px] sm:w-[168px] lg:w-[205px] select-none pointer-events-none"
+                   style="filter: drop-shadow(0 25px 35px rgba(15,17,19,.30));" />
+            <?php endif; ?>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Live features -->
-  <section class="py-24 bg-card relative">
+  <!-- ===================== SERVICII PRINCIPALE ===================== -->
+  <section class="py-16 bg-surface-muted relative">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-soft rounded-full text-accent-strong text-sm font-medium mb-4">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-          </svg>
-          Functionalitati disponibile
-        </div>
-        <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-4">Tot ce ai nevoie pentru masina ta</h2>
-        <p class="text-xl text-foreground-muted max-w-2xl mx-auto">5 instrumente esentiale pentru orice posesor de masina, accesibile din cont.</p>
+      <!-- Servicii principale -->
+      <div class="mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-foreground">Serviciile noastre principale</h2>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Garaj Digital -->
-        <a href="<?php echo home_url('/functii/garaj-digital/'); ?>" class="group bg-gradient-to-br from-accent-soft to-card rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border border-accent/15">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent to-accent-strong flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-            </svg>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <?php
+        $arrow = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>';
+        $services = array(
+          array('title'=>'RCA in 2 minute','chip'=>'bg-accent/10 text-accent-strong',
+            'icon'=>'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+            'desc'=>'Compari pretul de la toate asigurarile si cumperi online.',
+            'badge'=>'Popular','badge_class'=>'bg-accent-soft text-accent-strong',
+            'btn'=>'Compara RCA','href'=>'https://revizie.ro/rca','style'=>'primary'),
+          array('title'=>'Garaj digital','chip'=>'bg-warning/15 text-warning',
+            'icon'=>'M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z',
+            'desc'=>'Toate documentele, notificarile si istoricul masinii intr-un loc.',
+            'badge'=>null,'btn'=>'Vezi garajul','href'=>home_url('/functii/garaj-digital/'),'style'=>'outline'),
+          array('title'=>'Verifica VIN cu 20% reducere','chip'=>'bg-info/15 text-info',
+            'icon'=>'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+            'desc'=>'Istoric complet: daune, kilometraj, proprietari, accidente si multe altele.',
+            'badge'=>null,'btn'=>'Verifica acum','href'=>'https://revizie.ro/verificare-vin','style'=>'outline'),
+          array('title'=>'Marketplace auto','chip'=>'bg-success/15 text-success',
+            'icon'=>'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0',
+            'desc'=>'Cumperi sau vinzi masini rapid si in siguranta.',
+            'badge'=>'Nou','badge_class'=>'bg-warning/15 text-warning',
+            'btn'=>'Vezi anunturi','href'=>'https://revizie.ro/anunturi','style'=>'outline'),
+          array('title'=>'Piese &amp; Service','chip'=>'bg-foreground/5 text-foreground-muted',
+            'icon'=>'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
+            'desc'=>'In curand: piese auto, service si revizii.',
+            'badge'=>null,'badge_class'=>'',
+            'btn'=>'In curand','href'=>null,'style'=>'disabled'),
+        );
+        foreach ($services as $s) : ?>
+          <div class="relative bg-card rounded-2xl border border-border-subtle p-5 flex flex-col hover:shadow-lg transition-all">
+            <?php if (!empty($s['badge'])) : ?>
+              <span class="absolute top-4 right-4 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide <?php echo $s['badge_class']; ?>"><?php echo $s['badge']; ?></span>
+            <?php endif; ?>
+            <div class="flex items-center justify-center w-12 h-12 rounded-xl <?php echo $s['chip']; ?> mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="<?php echo $s['icon']; ?>"/></svg>
+            </div>
+            <h3 class="text-base font-bold text-foreground mb-2 leading-snug"><?php echo $s['title']; ?></h3>
+            <p class="text-xs text-foreground-muted mb-5 leading-relaxed flex-1"><?php echo $s['desc']; ?></p>
+            <?php if ($s['style'] === 'primary') : ?>
+              <a href="<?php echo esc_url($s['href']); ?>" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-accent hover:bg-accent-hover text-white text-sm font-semibold transition-colors self-start"><?php echo $s['btn'] . $arrow; ?></a>
+            <?php elseif ($s['style'] === 'disabled') : ?>
+              <span class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-surface-muted text-foreground-subtle text-sm font-semibold self-start cursor-default"><?php echo $s['btn'] . $arrow; ?></span>
+            <?php else : ?>
+              <a href="<?php echo esc_url($s['href']); ?>" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl border border-border text-foreground hover:border-accent hover:text-accent text-sm font-semibold transition-colors self-start"><?php echo $s['btn'] . $arrow; ?></a>
+            <?php endif; ?>
           </div>
-          <h3 class="text-xl font-bold text-foreground mb-3">Garaj Digital</h3>
-          <p class="text-foreground-muted mb-4">Toate masinile tale intr-un singur loc: documente digitale, istoric intretineri si scadente ITP / RCA / revizie monitorizate automat.</p>
-          <span class="inline-flex items-center gap-2 text-accent-strong font-medium group-hover:gap-3 transition-all">
-            Descopera
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </span>
-        </a>
-
-        <!-- Anunturi masini -->
-        <a href="https://revizie.ro/anunturi" class="group bg-gradient-to-br from-warning/10 to-card rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border border-warning/15">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-warning to-accent flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-foreground mb-3">Anunturi masini</h3>
-          <p class="text-foreground-muted mb-4">Marketplace pentru masini noi sau second-hand. Vinde-ti masina cu un click din garaj sau cauta urmatoarea ta masina cu filtre detaliate.</p>
-          <span class="inline-flex items-center gap-2 text-warning font-medium group-hover:gap-3 transition-all">
-            Descopera
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </span>
-        </a>
-
-        <!-- Asigurari RCA & CASCO -->
-        <a href="https://revizie.ro/rca" class="group bg-gradient-to-br from-success/10 to-card rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border border-success/15">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-success to-success/70 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-foreground mb-3">Asigurari RCA &amp; CASCO</h3>
-          <p class="text-foreground-muted mb-4">Calculezi pretul si comparti oferte de la mai multi asiguratori in 2 minute. Polita emisa direct in cont, plata securizata.</p>
-          <span class="inline-flex items-center gap-2 text-success font-medium group-hover:gap-3 transition-all">
-            Descopera
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </span>
-        </a>
-
-        <!-- Istoric VIN -->
-        <a href="https://app.revizie.ro" class="group bg-gradient-to-br from-info/10 to-card rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border border-info/15">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-info to-info/70 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-foreground mb-3">Istoric masina prin VIN</h3>
-          <p class="text-foreground-muted mb-4">Inainte sa cumperi o masina, verifici istoricul cu carVertical: kilometraj, accidente, fosti proprietari. Discount 20% pentru utilizatorii revizie.ro.</p>
-          <span class="inline-flex items-center gap-2 text-info font-medium group-hover:gap-3 transition-all">
-            Descopera
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </span>
-        </a>
-
-        <!-- Reminders -->
-        <a href="<?php echo home_url('/functii/remindere/'); ?>" class="group bg-gradient-to-br from-accent-soft to-card rounded-3xl p-8 hover:shadow-xl transition-all duration-300 border border-accent/15">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent to-accent-strong flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-foreground mb-3">Reminder-e automate</h3>
-          <p class="text-foreground-muted mb-4">Nu mai uita niciodata ITP-ul, RCA-ul sau revizia. Notificari pe email cu cateva saptamani inainte de expirare.</p>
-          <span class="inline-flex items-center gap-2 text-accent-strong font-medium group-hover:gap-3 transition-all">
-            Descopera
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-          </span>
-        </a>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
 
-  <!-- carVertical -20% promo (exclusive for revizie.ro users) -->
+  <!-- ===================== RCA + INSURER MARQUEE ===================== -->
+  <section class="py-16 bg-card relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="bg-surface-muted rounded-3xl border border-border-subtle p-8 sm:p-10 mb-8">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+          <!-- Left: pitch + bullets + CTA -->
+          <div>
+            <div class="inline-flex items-center gap-2 mb-4">
+              <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-accent text-white">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+              </span>
+              <span class="text-sm font-semibold uppercase tracking-wide text-accent-strong">RCA online</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">Compara RCA<br>in 2 minute</h2>
+            <ul class="space-y-3 mb-8">
+              <?php foreach (array('10 asiguratori intr-un singur loc', 'Polita emisa instant pe email', 'Plata 100% securizata', 'Preturi corecte, fara comisioane ascunse') as $b) : ?>
+                <li class="flex items-center gap-3 text-foreground-muted">
+                  <span class="flex items-center justify-center w-5 h-5 rounded-full bg-success/15 text-success shrink-0">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  </span>
+                  <?php echo $b; ?>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+            <a href="https://revizie.ro/rca" class="group inline-flex items-center gap-2 px-7 py-3.5 bg-accent hover:bg-accent-hover text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:shadow-accent/30 transition-all">
+              Vezi oferte RCA
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+          <!-- Right: two highlight boxes + insurer marquee under them -->
+          <div class="min-w-0">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="bg-card rounded-2xl border border-border-subtle p-6">
+                <div class="flex items-center gap-2 text-success text-sm font-semibold mb-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                  Economisesti timp si bani
+                </div>
+                <p class="text-sm text-foreground-muted leading-relaxed">Compari ofertele de la toti asiguratorii dintr-un singur formular si alegi cea mai buna varianta.</p>
+              </div>
+              <div class="bg-card rounded-2xl border border-border-subtle p-6">
+                <div class="flex items-center gap-2 text-accent-strong text-sm font-semibold mb-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                  Polita pe loc
+                </div>
+                <p class="text-sm text-foreground-muted leading-relaxed">Platesti securizat prin NETOPIA si primesti polita pe email imediat. Fara drumuri, fara hartii.</p>
+              </div>
+            </div>
+
+            <!-- Continuous insurer marquee, inside the card, under the two boxes -->
+            <div class="rv-marquee mt-5 pt-5 border-t border-border-subtle">
+              <div class="rv-marquee-track">
+                <?php for ($i = 0; $i < 2; $i++) :
+                  foreach ($marquee_insurers as $slug) :
+                    $uri = revizie_img_datauri('insurers/' . $slug . '.webp');
+                    if ($uri === '') continue; ?>
+                    <img src="<?php echo esc_attr($uri); ?>" alt="" aria-hidden="<?php echo $i ? 'true' : 'false'; ?>"
+                         class="h-7 sm:h-8 w-auto object-contain opacity-90" />
+                <?php endforeach; endfor; ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== APLICATIA (3 telefoane) ===================== -->
+  <section class="py-20 bg-surface-muted">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <!-- Left: 3 phones -->
+        <div class="order-2 lg:order-1">
+          <?php $phones_group = revizie_img_datauri('phones-group.webp'); if ($phones_group !== '') : ?>
+            <img src="<?php echo esc_attr($phones_group); ?>" alt="Aplicatia revizie.ro pe telefon"
+                 class="w-full max-w-xl mx-auto lg:mx-0 select-none pointer-events-none"
+                 style="filter: drop-shadow(0 30px 45px rgba(15,17,19,.18));" />
+          <?php endif; ?>
+        </div>
+        <!-- Right: text + bullets + app badges -->
+        <div class="order-1 lg:order-2">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-soft rounded-full text-accent-strong text-sm font-medium mb-4">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            Aplicatia ta, pe orice ecran
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">Garajul tau digital,<br>pe telefon si pe laptop</h2>
+          <p class="text-lg text-foreground-muted mb-6 leading-relaxed">Accesezi oricand si de oriunde toate informatiile importante despre masinile tale.</p>
+          <ul class="space-y-3 mb-8">
+            <?php foreach (array('Documente si asigurari mereu la zi', 'Notificari automate inainte de expirare', 'Istoric cheltuieli si revizii', 'Acces de pe web si din aplicatie') as $pt) : ?>
+              <li class="flex items-center gap-3 text-foreground-muted">
+                <span class="flex items-center justify-center w-5 h-5 rounded-full bg-success/15 text-success shrink-0"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                <?php echo $pt; ?>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="inline-flex items-center gap-3 px-5 py-3 bg-foreground text-white rounded-2xl shadow-md">
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+              <span class="text-left leading-none"><span class="block text-[11px] text-white/70">In curand pe</span><span class="block text-lg font-semibold mt-0.5">App Store</span></span>
+            </div>
+            <div class="inline-flex items-center gap-3 px-5 py-3 bg-foreground text-white rounded-2xl shadow-md">
+              <svg class="w-8 h-8" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.609 22.186c-.31-.292-.5-.71-.5-1.186V3c0-.476.19-.894.5-1.186z"/><path fill="#FBBC04" d="M16.81 15.02l-2.07-2.07 2.07-2.07 3.18 1.82c.78.45.78 1.6 0 2.05l-3.18 1.82z"/><path fill="#EA4335" d="M3.609 22.186L13.792 12l3.018 3.02-11.43 6.55c-.5.29-1.15.27-1.77-.38z"/><path fill="#4285F4" d="M3.609 1.814L16.81 8.98 13.792 12 3.609 1.814z"/></svg>
+              <span class="text-left leading-none"><span class="block text-[11px] text-white/70">In curand pe</span><span class="block text-lg font-semibold mt-0.5">Google Play</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= VERIFICARE VIN (carVertical) ======================= -->
+  <!-- Kept from the previous landing per client request. -->
   <section class="py-20 bg-surface-muted relative overflow-hidden">
     <div class="absolute inset-0 opacity-30 pointer-events-none">
       <div class="absolute top-10 right-10 w-72 h-72 bg-info/20 rounded-full blur-[100px]"></div>
@@ -265,116 +411,56 @@ get_header();
     </div>
   </section>
 
-  <!-- Coming soon + single email capture -->
-  <section class="py-20 bg-card relative">
+      <!-- FAQ + CTA cu cheia -->
+  <section class="py-20 bg-surface-muted">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-card border border-border rounded-full text-foreground-muted text-sm font-medium mb-4">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-          </svg>
-          In dezvoltare
-        </div>
-        <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-3">Functionalitati care vin curand</h2>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">Le pregatim acum si le anuntam imediat ce intra live. Lasa-ti emailul si te tinem la curent.</p>
-      </div>
+      <div class="grid lg:grid-cols-2 gap-8 items-start">
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-        <div class="bg-card border border-border-subtle rounded-2xl p-5">
-          <div class="w-11 h-11 rounded-xl bg-accent/15 text-accent flex items-center justify-center mb-3">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/></svg>
-          </div>
-          <h3 class="font-semibold text-foreground mb-1">Programari service</h3>
-          <p class="text-xs text-foreground-muted">Programare online la service-uri partenere verificate.</p>
+        <!-- Left: FAQ accordion -->
+        <div class="bg-card rounded-3xl border border-border-subtle p-8 sm:p-10">
+          <h2 class="text-2xl md:text-3xl font-bold text-foreground mb-6">Intrebari frecvente</h2>
+          <?php
+          $faqs = array(
+            array('Cum cumpar o polita RCA?', 'Completezi datele masinii, compari ofertele de la asiguratori si platesti securizat online. Primesti polita pe email in cateva minute.'),
+            array('Este sigur sa introduc datele masinii?', 'Da. Datele sunt criptate si folosite doar pentru calculul ofertelor si emiterea politei. Nu le partajam cu terti.'),
+            array('Cum functioneaza notificarile?', 'Primesti automat un email inainte sa expire RCA, ITP sau revizia, ca sa nu uiti nicio scadenta.'),
+            array('Pot adauga mai multe masini?', 'Da, poti adauga oricate masini in garajul tau digital si le gestionezi pe toate dintr-un singur cont.'),
+          );
+          foreach ($faqs as $i => $q) : ?>
+            <details class="group border-b border-border-subtle py-5"<?php if ($i === 0) echo ' open'; ?>>
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-foreground text-base md:text-lg">
+                <span><?php echo $q[0]; ?></span>
+                <svg class="w-5 h-5 text-foreground-subtle shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <p class="mt-3 text-sm md:text-base text-foreground-muted leading-relaxed"><?php echo $q[1]; ?></p>
+            </details>
+          <?php endforeach; ?>
+          <a href="<?php echo home_url('/intrebari-frecvente/'); ?>" class="group inline-flex items-center gap-2 mt-6 text-accent-strong font-semibold">
+            Vezi toate intrebarile
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
         </div>
-        <div class="bg-card border border-border-subtle rounded-2xl p-5">
-          <div class="w-11 h-11 rounded-xl bg-warning/15 text-warning flex items-center justify-center mb-3">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
-          </div>
-          <h3 class="font-semibold text-foreground mb-1">Tractari 24/7</h3>
-          <p class="text-xs text-foreground-muted">Asistenta rutiera oriunde in Romania.</p>
-        </div>
-        <div class="bg-card border border-border-subtle rounded-2xl p-5">
-          <div class="w-11 h-11 rounded-xl bg-info/15 text-info flex items-center justify-center mb-3">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
-          </div>
-          <h3 class="font-semibold text-foreground mb-1">Asistent AI piese</h3>
-          <p class="text-xs text-foreground-muted">Chat AI specializat care recomanda piese si ofertele cele mai bune pentru masina ta.</p>
-        </div>
-        <div class="bg-card border border-border-subtle rounded-2xl p-5">
-          <div class="w-11 h-11 rounded-xl bg-success/15 text-success flex items-center justify-center mb-3">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
-          </div>
-          <h3 class="font-semibold text-foreground mb-1">Anvelope</h3>
-          <p class="text-xs text-foreground-muted">Cauta anvelopele potrivite cu recomandari AI.</p>
-        </div>
-      </div>
 
-      <!-- Single email capture -->
-      <div class="max-w-2xl mx-auto bg-card rounded-2xl border border-border-subtle p-6 sm:p-8 text-center shadow-sm">
-        <h3 class="text-lg font-semibold text-foreground mb-2">Vrei sa stii cand lansam aceste functionalitati?</h3>
-        <p class="text-sm text-foreground-muted mb-5">Lasa-ti emailul si iti dam un singur mesaj scurt pentru fiecare lansare. Fara spam.</p>
-        <?php revizie_render_waitlist_form('general', 'urmatoarele functii'); ?>
+        <!-- Right: CTA with the branded key as a cover background (robust to any height) -->
+        <?php $faq_key = revizie_img_datauri('key.webp'); ?>
+        <div class="relative overflow-hidden rounded-3xl p-8 sm:p-10 flex flex-col justify-center min-h-[340px] bg-accent-strong bg-cover bg-center"
+             <?php if ($faq_key !== '') : ?>style="background-image: linear-gradient(100deg, rgba(21,15,8,0.94) 0%, rgba(21,15,8,0.55) 48%, rgba(21,15,8,0.05) 100%), url('<?php echo esc_attr($faq_key); ?>');"<?php endif; ?>>
+          <div class="relative max-w-sm">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">Esti gata sa simplifici gestionarea masinii tale?</h2>
+            <p class="text-white/80 mb-6">Creeaza cont gratuit si ai totul intr-un singur loc.</p>
+            <a href="https://app.revizie.ro/register" class="inline-flex items-center gap-2 px-6 py-3.5 bg-white text-accent-strong rounded-xl font-bold shadow-lg hover:scale-105 transition-transform">
+              Creeaza cont gratuit
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Mobile apps coming soon -->
-  <section class="py-20 bg-surface-muted relative overflow-hidden">
-    <div class="absolute inset-0 opacity-30 pointer-events-none">
-      <div class="absolute top-10 left-1/4 w-64 h-64 bg-accent/15 rounded-full blur-[100px]"></div>
-      <div class="absolute bottom-10 right-1/4 w-72 h-72 bg-info/15 rounded-full blur-[100px]"></div>
-    </div>
-
-    <div class="relative max-w-5xl mx-auto px-6">
-      <div class="text-center mb-10">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-soft border border-accent/20 rounded-full text-accent-strong text-sm font-semibold mb-4">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-          </svg>
-          Aplicatii de mobil
-        </div>
-        <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-3">In curand pe iPhone si Android</h2>
-        <p class="text-lg text-foreground-muted max-w-2xl mx-auto">
-          Aplicatiile native vin imediat dupa lansarea web-ului. Garajul tau, asigurarile si scadentele - direct in buzunar.
-        </p>
-      </div>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <!-- App Store badge (coming soon) -->
-        <div class="inline-flex items-center gap-3 px-6 py-3 bg-card border border-border rounded-2xl shadow-sm opacity-90">
-          <svg class="w-9 h-9 text-foreground" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-          </svg>
-          <div class="text-left">
-            <div class="text-xs text-foreground-muted leading-tight">In curand pe</div>
-            <div class="text-base font-bold text-foreground leading-tight">App Store</div>
-          </div>
-        </div>
-
-        <!-- Google Play badge (coming soon) -->
-        <div class="inline-flex items-center gap-3 px-6 py-3 bg-card border border-border rounded-2xl shadow-sm opacity-90">
-          <svg class="w-9 h-9" viewBox="0 0 24 24">
-            <path fill="#34A853" d="M3.609 1.814L13.792 12 3.609 22.186c-.31-.292-.5-.71-.5-1.186V3c0-.476.19-.894.5-1.186z"/>
-            <path fill="#FBBC04" d="M16.81 15.02l-2.07-2.07 2.07-2.07 3.18 1.82c.78.45.78 1.6 0 2.05l-3.18 1.82z" opacity=".9"/>
-            <path fill="#EA4335" d="M3.609 22.186L13.792 12l3.018 3.02-11.43 6.55c-.5.29-1.15.27-1.77-.38z" opacity=".9"/>
-            <path fill="#4285F4" d="M3.609 1.814L16.81 8.98 13.792 12 3.609 1.814z" opacity=".9"/>
-          </svg>
-          <div class="text-left">
-            <div class="text-xs text-foreground-muted leading-tight">In curand pe</div>
-            <div class="text-base font-bold text-foreground leading-tight">Google Play</div>
-          </div>
-        </div>
-      </div>
-
-      <p class="text-center text-sm text-foreground-subtle mt-8">
-        Pana atunci, <a href="https://app.revizie.ro" class="text-accent-strong hover:text-accent font-medium underline-offset-4 hover:underline">aplicatia web</a> functioneaza perfect pe orice telefon.
-      </p>
-    </div>
-  </section>
-
-  <!-- Social -->
-  <section class="py-16 bg-card border-t border-border-subtle">
+  <!-- Social (kept) -->
+  <section class="py-16 bg-surface-muted border-t border-border-subtle">
     <div class="max-w-3xl mx-auto px-6 text-center">
       <h2 class="text-2xl font-bold text-foreground mb-2">Urmareste-ne pe social</h2>
       <p class="text-foreground-muted mb-6">Tips, noutati despre lansari si feedback rapid.</p>
@@ -387,7 +473,7 @@ get_header();
   <!-- Plati securizate (NETOPIA trust strip) — HIDDEN per client 2026-07-15
        (it duplicated the footer strip). Kept in code; flip `false` -> `true` to restore. -->
   <?php if (false) : ?>
-  <section class="py-14 bg-surface-muted">
+  <section class="py-14 bg-card">
     <div class="max-w-3xl mx-auto px-6">
       <div class="bg-foreground rounded-3xl border border-white/10 shadow-xl px-8 py-8 sm:px-10">
         <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
@@ -420,19 +506,5 @@ get_header();
     </div>
   </section>
   <?php endif; ?>
-
-  <!-- Final CTA -->
-  <section class="py-24 bg-gradient-to-br from-accent via-accent-hover to-accent-strong">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Incepe sa-ti gestionezi masina mai usor</h2>
-      <p class="text-xl text-white/90 mb-10">Creeaza cont gratuit si descopera toate functionalitatile platformei.</p>
-      <a href="https://app.revizie.ro/register" class="inline-flex items-center gap-2 px-10 py-5 bg-white text-accent-strong rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl hover:scale-105 transition-all">
-        Creeaza cont gratuit
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-        </svg>
-      </a>
-    </div>
-  </section>
 
 <?php get_footer(); ?>
