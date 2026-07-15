@@ -50,7 +50,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
         <div>
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-[1.1]">
             Tot ce ai nevoie pentru masina ta,
-            <span class="block bg-gradient-to-r from-accent via-accent-hover to-accent-strong bg-clip-text text-transparent">intr-un singur loc</span>
+            <span class="block bg-gradient-to-r from-accent via-accent-hover to-accent-strong bg-clip-text text-transparent leading-[1.15] pb-2">intr-un singur loc</span>
           </h1>
 
           <p class="text-lg md:text-xl text-foreground-muted mb-6 leading-relaxed max-w-xl">
