@@ -37,7 +37,7 @@ get_header();
             <strong class="text-foreground">Angajamentul nostru:</strong> revizie.ro respecta pe deplin Regulamentul General privind Protectia Datelor (GDPR - Regulamentul UE 2016/679). Protejam datele dumneavoastra personale si va oferim control total asupra lor.
           </p>
           <p class="text-foreground m-0 text-sm">
-            <strong class="text-foreground">Operator de date:</strong> SMART HAGGLING SRL, CUI RO34531325, Reg. Com. J2015006020404, sediu social si punct de lucru in Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti. Contact: <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a>.
+            <strong class="text-foreground">Operator de date:</strong> SMART HAGGLING SRL, CUI 34531325, Reg. Com. J2015006020404, sediu social si punct de lucru in Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti. Contact: <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a>.
           </p>
         </div>
 

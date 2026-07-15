@@ -384,7 +384,9 @@ get_header();
     </div>
   </section>
 
-  <!-- Plati securizate (NETOPIA trust strip) -->
+  <!-- Plati securizate (NETOPIA trust strip) — HIDDEN per client 2026-07-15
+       (it duplicated the footer strip). Kept in code; flip `false` -> `true` to restore. -->
+  <?php if (false) : ?>
   <section class="py-14 bg-surface-muted">
     <div class="max-w-3xl mx-auto px-6">
       <div class="bg-foreground rounded-3xl border border-white/10 shadow-xl px-8 py-8 sm:px-10">
@@ -417,6 +419,7 @@ get_header();
       </div>
     </div>
   </section>
+  <?php endif; ?>
 
   <!-- Final CTA -->
   <section class="py-24 bg-gradient-to-br from-accent via-accent-hover to-accent-strong">

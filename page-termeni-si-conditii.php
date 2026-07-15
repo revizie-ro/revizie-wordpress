@@ -46,7 +46,7 @@ get_header();
             <ul class="space-y-2 text-foreground-subtle">
               <li><strong class="text-foreground">Denumire:</strong> SMART HAGGLING SRL</li>
               <li><strong class="text-foreground">Sediu social si punct de lucru:</strong> Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti, Romania</li>
-              <li><strong class="text-foreground">Cod Unic de Inregistrare (CUI):</strong> RO34531325</li>
+              <li><strong class="text-foreground">Cod Unic de Inregistrare (CUI):</strong> 34531325</li>
               <li><strong class="text-foreground">Nr. Registrul Comertului:</strong> J2015006020404</li>
               <li><strong class="text-foreground">Cod CAEN principal:</strong> 6622 &mdash; Activitati ale agentilor si broker-ilor de asigurari (asistent in brokeraj)</li>
               <li><strong class="text-foreground">Email:</strong> <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a></li>

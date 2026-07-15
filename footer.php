@@ -8,7 +8,7 @@
           <p class="text-foreground-subtle text-sm mb-4">Tot ce ai nevoie pentru intretinerea masinii, intr-un singur cont.</p>
           <div class="text-foreground-subtle text-xs space-y-1 mb-5">
             <p class="font-medium text-white/80">Operat de SMART HAGGLING SRL</p>
-            <p>CUI: RO34531325</p>
+            <p>CUI: 34531325</p>
             <p>Reg. Com.: J2015006020404</p>
             <p>CAEN 6622 — Asistent in brokeraj de asigurari</p>
             <p>Sediu social si punct de lucru: Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti</p>
@@ -24,7 +24,7 @@
             <li><a href="<?php echo home_url('/functii/garaj-digital/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Garaj Digital</a></li>
             <li><a href="https://revizie.ro/anunturi" class="text-foreground-subtle hover:text-white transition-colors text-sm">Anunturi masini</a></li>
             <li><a href="https://revizie.ro/rca" class="text-foreground-subtle hover:text-white transition-colors text-sm">Asigurari RCA</a></li>
-            <li><a href="<?php echo home_url('/functii/remindere/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Reminder-e</a></li>
+            <li><a href="<?php echo home_url('/functii/remindere/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Remindere</a></li>
           </ul>
           <h4 class="text-white font-semibold mt-6 mb-3">In curand</h4>
           <ul class="space-y-2">
@@ -73,13 +73,11 @@
           </div>
         </div>
 
-        <!-- Copyright + broker notice -->
-        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-3 mb-6">
+        <!-- Copyright (broker-notice duplicate removed per client 2026-07-15 — the
+             brokerage info already lives in the company block top-left). -->
+        <div class="mb-6">
           <p class="text-foreground-subtle text-sm">
             &copy; <?php echo date('Y'); ?> revizie.ro &middot; Toate drepturile rezervate.
-          </p>
-          <p class="text-foreground-subtle text-xs md:text-right max-w-xl">
-            SMART HAGGLING SRL este asistent in brokeraj, afiliat al brokerului Transilvania Broker de Asigurare-Reasigurare SA.
           </p>
         </div>
 

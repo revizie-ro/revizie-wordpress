@@ -347,7 +347,7 @@ function revizie_main_menu_fallback() {
         <a href="<?php echo home_url('/functii/garaj-digital/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Garaj Digital</a>
         <a href="https://revizie.ro/anunturi" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Anunturi</a>
         <a href="https://revizie.ro/rca" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Asigurari</a>
-        <a href="<?php echo home_url('/functii/remindere/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Reminder-e</a>
+        <a href="<?php echo home_url('/functii/remindere/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Remindere</a>
         <span class="w-px h-4 bg-border" aria-hidden="true"></span>
         <a href="<?php echo home_url('/despre-noi/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Despre Noi</a>
         <a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Cum Functioneaza</a>
@@ -864,7 +864,7 @@ function revizie_page_manifest($functii_parent_id) {
         array('title' => 'Politica de anulare',            'slug' => 'politica-de-anulare',            'template' => 'page-politica-de-anulare.php',            'parent' => 0),
         // /functii/* subpages
         array('title' => 'Garaj Digital',                  'slug' => 'garaj-digital',                  'template' => 'functii/page-garaj-digital.php',          'parent' => $functii_parent_id),
-        array('title' => 'Reminder-e',                     'slug' => 'remindere',                      'template' => 'functii/page-remindere.php',              'parent' => $functii_parent_id),
+        array('title' => 'Remindere',                     'slug' => 'remindere',                      'template' => 'functii/page-remindere.php',              'parent' => $functii_parent_id),
         array('title' => 'Servicii Auto',                  'slug' => 'servicii-auto',                  'template' => 'functii/page-servicii-auto.php',          'parent' => $functii_parent_id),
         array('title' => 'Tractari',                       'slug' => 'tractari',                       'template' => 'functii/page-tractari.php',               'parent' => $functii_parent_id),
         array('title' => 'Anvelope',                       'slug' => 'anvelope',                       'template' => 'functii/page-anvelope.php',               'parent' => $functii_parent_id),

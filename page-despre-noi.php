@@ -88,7 +88,7 @@ get_header();
             </svg>
           </div>
           <h3 class="text-xl font-bold text-foreground mb-2">Automatizare unde conteaza</h3>
-          <p class="text-foreground-muted">VIN decoder care completeaza automat 24+ campuri din DRPCIV. Reminder-e prin email inainte de expirarea ITP, RCA sau a reviziei. Functionalitati gandite sa economiseasca timp, nu sa adauge munca.</p>
+          <p class="text-foreground-muted">VIN decoder care completeaza automat 24+ campuri din DRPCIV. Remindere prin email inainte de expirarea ITP, RCA sau a reviziei. Functionalitati gandite sa economiseasca timp, nu sa adauge munca.</p>
         </div>
 
         <div class="bg-card rounded-2xl p-7 border border-border-subtle">
@@ -143,7 +143,7 @@ get_header();
           <h3 class="text-sm font-semibold text-foreground uppercase tracking-wider mb-5">Date firma</h3>
           <div class="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm text-foreground-muted">
             <p><span class="text-foreground font-medium">Operat de:</span> SMART HAGGLING SRL</p>
-            <p><span class="text-foreground font-medium">CUI:</span> RO34531325</p>
+            <p><span class="text-foreground font-medium">CUI:</span> 34531325</p>
             <p><span class="text-foreground font-medium">Reg. Com.:</span> J2015006020404</p>
             <p><span class="text-foreground font-medium">CAEN:</span> 6622 — Asistent in brokeraj de asigurari</p>
             <p class="sm:col-span-2"><span class="text-foreground font-medium">Sediu social si punct de lucru:</span> Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti</p>
