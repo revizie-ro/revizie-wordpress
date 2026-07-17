@@ -24,6 +24,9 @@
             <li><a href="<?php echo home_url('/functii/garaj-digital/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Garaj Digital</a></li>
             <li><a href="https://revizie.ro/anunturi" class="text-foreground-subtle hover:text-white transition-colors text-sm">Anunturi masini</a></li>
             <li><a href="https://revizie.ro/rca" class="text-foreground-subtle hover:text-white transition-colors text-sm">Asigurari RCA</a></li>
+            <?php // Hub SEO (content-site, servit de nginx pe apex). Link intern din homepage-ul
+                  // WP — pagina cu cea mai mare autoritate — spre cele 203 landing-uri /rca/{marca}/{model}. ?>
+            <li><a href="https://revizie.ro/rca-modele/" class="text-foreground-subtle hover:text-white transition-colors text-sm">RCA pe modele</a></li>
             <li><a href="<?php echo home_url('/functii/remindere/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Remindere</a></li>
           </ul>
           <h4 class="text-white font-semibold mt-6 mb-3">In curand</h4>
