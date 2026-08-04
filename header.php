@@ -76,24 +76,32 @@
     if (stored) { signal(stored); return; }
 
     function build() {
-      var btn = 'display:inline-block;cursor:pointer;border-radius:8px;padding:10px 18px;'
-              + 'font:600 14px/1 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;';
+      // Centred over a dimmed backdrop, not a bottom bar: as a bottom bar it was
+      // easy to miss, and a prompt nobody notices collects no consent.
+      var btn = 'flex:1;cursor:pointer;border-radius:10px;padding:12px 18px;'
+              + 'font:600 15px/1 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;';
       var box = document.createElement('div');
-      box.setAttribute('role', 'region');
+      box.setAttribute('role', 'dialog');
+      box.setAttribute('aria-modal', 'true');
       box.setAttribute('aria-label', 'Cookie-uri');
-      box.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:2147483000;padding:12px;';
+      box.style.cssText = 'position:fixed;inset:0;z-index:2147483000;display:flex;'
+        + 'align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.6);'
+        + '-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);';
       box.innerHTML =
-        '<div style="max-width:900px;margin:0 auto;background:#fff;border:1px solid #e7e7ec;'
-      + 'border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.14);padding:16px 18px;display:flex;'
-      + 'gap:16px;align-items:center;flex-wrap:wrap;'
-      + 'font:400 14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#18181b;">'
-      +   '<div style="flex:1 1 320px;min-width:260px;">'
-      +     '<strong style="display:block;margin-bottom:2px;">Cookie-uri</strong>'
+        '<div style="width:100%;max-width:440px;background:#fff;border:1px solid #e7e7ec;'
+      + 'border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.3);padding:24px;'
+      + 'font:400 14px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#18181b;">'
+      +   '<div style="width:48px;height:48px;border-radius:12px;background:#fdece1;display:flex;'
+      +     'align-items:center;justify-content:center;margin-bottom:16px;font-size:24px;line-height:1;">'
+      +     '&#127850;</div>'
+      +   '<div style="font:600 18px/1.3 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;'
+      +     'margin-bottom:8px;">Cookie-uri</div>'
+      +   '<div style="color:#6b6b73;">'
       +     'Folosim cookie-uri ca sa intelegem cum e folosit site-ul si sa il imbunatatim. '
       +     'Poti refuza fara sa pierzi nicio functionalitate. '
       +     '<a href="https://revizie.ro/politica-cookies" style="color:#f26a1b;">Politica de cookie-uri</a>'
       +   '</div>'
-      +   '<div style="display:flex;gap:8px;flex:0 0 auto;">'
+      +   '<div style="display:flex;gap:12px;margin-top:24px;">'
       +     '<button type="button" data-consent="denied" style="' + btn
       +       'background:#fff;color:#18181b;border:1px solid #d4d4d8;">Refuz</button>'
       +     '<button type="button" data-consent="granted" style="' + btn
