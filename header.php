@@ -2,10 +2,22 @@
 <html <?php language_attributes(); ?>>
 <head>
   <!-- Google tag (gtag.js) — GA4, same stream as app.revizie.ro -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZC6YWQC5L"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    // Consent Mode v2. Queued before the loader and before `config`, so the tag
+    // never observes a state where it may write cookies. The consent banner
+    // below flips these with a `consent: update`.
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZC6YWQC5L"></script>
+  <script>
     gtag('js', new Date());
     gtag('config', 'G-ZZC6YWQC5L');
   </script>
@@ -17,6 +29,97 @@
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xtzjuj1ir7");
+  </script>
+
+  <!--
+    Cookie consent banner. KEEP IN SYNC with content-site/src/layouts/ContentLayout.astro
+    (identical block) and with src/lib/consent.ts in revizie-app, which is the
+    React implementation of the same cookie.
+
+    Why it matters: Clarity enforces consent for EEA visitors, and without a
+    signal it mints a NEW user id per page view — the dashboard read 35 sessions
+    / 35 users / 1.0 pages per session before this landed. The cookie is scoped
+    to `.revizie.ro` so the decision carries across to app.revizie.ro; a
+    host-scoped cookie would ask twice and still split the journey at the hop.
+  -->
+  <script type="text/javascript">
+  (function () {
+    var NAME = 'revizie_consent', APEX = 'revizie.ro', MAX_AGE = 60 * 60 * 24 * 180;
+
+    function read() {
+      var parts = document.cookie.split(';');
+      for (var i = 0; i < parts.length; i++) {
+        var kv = parts[i].split('=');
+        if (kv[0].trim() !== NAME) continue;
+        var v = kv.slice(1).join('=').trim();
+        return (v === 'granted' || v === 'denied') ? v : null;
+      }
+      return null;
+    }
+
+    function write(v) {
+      var h = location.hostname;
+      var shared = (h === APEX || h.slice(-(APEX.length + 1)) === '.' + APEX);
+      document.cookie = NAME + '=' + v + '; path=/; max-age=' + MAX_AGE + '; SameSite=Lax'
+        + (shared ? '; domain=.' + APEX : '')
+        + (location.protocol === 'https:' ? '; Secure' : '');
+    }
+
+    function signal(v) {
+      if (window.clarity) window.clarity('consentv2', { ad_Storage: v, analytics_Storage: v });
+      if (window.gtag) window.gtag('consent', 'update', {
+        ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v
+      });
+    }
+
+    var stored = read();
+    if (stored) { signal(stored); return; }
+
+    function build() {
+      var btn = 'display:inline-block;cursor:pointer;border-radius:8px;padding:10px 18px;'
+              + 'font:600 14px/1 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;';
+      var box = document.createElement('div');
+      box.setAttribute('role', 'region');
+      box.setAttribute('aria-label', 'Cookie-uri');
+      box.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:2147483000;padding:12px;';
+      box.innerHTML =
+        '<div style="max-width:900px;margin:0 auto;background:#fff;border:1px solid #e7e7ec;'
+      + 'border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.14);padding:16px 18px;display:flex;'
+      + 'gap:16px;align-items:center;flex-wrap:wrap;'
+      + 'font:400 14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#18181b;">'
+      +   '<div style="flex:1 1 320px;min-width:260px;">'
+      +     '<strong style="display:block;margin-bottom:2px;">Cookie-uri</strong>'
+      +     'Folosim cookie-uri ca sa intelegem cum e folosit site-ul si sa il imbunatatim. '
+      +     'Poti refuza fara sa pierzi nicio functionalitate. '
+      +     '<a href="https://revizie.ro/politica-cookies" style="color:#f26a1b;">Politica de cookie-uri</a>'
+      +   '</div>'
+      +   '<div style="display:flex;gap:8px;flex:0 0 auto;">'
+      +     '<button type="button" data-consent="denied" style="' + btn
+      +       'background:#fff;color:#18181b;border:1px solid #d4d4d8;">Refuz</button>'
+      +     '<button type="button" data-consent="granted" style="' + btn
+      +       'background:#f26a1b;color:#fff;border:1px solid #f26a1b;">Accept</button>'
+      +   '</div>'
+      + '</div>';
+
+      box.addEventListener('click', function (e) {
+        var el = e.target;
+        while (el && el !== box && !el.getAttribute('data-consent')) el = el.parentNode;
+        if (!el || el === box) return;
+        var v = el.getAttribute('data-consent');
+        write(v);
+        signal(v);
+        if (box.parentNode) box.parentNode.removeChild(box);
+      });
+
+      document.body.appendChild(box);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', build);
+    } else {
+      build();
+    }
+  })();
   </script>
 
   <meta charset="<?php bloginfo('charset'); ?>">
