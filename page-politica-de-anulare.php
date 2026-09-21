@@ -110,7 +110,12 @@ get_header();
               <div>
                 <p class="text-foreground font-medium mb-1">Pas 1 &mdash; Trimite cererea</p>
                 <p class="text-foreground-subtle text-sm">
-                  Trimite un email la <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a> cu urmatoarele informatii:
+                  Cel mai simplu este direct din cont, fara sa scrii nimanui: deschide
+                  <a href="https://app.revizie.ro/cont/politele-mele" class="text-accent hover:underline">Politele mele</a>,
+                  alege polita si apasa <strong>Solicita anularea</strong>.
+                </p>
+                <p class="text-foreground-subtle text-sm mt-2">
+                  Daca preferi, poti trimite un email la <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a> cu urmatoarele informatii:
                 </p>
                 <ul class="list-disc list-inside ml-4 text-foreground-subtle text-sm mt-2 space-y-1">
                   <li>Numarul politei</li>

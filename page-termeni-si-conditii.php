@@ -55,6 +55,18 @@ get_header();
             <p class="text-foreground-subtle mt-4">
               SMART HAGGLING SRL este <strong>asistent in brokeraj</strong>, afiliat al brokerului <strong>Transilvania Broker de Asigurare-Reasigurare SA</strong>, si isi desfasoara activitatea de distributie de asigurari sub supravegherea Autoritatii de Supraveghere Financiara (ASF).
             </p>
+            <p class="text-foreground-subtle mt-4">
+              <strong class="text-foreground">Cine iti vinde si cine emite documentele.</strong>
+              Contractul de asigurare se incheie intre tine si <strong>societatea de asigurare</strong> pe care o alegi.
+              Aceasta este cea care emite polita &mdash; documentul care atesta plata primei si acoperirea.
+              revizie.ro nu este asigurator si nu vinde asigurari in nume propriu; intermediaza incheierea lor,
+              in calitatea descrisa mai sus.
+            </p>
+            <p class="text-foreground-subtle mt-4">
+              Nu iti facturam nimic separat, pentru ca nu iti percepem niciun cost: singura suma pe care o platesti
+              este prima de asigurare, iar comisionul de intermediere este inclus in ea si suportat de asigurator.
+              Prin urmare nu primesti de la noi o factura distincta &mdash; documentul tau este polita emisa de asigurator.
+            </p>
           </div>
         </section>
 
