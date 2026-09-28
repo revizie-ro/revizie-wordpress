@@ -87,7 +87,7 @@ get_header();
             <div class="border-t border-border-subtle pt-4">
               <h3 class="font-semibold text-foreground mb-2">Preturi orientative</h3>
               <ul class="list-disc pl-6 space-y-2 text-foreground-subtle text-sm m-0">
-                <li>Prin linkul nostru se aplica automat o <strong>reducere de 20%</strong>. Orientativ, cu reducerea aplicata: raport <strong>Lite de la ~80 lei</strong>, <strong>Standard de la ~104 lei</strong>, <strong>Pro de la ~120 lei</strong> per raport. Pentru mai multe rapoarte, pretul pe raport scade.</li>
+                <li>Prin linkul nostru se aplica automat o <strong>reducere de <?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>%</strong>. Orientativ, cu reducerea aplicata: raport <strong>Lite de la ~80 lei</strong>, <strong>Standard de la ~104 lei</strong>, <strong>Pro de la ~120 lei</strong> per raport. Pentru mai multe rapoarte, pretul pe raport scade.</li>
                 <li><strong>Aceste preturi sunt orientative si se pot schimba oricand</strong> &mdash; sunt stabilite de carVertical, nu de revizie.ro.</li>
                 <li>Vezi <strong>pretul exact</strong>, in lei, pe site-ul carVertical &mdash; <strong>inainte</strong> de a cumpara.</li>
                 <li>Plata se face pe carVertical, in conditiile si prin procesatorul lor; nu trece prin revizie.ro / NETOPIA.</li>

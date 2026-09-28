@@ -17,6 +17,10 @@ require_once REVIZIE_THEME_DIR . '/inc/logo-data.php';
 // carVertical report visual, inlined the same way. Provides
 // REVIZIE_CARVERTICAL_ASSET_DATAURI.
 require_once REVIZIE_THEME_DIR . '/inc/carvertical-asset.php';
+// carVertical affiliate link config + builder. Provides
+// revizie_carvertical_url(). Keep in sync with the React app and the
+// Flutter app — see the header of that file.
+require_once REVIZIE_THEME_DIR . '/inc/carvertical.php';
 
 /**
  * Tailwind config injected as inline script after the CDN tag.

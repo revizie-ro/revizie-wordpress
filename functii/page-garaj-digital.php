@@ -120,7 +120,7 @@ get_header();
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </div>
           <h3 class="font-bold text-foreground mb-2">Istoric prin carVertical</h3>
-          <p class="text-sm text-foreground-muted">Inainte sa cumperi o masina, verifici istoricul cu VIN-ul: kilometraj, accidente, fosti proprietari. Discount 20% prin parteneriat.</p>
+          <p class="text-sm text-foreground-muted">Inainte sa cumperi o masina, verifici istoricul cu VIN-ul: kilometraj, accidente, fosti proprietari. Discount <?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>% prin parteneriat.</p>
         </div>
 
         <div class="bg-surface-muted rounded-2xl p-6 border border-border-subtle">

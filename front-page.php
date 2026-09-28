@@ -161,7 +161,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
             'icon'=>'M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z',
             'desc'=>'Toate documentele, notificarile si istoricul masinii intr-un loc.',
             'badge'=>null,'btn'=>'Vezi garajul','href'=>home_url('/functii/garaj-digital/'),'style'=>'outline'),
-          array('title'=>'Verifica VIN cu 20% reducere','chip'=>'bg-info/15 text-info',
+          array('title'=>'Verifica VIN cu ' . (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT . '% reducere','chip'=>'bg-info/15 text-info',
             'icon'=>'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
             'desc'=>'Istoric complet: daune, kilometraj, proprietari, accidente si multe altele.',
             'badge'=>null,'btn'=>'Verifica acum','href'=>'https://revizie.ro/verificare-vin','style'=>'outline'),
@@ -330,7 +330,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
 
             <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
               Verifica istoricul oricarei masini
-              <span class="block text-info">cu 20% reducere</span>
+              <span class="block text-info">cu <?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>% reducere</span>
             </h2>
 
             <p class="text-lg text-foreground-muted mb-6 leading-relaxed">
@@ -353,29 +353,18 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
             </div>
 
             <?php
-              // Direct carVertical affiliate URL. The `a` param is what
-              // Post Affiliate Pro reads to credit revizie.ro for any
-              // purchase in their cookie window. Routing through
-              // app.revizie.ro first would lose the cookie on this click.
-              // Keep these values in sync with src/lib/carVertical.ts in
-              // the React app.
-              $carvertical_url = 'https://www.carvertical.com/ro/landing/v3?'
-                . http_build_query(array(
-                    'a' => 'zzckyffu4vzpn',
-                    'b' => '0eb206ae',
-                    'utm_medium' => 'aff',
-                    'utm_source' => 'revizie_wp',
-                    'utm_content' => 'landing_promo',
-                    'voucher' => 'revizie',
-                ));
+              // Config + builder live in inc/carvertical.php, shared with the
+              // React and Flutter apps. `wp_landing_promo` is the surface
+              // label we read back in Everflow reporting.
+              $carvertical_url = revizie_carvertical_url('wp_landing_promo');
             ?>
             <a href="<?php echo esc_url($carvertical_url); ?>" target="_blank" rel="noopener noreferrer sponsored" class="group inline-flex items-center gap-2 px-7 py-3.5 bg-info hover:bg-info/90 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:shadow-info/30 transition-all">
-              Verifica un VIN cu -20%
+              Verifica un VIN cu -<?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>%
               <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
             </a>
-            <p class="text-xs text-foreground-subtle mt-3">Te redirectionam direct pe carVertical, cu codul <span class="font-mono font-semibold text-foreground">REVIZIE</span> aplicat automat.</p>
+            <p class="text-xs text-foreground-subtle mt-3">Te redirectionam direct pe carVertical, cu codul <span class="font-mono font-semibold text-foreground"><?php echo esc_html(REVIZIE_CARVERTICAL_DISCOUNT_CODE); ?></span> aplicat automat.</p>
           </div>
 
           <!-- Right: carVertical report visual (same asset as the app). A dark
@@ -387,7 +376,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
             <div class="absolute inset-0 bg-foreground/60"></div>
             <div class="relative text-center text-white" style="text-shadow: 0 1px 4px rgba(0,0,0,0.55);">
               <div class="text-sm font-medium uppercase tracking-wider mb-2 opacity-90">Reducere exclusiva</div>
-              <div class="text-7xl md:text-8xl font-bold leading-none mb-2">-20%</div>
+              <div class="text-7xl md:text-8xl font-bold leading-none mb-2">-<?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>%</div>
               <div class="text-lg font-semibold mb-1">la rapoartele carVertical</div>
               <div class="text-sm opacity-90 mb-6">doar pentru utilizatorii revizie.ro</div>
 
@@ -400,7 +389,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
                   <path stroke-linecap="round" stroke-linejoin="round" d="M2 9a3 3 0 1 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 1 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
                 </svg>
                 <span class="text-xs uppercase tracking-wider opacity-80">Cod</span>
-                <span class="font-mono text-lg font-bold tracking-[0.2em]">REVIZIE</span>
+                <span class="font-mono text-lg font-bold tracking-[0.2em]"><?php echo esc_html(REVIZIE_CARVERTICAL_DISCOUNT_CODE); ?></span>
               </div>
 
               <div class="mt-5 text-[10px] uppercase tracking-wider opacity-70">Sursă: carVertical</div>
