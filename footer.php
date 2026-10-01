@@ -16,6 +16,9 @@
           <div class="flex items-center gap-2">
             <?php revizie_render_social_links('light'); ?>
           </div>
+          <div class="flex flex-wrap gap-2 mt-5">
+            <?php revizie_render_store_badges('sm'); ?>
+          </div>
         </div>
 
         <div>

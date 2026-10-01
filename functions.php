@@ -958,3 +958,102 @@ function revizie_provision_pages() {
 // pageviews zero-cost (single get_option call).
 add_action('init', 'revizie_provision_pages');
 
+
+/* -------------------------------------------------------------------------
+ * Aplicatia mobila: insigne App Store / Google Play + bara „Deschide in
+ * aplicatie" pe telefoane.
+ *
+ * ⚠️ Logica bannerului exista in TREI copii — tine-le sincron:
+ * - aici (homepage-ul + paginile WordPress de pe revizie.ro);
+ * - revizie-app/src/lib/mobileApp.ts + MobileAppBanner.tsx (app.revizie.ro);
+ * - revizie-app/content-site/src/components/AppBanner.astro (paginile SEO).
+ * Acelasi `localStorage` (revizie_app_banner_dismissed_at): pe revizie.ro
+ * WordPress si paginile SPA (/rca, /anunturi) au aceeasi origine, deci X-ul
+ * dat intr-un loc tine si in celalalt.
+ * ---------------------------------------------------------------------- */
+
+define('REVIZIE_APP_STORE_URL', 'https://apps.apple.com/ro/app/revizie-ro/id6803194044');
+define('REVIZIE_PLAY_STORE_URL', 'https://play.google.com/store/apps/details?id=ro.revizie.revizie_mobile');
+
+/**
+ * Cele doua insigne, ca linkuri. Pagina din magazin arata singura „Deschide"
+ * cand aplicatia e deja instalata, deci acelasi buton inseamna si „Instaleaza".
+ * `$size`: 'lg' (sectiunea de pe homepage) sau 'sm' (footer).
+ */
+function revizie_render_store_badges($size = 'lg') {
+    $box  = $size === 'sm' ? 'gap-2.5 px-3.5 py-2 rounded-xl' : 'gap-3 px-5 py-3 rounded-2xl shadow-md';
+    $icon = $size === 'sm' ? 'w-6 h-6' : 'w-8 h-8';
+    $name = $size === 'sm' ? 'text-sm' : 'text-lg';
+    $cls  = "inline-flex items-center $box bg-black text-white hover:opacity-85 transition-opacity";
+    $apple = '<svg class="' . $icon . '" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>';
+    $play  = '<svg class="' . $icon . '" viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.609 22.186c-.31-.292-.5-.71-.5-1.186V3c0-.476.19-.894.5-1.186z"/><path fill="#FBBC04" d="M16.81 15.02l-2.07-2.07 2.07-2.07 3.18 1.82c.78.45.78 1.6 0 2.05l-3.18 1.82z"/><path fill="#EA4335" d="M3.609 22.186L13.792 12l3.018 3.02-11.43 6.55c-.5.29-1.15.27-1.77-.38z"/><path fill="#4285F4" d="M3.609 1.814L16.81 8.98 13.792 12 3.609 1.814z"/></svg>';
+    $badges = array(
+        array(REVIZIE_APP_STORE_URL, $apple, 'Descarca din', 'App Store'),
+        array(REVIZIE_PLAY_STORE_URL, $play, 'Disponibil pe', 'Google Play'),
+    );
+    foreach ($badges as $b) {
+        printf(
+            '<a href="%s" target="_blank" rel="noopener noreferrer" class="%s">%s<span class="text-left leading-none"><span class="block text-[11px] text-white/70">%s</span><span class="block %s font-semibold mt-0.5">%s</span></span></a>',
+            esc_url($b[0]), $cls, $b[1], esc_html($b[2]), $name, esc_html($b[3])
+        );
+    }
+}
+
+/** Bannerul nativ Safari pe iPhone („Deschide" / „Obtine"). */
+function revizie_print_itunes_meta() {
+    echo '<meta name="apple-itunes-app" content="app-id=6803194044, app-argument=https://app.revizie.ro/">' . "\n";
+}
+add_action('wp_head', 'revizie_print_itunes_meta', 1);
+
+/**
+ * Bara de jos pe telefon. Ascunsa implicit; scriptul o arata doar:
+ * pe Android (buton „Deschide": `intent://` — aplicatia daca e instalata,
+ * altfel Magazin Play) si pe iPhone in alte browsere decat Safari (acolo e
+ * bannerul nativ). Nu apare pe calculator, in WebView-ul din aplicatie, si 14
+ * zile dupa X.
+ */
+function revizie_print_app_banner() {
+    $play = REVIZIE_PLAY_STORE_URL;
+    $android = 'intent://app.revizie.ro/#Intent;scheme=https;package=ro.revizie.revizie_mobile;S.browser_fallback_url=' . rawurlencode($play) . ';end';
+    ?>
+    <div id="revizie-app-banner" role="region" aria-label="Aplicatia mobila revizie.ro"
+         class="fixed left-3 right-3 bottom-3 z-40 flex items-center gap-3 rounded-2xl border border-border-subtle bg-white p-3 shadow-2xl"
+         style="display:none; margin-bottom: env(safe-area-inset-bottom);">
+      <img src="<?php echo esc_url(get_site_icon_url(96) ?: 'https://app.revizie.ro/apple-touch-icon.png'); ?>" alt="" class="h-11 w-11 shrink-0 rounded-xl">
+      <div class="min-w-0 flex-1">
+        <p class="truncate text-sm font-semibold text-foreground">revizie.ro e mai rapid in aplicatie</p>
+        <p class="truncate text-xs text-foreground-muted" data-sub></p>
+      </div>
+      <a data-open href="#" class="shrink-0 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white"></a>
+      <button type="button" data-close aria-label="Inchide" class="-mr-1 flex h-11 w-9 shrink-0 items-center justify-center text-foreground-muted">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <script>
+    (function () {
+      var el = document.getElementById('revizie-app-banner');
+      if (!el) return;
+      var ua = navigator.userAgent;
+      var KEY = 'revizie_app_banner_dismissed_at', TTL = 14 * 864e5;
+      try {
+        var at = Number(localStorage.getItem(KEY));
+        if (at > 0 && Date.now() - at < TTL) return;
+      } catch (e) {}
+      if (/; wv\)/.test(ua)) return; // WebView-ul din aplicatie
+      var android = /android/i.test(ua), ios = /iPhone|iPad|iPod/.test(ua);
+      var safari = ios && /Safari\//.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|Instagram|FBAN|FBAV|Line\//.test(ua);
+      if (!android && !(ios && !safari)) return;
+      var open = el.querySelector('[data-open]');
+      open.href = android ? <?php echo wp_json_encode($android); ?> : <?php echo wp_json_encode(REVIZIE_APP_STORE_URL); ?>;
+      open.textContent = android ? 'Deschide' : 'Obtine';
+      el.querySelector('[data-sub]').textContent = android ? 'Gratuit pe Google Play' : 'Gratuit in App Store';
+      el.querySelector('[data-close]').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+        el.style.display = 'none';
+      });
+      el.style.display = 'flex';
+    })();
+    </script>
+    <?php
+}
+add_action('wp_footer', 'revizie_print_app_banner');
