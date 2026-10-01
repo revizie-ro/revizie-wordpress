@@ -967,9 +967,9 @@ add_action('init', 'revizie_provision_pages');
  * - aici (homepage-ul + paginile WordPress de pe revizie.ro);
  * - revizie-app/src/lib/mobileApp.ts + MobileAppBanner.tsx (app.revizie.ro);
  * - revizie-app/content-site/src/components/AppBanner.astro (paginile SEO).
- * Acelasi `localStorage` (revizie_app_banner_dismissed_at): pe revizie.ro
- * WordPress si paginile SPA (/rca, /anunturi) au aceeasi origine, deci X-ul
- * dat intr-un loc tine si in celalalt.
+ * Aceeasi cheie `localStorage` (revizie_app_banner_closed_at): X ascunde bara
+ * 30 de minute (vizita curenta); pe revizie.ro WordPress, paginile SEO si SPA
+ * au aceeasi origine, deci X-ul tine pe toate.
  * ---------------------------------------------------------------------- */
 
 define('REVIZIE_APP_STORE_URL', 'https://apps.apple.com/ro/app/revizie-ro/id6803194044');
@@ -1009,8 +1009,8 @@ add_action('wp_head', 'revizie_print_itunes_meta', 1);
  * Bara de jos pe telefon. Ascunsa implicit; scriptul o arata doar:
  * pe Android (buton „Deschide": `intent://` — aplicatia daca e instalata,
  * altfel Magazin Play) si pe iPhone in alte browsere decat Safari (acolo e
- * bannerul nativ). Nu apare pe calculator, in WebView-ul din aplicatie, si 14
- * zile dupa X.
+ * bannerul nativ). Nu apare pe calculator, in WebView-ul din aplicatie, si
+ * 30 de minute dupa X.
  */
 function revizie_print_app_banner() {
     $play = REVIZIE_PLAY_STORE_URL;
@@ -1034,7 +1034,8 @@ function revizie_print_app_banner() {
       var el = document.getElementById('revizie-app-banner');
       if (!el) return;
       var ua = navigator.userAgent;
-      var KEY = 'revizie_app_banner_dismissed_at', TTL = 14 * 864e5;
+      // X ascunde bara 30 de minute (vizita curenta), apoi reapare la fiecare intrare.
+      var KEY = 'revizie_app_banner_closed_at', TTL = 30 * 6e4;
       try {
         var at = Number(localStorage.getItem(KEY));
         if (at > 0 && Date.now() - at < TTL) return;
