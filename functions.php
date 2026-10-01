@@ -1021,8 +1021,8 @@ function revizie_print_app_banner() {
          style="display:none; margin-bottom: env(safe-area-inset-bottom);">
       <img src="<?php echo esc_url(get_site_icon_url(96) ?: 'https://app.revizie.ro/apple-touch-icon.png'); ?>" alt="" class="h-11 w-11 shrink-0 rounded-xl">
       <div class="min-w-0 flex-1">
-        <p class="truncate text-sm font-semibold text-foreground">revizie.ro e mai rapid in aplicatie</p>
-        <p class="truncate text-xs text-foreground-muted" data-sub></p>
+        <p class="text-sm font-semibold leading-tight text-foreground">Aplicatia revizie.ro</p>
+        <p class="mt-0.5 text-xs leading-tight text-foreground-muted" data-sub></p>
       </div>
       <a data-open href="#" class="shrink-0 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white"></a>
       <button type="button" data-close aria-label="Inchide" class="-mr-1 flex h-11 w-9 shrink-0 items-center justify-center text-foreground-muted">
