@@ -1039,7 +1039,7 @@ function revizie_print_app_banner() {
         var at = Number(localStorage.getItem(KEY));
         if (at > 0 && Date.now() - at < TTL) return;
       } catch (e) {}
-      if (/; wv\)/.test(ua)) return; // WebView-ul din aplicatie
+      if (/; wv\)|RevizieApp\//.test(ua)) return; // din aplicatie (WebView / ecranul de articol)
       var android = /android/i.test(ua), ios = /iPhone|iPad|iPod/.test(ua);
       var safari = ios && /Safari\//.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|Instagram|FBAN|FBAV|Line\//.test(ua);
       if (!android && !(ios && !safari)) return;
