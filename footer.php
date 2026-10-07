@@ -11,7 +11,7 @@
             <p>CUI: 34531325</p>
             <p>Reg. Com.: J2015006020404</p>
             <p>CAEN 6622 — Asistent in brokeraj de asigurari</p>
-            <p>Sediu social si punct de lucru: Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti</p>
+            <p>Sediu social: Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti</p>
           </div>
           <div class="flex items-center gap-2">
             <?php revizie_render_social_links('light'); ?>

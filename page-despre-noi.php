@@ -146,7 +146,7 @@ get_header();
             <p><span class="text-foreground font-medium">CUI:</span> 34531325</p>
             <p><span class="text-foreground font-medium">Reg. Com.:</span> J2015006020404</p>
             <p><span class="text-foreground font-medium">CAEN:</span> 6622 — Asistent in brokeraj de asigurari</p>
-            <p class="sm:col-span-2"><span class="text-foreground font-medium">Sediu social si punct de lucru:</span> Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti</p>
+            <p class="sm:col-span-2"><span class="text-foreground font-medium">Sediu social:</span> Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti</p>
           </div>
           <p class="text-xs text-foreground-subtle mt-6 pt-5 border-t border-border-subtle">
             SMART HAGGLING SRL este asistent in brokeraj, afiliat al brokerului Transilvania Broker de Asigurare-Reasigurare SA.
