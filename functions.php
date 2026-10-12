@@ -1188,27 +1188,71 @@ function revizie_download_route() {
 }
 add_action('template_redirect', 'revizie_download_route', 0);
 
+
 /**
  * Previzualizarea linkului pe WhatsApp, Facebook, Messenger.
  *
- * Linkul asta se trimite mai mult decat se tasteaza, deci ce arata cand e
- * lipit intr-o conversatie conteaza la fel de mult ca pagina. Tema nu pune
- * `og:` nicaieri; le punem doar aici, si doar daca nu le pune deja un plugin
- * de SEO — doua randuri `og:title` ar fi mai rau decat niciunul.
+ * Linkul asta se trimite mai mult decat se tasteaza: cum arata cand e lipit
+ * intr-o conversatie conteaza la fel de mult ca pagina.
+ *
+ * ---------------------------------------------------------------------------
+ * DE CE E NEVOIE DE TAMPON SI NU DOAR DE `echo`
+ *
+ * Prima varianta doar tiparea etichetele. Rezultatul, verificat pe site cu
+ * robotul Facebook, a fost DOUA seturi: pe site e un plugin de SEO care scrie
+ * si el `og:`, iar al lui vine primul si e gresit — `og:description` e un
+ * spatiu gol, `og:locale` spune `en_US` pe un site romanesc, si `og:image`
+ * lipseste cu totul. Cand aceeasi proprietate apare de doua ori, cine citeste
+ * o ia pe prima; adica exact pe cea goala.
+ *
+ * Nu se poate rezolva cu prioritati: pluginul isi scrie etichetele inaintea
+ * oricarei prioritati pe care i-am da-o temei. Si nu se poate rezolva cerandu-i
+ * pluginului valorile bune — nu stim care e. Asa ca strangem tot ce scrie
+ * `wp_head` intr-un tampon, scoatem din el etichetele sociale, si le punem pe
+ * ale noastre. Independent de plugin si de versiunea lui.
+ *
+ * Se intampla DOAR pe pagina asta. Restul site-ului ramane cum era.
  */
-function revizie_download_og_tags() {
-    if (!is_page('descarca') || defined('WPSEO_VERSION') || defined('RANK_MATH_VERSION')) {
+function revizie_download_og_buffer_start() {
+    if (is_page('descarca')) {
+        ob_start();
+    }
+}
+add_action('wp_head', 'revizie_download_og_buffer_start', -100);
+
+function revizie_download_og_buffer_end() {
+    if (!is_page('descarca') || ob_get_level() === 0) {
         return;
     }
+    $head = ob_get_clean();
+
+    // Scoatem orice eticheta sociala scrisa pana aici — a noastra sau a oricui.
+    $head = preg_replace(
+        '#<meta[^>]*(?:property|name)=["\'](?:og:[a-z_:]+|twitter:[a-z_:]+)["\'][^>]*>\s*#i',
+        '',
+        $head
+    );
+    echo $head;
+
     $titlu   = 'Descarca aplicatia revizie.ro';
     $descr   = 'ITP, RCA, rovinieta si impozitul, toate in telefon, cu notificare inainte sa expire. Gratuit, fara card.';
     $imagine = REVIZIE_THEME_URI . '/assets/img/phones-group.webp';
 
-    echo '<meta property="og:type" content="website">' . "\n";
-    printf('<meta property="og:title" content="%s">' . "\n", esc_attr($titlu));
-    printf('<meta property="og:description" content="%s">' . "\n", esc_attr($descr));
-    printf('<meta property="og:url" content="%s">' . "\n", esc_url(home_url('/descarca')));
-    printf('<meta property="og:image" content="%s">' . "\n", esc_url($imagine));
-    echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+    $etichete = array(
+        'og:type'        => 'website',
+        'og:site_name'   => 'revizie.ro',
+        'og:locale'      => 'ro_RO',
+        'og:title'       => $titlu,
+        'og:description' => $descr,
+        'og:url'         => home_url('/descarca'),
+        'og:image'       => $imagine,
+    );
+    foreach ($etichete as $cheie => $valoare) {
+        printf('<meta property="%s" content="%s">' . "\n", esc_attr($cheie), esc_attr($valoare));
+    }
+    printf('<meta name="twitter:card" content="summary_large_image">' . "\n");
+    printf('<meta name="twitter:title" content="%s">' . "\n", esc_attr($titlu));
+    printf('<meta name="twitter:description" content="%s">' . "\n", esc_attr($descr));
+    printf('<meta name="twitter:image" content="%s">' . "\n", esc_attr($imagine));
 }
-add_action('wp_head', 'revizie_download_og_tags', 2);
+add_action('wp_head', 'revizie_download_og_buffer_end', 9999);
