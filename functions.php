@@ -975,6 +975,7 @@ add_action('init', 'revizie_provision_pages');
 
 define('REVIZIE_APP_STORE_URL', 'https://apps.apple.com/ro/app/revizie-ro/id6803194044');
 define('REVIZIE_PLAY_STORE_URL', 'https://play.google.com/store/apps/details?id=ro.revizie.revizie_mobile');
+define('REVIZIE_ANDROID_PACKAGE', 'ro.revizie.revizie_mobile');
 
 /**
  * Cele doua insigne, ca linkuri. Pagina din magazin arata singura „Deschide"
@@ -1152,6 +1153,91 @@ function revizie_store_url($platform, $sursa = '') {
 }
 
 /**
+ * Adresa care deschide APLICATIA Magazin Play, nu pagina ei din browser.
+ *
+ * `intent://` cu `scheme=market` ajunge la aplicatia Play. `browser_fallback_url`
+ * e plasa de siguranta scrisa chiar in adresa: pe un telefon fara Magazin Play
+ * (Huawei) sau intr-un browser care refuza schema, se deschide pagina normala.
+ */
+function revizie_play_intent_url($sursa = '') {
+    $referrer = '';
+    if ($sursa !== '') {
+        $referrer = '&referrer=' . rawurlencode(
+            'utm_source=' . $sursa . '&utm_medium=referral&utm_campaign=descarca'
+        );
+    }
+    return 'intent://details?id=' . REVIZIE_ANDROID_PACKAGE . $referrer
+         . '#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url='
+         . rawurlencode(revizie_store_url('android', $sursa)) . ';end';
+}
+
+/**
+ * Pe Android nu redirectam — randam un ecran minuscul care lanseaza aplicatia.
+ *
+ * ---------------------------------------------------------------------------
+ * DE CE NU MERGE O SIMPLA REDIRECTARE
+ *
+ * Trimis cu 302 catre `https://play.google.com/...`, Chrome ramane in browser
+ * si arata pagina magazinului ca pe un site. Nu e o scapare de-a noastra:
+ * Android preda un link catre aplicatia care il revendica doar cand omul a DAT
+ * CLIC pe el. O adresa tastata sau ajunsa printr-o redirectare nu se preda
+ * niciodata. De aceea insignele de pe pagina duceau in aplicatie, iar
+ * redirectarea nu — aceeasi adresa, alt fel de a ajunge la ea.
+ *
+ * Deci nu mai cerem predarea, o facem noi: `intent://`, care spune raspicat ce
+ * aplicatie sa se deschida.
+ *
+ * ---------------------------------------------------------------------------
+ * DE CE O PAGINA SI NU UN 302 CATRE `intent://`
+ *
+ * Chrome refuza sa plece catre o schema straina dintr-o redirectare de server.
+ * Asa ca pagina face doua lucruri, in ordinea asta:
+ *   1. `location.replace` catre `intent://`, inainte sa se deseneze ceva — in
+ *      cazul obisnuit omul nu apuca sa vada nimic;
+ *   2. daca browserul nu a plecat (Chrome mai blocheaza schemele straine fara
+ *      atingere, iar browserele din Facebook si Instagram sunt mai stricte),
+ *      ramane un buton mare. Un clic al omului trece intotdeauna.
+ *
+ * Nu e mai lenta decat redirectarea: WordPress e deja pornit in punctul asta,
+ * deci costa doar cele cateva sute de octeti ai paginii.
+ *
+ * `location.replace`, nu `location.href`: altfel butonul „inapoi" al
+ * telefonului ar readuce omul aici, care l-ar trimite iar in magazin.
+ */
+function revizie_render_play_launcher($sursa = '') {
+    $intent = revizie_play_intent_url($sursa);
+    $web    = revizie_store_url('android', $sursa);
+
+    status_header(200);
+    header('Content-Type: text/html; charset=utf-8');
+
+    printf(
+        '<!doctype html><html lang="ro"><head><meta charset="utf-8">'
+        . '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        . '<meta name="robots" content="noindex">'
+        . '<title>Se deschide Magazin Play</title>'
+        . '<script>location.replace(%s);</script>'
+        . '<style>'
+        . 'body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;'
+        . 'font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;'
+        . 'background:#fff;color:#1f2937;text-align:center;padding:24px}'
+        . '.b{display:inline-block;margin-top:20px;padding:16px 28px;border-radius:16px;'
+        . 'background:#f26a1b;color:#fff;font-weight:700;font-size:17px;text-decoration:none}'
+        . '.s{display:block;margin-top:18px;color:#6b7280;font-size:14px}'
+        . 'p{font-size:17px;margin:0}'
+        . '</style></head><body><div>'
+        . '<p>Se deschide Magazin Play...</p>'
+        . '<a class="b" href="%s">Deschide Magazin Play</a>'
+        . '<a class="s" href="%s">Deschide in browser</a>'
+        . '</div></body></html>',
+        wp_json_encode($intent),
+        esc_attr($intent),
+        esc_url($web)
+    );
+    exit;
+}
+
+/**
  * Trimite telefoanele in magazin; restul vad pagina.
  *
  * `?vezi=1` opreste redirectarea — altfel pagina n-ar putea fi verificata
@@ -1172,6 +1258,9 @@ function revizie_download_route() {
     $platform = revizie_download_platform($ua);
 
     if ($platform && !isset($_GET['vezi']) && !revizie_is_crawler($ua)) {
+        if ($platform === 'android') {
+            revizie_render_play_launcher($sursa);   // iese singur
+        }
         wp_redirect(revizie_store_url($platform, $sursa), 302);
         exit;
     }
