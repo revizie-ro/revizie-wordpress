@@ -296,6 +296,12 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
           <div class="flex flex-wrap items-center gap-3">
             <?php revizie_render_store_badges('lg'); ?>
           </div>
+          <?php // Pe calculator o insigna duce in magazinul din browser, de unde aplicatia tot
+                // nu ajunge pe telefon. Pagina de descarcare are codul QR, care o duce. ?>
+          <a href="<?php echo home_url('/descarca/'); ?>" class="hidden md:inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-accent-strong hover:text-accent transition-colors">
+            Scaneaza codul QR cu telefonul
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
         </div>
       </div>
     </div>

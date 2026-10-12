@@ -184,6 +184,8 @@
         <a href="https://revizie.ro/rca" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Asigurari RCA &amp; CASCO</a>
         <a href="<?php echo home_url('/functii/remindere/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Remindere</a>
 
+        <a href="<?php echo home_url('/descarca/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Aplicatia pe telefon</a>
+
         <div class="h-px bg-border-subtle my-3"></div>
 
         <p class="text-xs font-semibold uppercase tracking-wider text-foreground-subtle px-3 mb-1">Companie</p>

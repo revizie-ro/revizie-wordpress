@@ -19,6 +19,7 @@
           <div class="flex flex-wrap gap-2 mt-5">
             <?php revizie_render_store_badges('sm'); ?>
           </div>
+          <a href="<?php echo home_url('/descarca/'); ?>" class="inline-block mt-3 text-foreground-subtle hover:text-white transition-colors text-sm underline underline-offset-4">Descarca aplicatia</a>
         </div>
 
         <div>
