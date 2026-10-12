@@ -1022,7 +1022,13 @@ function revizie_print_app_banner() {
     <div id="revizie-app-banner" role="region" aria-label="Aplicatia mobila revizie.ro"
          class="fixed left-3 right-3 bottom-3 z-40 flex items-center gap-3 rounded-2xl border border-border-subtle bg-white p-3 shadow-2xl"
          style="display:none; margin-bottom: env(safe-area-inset-bottom);">
-      <img src="<?php echo esc_url(get_site_icon_url(96) ?: 'https://app.revizie.ro/apple-touch-icon.png'); ?>" alt="" class="h-11 w-11 shrink-0 rounded-xl">
+      <?php
+      /* Din tema, nu `get_site_icon_url()`: aceea intoarce in continuare iconita
+         veche din biblioteca media (marita dintr-un JPEG), fiindca optiunea din
+         WordPress a ramas setata chiar daca nu mai scriem noi eticheta in <head>.
+         Vezi sectiunea „Iconita site-ului" de mai jos. */
+      ?>
+      <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/icons/web-app-manifest-192x192.png'); ?>" alt="" width="44" height="44" class="h-11 w-11 shrink-0 rounded-xl">
       <div class="min-w-0 flex-1">
         <p class="text-sm font-semibold leading-tight text-foreground">Aplicatia revizie.ro</p>
         <p class="mt-0.5 text-xs leading-tight text-foreground-muted" data-sub></p>
