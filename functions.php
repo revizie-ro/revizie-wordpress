@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('REVIZIE_THEME_VERSION', '1.11.0');
+define('REVIZIE_THEME_VERSION', '1.12.0');
 define('REVIZIE_THEME_DIR', get_template_directory());
 define('REVIZIE_THEME_URI', get_template_directory_uri());
 
@@ -856,6 +856,7 @@ function revizie_page_manifest($functii_parent_id) {
     return array(
         // Top-level pages
         array('title' => 'Acasa',                          'slug' => 'acasa',                          'template' => 'front-page.php',                          'parent' => 0),
+        array('title' => 'Descarca aplicatia',             'slug' => 'descarca',                       'template' => 'page-descarca.php',                       'parent' => 0),
         array('title' => 'Despre Noi',                     'slug' => 'despre-noi',                     'template' => 'page-despre-noi.php',                     'parent' => 0),
         array('title' => 'Cum Functioneaza',               'slug' => 'cum-functioneaza',               'template' => 'page-cum-functioneaza.php',               'parent' => 0),
         array('title' => 'Pentru Parteneri',               'slug' => 'pentru-parteneri',               'template' => 'page-pentru-parteneri.php',               'parent' => 0),
@@ -1058,3 +1059,156 @@ function revizie_print_app_banner() {
     <?php
 }
 add_action('wp_footer', 'revizie_print_app_banner');
+
+
+/* -------------------------------------------------------------------------
+ * `revizie.ro/descarca` — o singura adresa de pus in reclame.
+ *
+ * Android ajunge in Google Play, iPhone-ul in App Store, calculatorul pe
+ * pagina de prezentare cu codul QR. Clientul pune acelasi link peste tot si nu
+ * mai trebuie sa stie cine cu ce telefon vine.
+ *
+ * ---------------------------------------------------------------------------
+ * PATRU LUCRURI CARE SE GRESESC AICI, SI DE CE NU LE GRESIM
+ *
+ * 1. REDIRECTAREA SE FACE PE SERVER, NU DIN JAVASCRIPT. Un `location.href`
+ *    inseamna ca pagina se incarca intai, ceea ce pe o reclama platita se
+ *    traduce direct in oameni pierduti; iar browserele din Facebook si
+ *    Instagram ruleaza JS-ul destul de ciudat incat sa nu merite riscul.
+ *
+ * 2. `nocache_headers()` NU E DE FORMA. Fara el, un plugin de cache sau
+ *    Cloudflare pastreaza PRIMUL raspuns si il serveste tuturor — adica un om
+ *    cu Android ar fi trimis in App Store fiindca inaintea lui a venit cineva
+ *    cu iPhone. Greseala e tacuta si se vede abia in cifrele de instalari.
+ *
+ * 3. ROBOTII NU SE REDIRECTEAZA. Cand linkul e trimis pe WhatsApp sau pus
+ *    intr-o reclama, robotul de previzualizare il deschide ca sa ia titlul si
+ *    imaginea. Redirectat, ar prelua pagina Apple — si previzualizarea reclamei
+ *    ar arata App Store, nu revizie.ro.
+ *
+ * 4. 302, NU 301. Un 301 ramane in memoria browserului pentru totdeauna: daca
+ *    maine schimbam adresa din magazin, telefoanele care au deschis linkul o
+ *    data ar continua sa mearga unde era inainte.
+ *
+ * ---------------------------------------------------------------------------
+ * DE UNDE STIM CATI AU DESCARCAT, SI DIN CE RECLAMA
+ *
+ * `?sursa=facebook` se transforma in parametrii pe care fiecare magazin ii
+ * numara singur: `referrer` la Google Play (Play Console → Acquisition
+ * reports) si `ct` la Apple (App Store Connect → App Analytics → Campaigns).
+ * Deci fiecare reclama primeste linkul ei si se vede separat cate instalari a
+ * adus.
+ *
+ * ⚠️ Apple NUMARA `ct` doar impreuna cu `pt`, simbolul de furnizor din App
+ * Store Connect. Cat timp constanta de mai jos e goala, legaturile catre Apple
+ * pleaca curate si cifrele vin doar de la Google. De completat cand il avem.
+ * ---------------------------------------------------------------------- */
+
+define('REVIZIE_APPLE_PROVIDER_TOKEN', '');
+
+function revizie_download_platform($ua) {
+    if (preg_match('/android/i', $ua))          return 'android';
+    if (preg_match('/iPhone|iPad|iPod/i', $ua)) return 'ios';
+    return null;
+}
+
+/**
+ * Cine deschide linkul ca sa-i faca previzualizare, nu ca sa instaleze ceva.
+ * Lista e larga intentionat: un robot trimis gresit in magazin strica
+ * previzualizarea reclamei, pe cand un om trimis gresit pe pagina vede
+ * oricum cele doua insigne si ajunge unde trebuie.
+ */
+function revizie_is_crawler($ua) {
+    return (bool) preg_match(
+        '/bot|crawler|spider|facebookexternalhit|WhatsApp|Slackbot|Twitterbot|TelegramBot|Discordbot|LinkedInBot|Embedly|Pinterest|SkypeUriPreview|AdsBot|Lighthouse|HeadlessChrome|curl|wget/i',
+        $ua
+    );
+}
+
+/** `?sursa=` ajunge in rapoartele magazinelor — il tinem curat. */
+function revizie_download_source() {
+    $sursa = isset($_GET['sursa']) ? (string) $_GET['sursa'] : '';
+    return substr(preg_replace('/[^A-Za-z0-9_.-]/', '', $sursa), 0, 40);
+}
+
+/** Adresa din magazin, cu eticheta campaniei daca avem una. */
+function revizie_store_url($platform, $sursa = '') {
+    if ($platform === 'android') {
+        if ($sursa === '') {
+            return REVIZIE_PLAY_STORE_URL;
+        }
+        // Play vrea `referrer` ca un singur parametru, cu utm-urile codate in el.
+        $referrer = 'utm_source=' . $sursa . '&utm_medium=referral&utm_campaign=descarca';
+        return REVIZIE_PLAY_STORE_URL . '&referrer=' . rawurlencode($referrer);
+    }
+
+    if ($sursa === '' || REVIZIE_APPLE_PROVIDER_TOKEN === '') {
+        return REVIZIE_APP_STORE_URL;
+    }
+    return REVIZIE_APP_STORE_URL
+        . '?pt=' . rawurlencode(REVIZIE_APPLE_PROVIDER_TOKEN)
+        . '&ct=' . rawurlencode($sursa)
+        . '&mt=8';
+}
+
+/**
+ * Trimite telefoanele in magazin; restul vad pagina.
+ *
+ * `?vezi=1` opreste redirectarea — altfel pagina n-ar putea fi verificata
+ * niciodata de pe telefon, adica exact de pe aparatul pe care conteaza.
+ */
+function revizie_download_route() {
+    $path = rtrim(strtolower((string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH)), '/');
+    $alias = in_array($path, array('/app', '/aplicatie'), true);
+
+    if (!$alias && !is_page('descarca')) {
+        return;
+    }
+
+    nocache_headers();
+
+    $ua       = isset($_SERVER['HTTP_USER_AGENT']) ? (string) $_SERVER['HTTP_USER_AGENT'] : '';
+    $sursa    = revizie_download_source();
+    $platform = revizie_download_platform($ua);
+
+    if ($platform && !isset($_GET['vezi']) && !revizie_is_crawler($ua)) {
+        wp_redirect(revizie_store_url($platform, $sursa), 302);
+        exit;
+    }
+
+    // Calculator sau robot venit pe un alias: pagina sta la o singura adresa.
+    if ($alias) {
+        $tinta = home_url('/descarca');
+        if ($sursa !== '') {
+            $tinta = add_query_arg('sursa', $sursa, $tinta);
+        }
+        wp_redirect($tinta, 302);
+        exit;
+    }
+}
+add_action('template_redirect', 'revizie_download_route', 0);
+
+/**
+ * Previzualizarea linkului pe WhatsApp, Facebook, Messenger.
+ *
+ * Linkul asta se trimite mai mult decat se tasteaza, deci ce arata cand e
+ * lipit intr-o conversatie conteaza la fel de mult ca pagina. Tema nu pune
+ * `og:` nicaieri; le punem doar aici, si doar daca nu le pune deja un plugin
+ * de SEO — doua randuri `og:title` ar fi mai rau decat niciunul.
+ */
+function revizie_download_og_tags() {
+    if (!is_page('descarca') || defined('WPSEO_VERSION') || defined('RANK_MATH_VERSION')) {
+        return;
+    }
+    $titlu   = 'Descarca aplicatia revizie.ro';
+    $descr   = 'ITP, RCA, rovinieta si impozitul, toate in telefon, cu notificare inainte sa expire. Gratuit, fara card.';
+    $imagine = REVIZIE_THEME_URI . '/assets/img/phones-group.webp';
+
+    echo '<meta property="og:type" content="website">' . "\n";
+    printf('<meta property="og:title" content="%s">' . "\n", esc_attr($titlu));
+    printf('<meta property="og:description" content="%s">' . "\n", esc_attr($descr));
+    printf('<meta property="og:url" content="%s">' . "\n", esc_url(home_url('/descarca')));
+    printf('<meta property="og:image" content="%s">' . "\n", esc_url($imagine));
+    echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+}
+add_action('wp_head', 'revizie_download_og_tags', 2);
