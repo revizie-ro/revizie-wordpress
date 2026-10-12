@@ -1369,3 +1369,42 @@ function revizie_download_og_buffer_end() {
     printf('<meta name="twitter:image" content="%s">' . "\n", esc_attr($imagine));
 }
 add_action('wp_head', 'revizie_download_og_buffer_end', 9999);
+
+/* -------------------------------------------------------------------------
+ * Iconita site-ului (fila din browser, ecranul de start al telefonului).
+ *
+ * ---------------------------------------------------------------------------
+ * DE CE E IN TEMA SI NU IN PANOUL WORDPRESS
+ *
+ * Cea de pana acum era incarcata in biblioteca media si venea de la WordPress
+ * (`wp_site_icon`). Problema nu era unde statea, ci din ce era facuta: dintr-un
+ * JPEG mic, marit. La 512x512 cantarea 399 KB — pentru un desen din doua culori,
+ * care exportat curat are sub 100 KB. Restul era zgomot: margini zimtate,
+ * portocaliu patat, halouri albe in jurul liniilor. Clientul a numit-o „se vede
+ * ieftin", si avea dreptate.
+ *
+ * Cea de acum e facuta din pictograma APLICATIEI (1024x1024, curata, aceeasi
+ * forma), care era in proiect de la inceput. Designul nu s-a schimbat deloc:
+ * acelasi cerc crem, acelasi semn, aceeasi asezare. Doar nu mai e marita dintr-o
+ * poza.
+ *
+ * Sta in tema fiindca acolo ajung modificarile mele: biblioteca media e in
+ * `wp-content/uploads`, in afara contului de FTP. Si fiindca asa e versionata
+ * odata cu restul, nu ca un fisier incarcat de mana pe care nu-l mai gaseste
+ * nimeni peste un an.
+ *
+ * ⚠️ `wp_site_icon` se scoate explicit — altfel ar ramane amandoua in pagina si
+ * browserul ar putea-o alege tot pe cea veche.
+ * ---------------------------------------------------------------------- */
+
+remove_action('wp_head', 'wp_site_icon', 99);
+
+function revizie_print_site_icon() {
+    $d = REVIZIE_THEME_URI . '/assets/img/icons';
+    printf('<link rel="icon" href="%s" sizes="any">' . "\n", esc_url($d . '/favicon.ico'));
+    printf('<link rel="icon" type="image/png" sizes="96x96" href="%s">' . "\n", esc_url($d . '/favicon-96x96.png'));
+    printf('<link rel="icon" type="image/png" sizes="192x192" href="%s">' . "\n", esc_url($d . '/web-app-manifest-192x192.png'));
+    // Fara canal alfa: iOS nu intelege transparenta si ar innegri colturile.
+    printf('<link rel="apple-touch-icon" sizes="180x180" href="%s">' . "\n", esc_url($d . '/apple-touch-icon.png'));
+}
+add_action('wp_head', 'revizie_print_site_icon', 2);
