@@ -1156,20 +1156,38 @@ function revizie_store_url($platform, $sursa = '') {
 /**
  * Adresa care deschide APLICATIA Magazin Play, nu pagina ei din browser.
  *
- * `intent://` cu `scheme=market` ajunge la aplicatia Play. `browser_fallback_url`
- * e plasa de siguranta scrisa chiar in adresa: pe un telefon fara Magazin Play
- * (Huawei) sau intr-un browser care refuza schema, se deschide pagina normala.
+ * ---------------------------------------------------------------------------
+ * DOUA VARIANTE, SI DIFERENTA DINTRE ELE CONTEAZA
+ *
+ * `$cu_rezerva = true` adauga `browser_fallback_url`: daca saritura nu se poate
+ * face, browserul merge singur la pagina Play din web.
+ *
+ * Asta e BUN cand omul a apasat un buton — a cerut ceva, trebuie sa ajunga
+ * undeva — si RAU cand incercam singuri, in tacere, la incarcarea paginii.
+ * Chrome refuza destul de des o saritura catre alta aplicatie facuta fara
+ * atingere; cu rezerva pornita, refuzul il arunca direct in pagina Play din
+ * browser, adica exact lucrul pe care incercam sa-l evitam. Fara ea, refuzul nu
+ * face nimic: omul ramane la noi, cu butonul in fata, iar o apasare trece
+ * intotdeauna.
+ *
+ * ⚠️ Prima varianta avea rezerva pornita si la incercarea automata. Pe telefonul
+ * lui Alex mergea, pe al clientului nu — si tocmai fiindca MERGEA rezerva,
+ * clientul a aterizat in browser si a raportat ca nu s-a reparat nimic. Un
+ * mecanism de siguranta care se declanseaza prea devreme ascunde esecul in loc
+ * sa-l rezolve.
  */
-function revizie_play_intent_url($sursa = '') {
+function revizie_play_intent_url($sursa = '', $cu_rezerva = true) {
     $referrer = '';
     if ($sursa !== '') {
         $referrer = '&referrer=' . rawurlencode(
             'utm_source=' . $sursa . '&utm_medium=referral&utm_campaign=descarca'
         );
     }
+    $rezerva = $cu_rezerva
+        ? ';S.browser_fallback_url=' . rawurlencode(revizie_store_url('android', $sursa))
+        : '';
     return 'intent://details?id=' . REVIZIE_ANDROID_PACKAGE . $referrer
-         . '#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url='
-         . rawurlencode(revizie_store_url('android', $sursa)) . ';end';
+         . '#Intent;scheme=market;package=com.android.vending' . $rezerva . ';end';
 }
 
 /**
@@ -1193,11 +1211,15 @@ function revizie_play_intent_url($sursa = '') {
  *
  * Chrome refuza sa plece catre o schema straina dintr-o redirectare de server.
  * Asa ca pagina face doua lucruri, in ordinea asta:
- *   1. `location.replace` catre `intent://`, inainte sa se deseneze ceva — in
- *      cazul obisnuit omul nu apuca sa vada nimic;
- *   2. daca browserul nu a plecat (Chrome mai blocheaza schemele straine fara
+ *   1. `location.replace` catre `intent://` FARA rezerva, inainte sa se
+ *      deseneze ceva — in cazul obisnuit omul nu apuca sa vada nimic;
+ *   2. daca browserul a refuzat (Chrome blocheaza des schemele straine fara
  *      atingere, iar browserele din Facebook si Instagram sunt mai stricte),
- *      ramane un buton mare. Un clic al omului trece intotdeauna.
+ *      nu se intampla nimic si omul ramane aici, cu un buton mare in fata. Ala
+ *      are rezerva pornita, fiindca o apasare trebuie sa duca undeva oricum.
+ *
+ * De aceea textul paginii NU spune „se deschide Magazin Play": daca saritura a
+ * fost refuzata, propozitia aia ar fi o minciuna si omul ar astepta degeaba.
  *
  * Nu e mai lenta decat redirectarea: WordPress e deja pornit in punctul asta,
  * deci costa doar cele cateva sute de octeti ai paginii.
@@ -1206,8 +1228,9 @@ function revizie_play_intent_url($sursa = '') {
  * telefonului ar readuce omul aici, care l-ar trimite iar in magazin.
  */
 function revizie_render_play_launcher($sursa = '') {
-    $intent = revizie_play_intent_url($sursa);
-    $web    = revizie_store_url('android', $sursa);
+    $automat = revizie_play_intent_url($sursa, false);  // incercarea tacuta
+    $buton   = revizie_play_intent_url($sursa, true);   // apasarea omului
+    $web     = revizie_store_url('android', $sursa);
 
     status_header(200);
     header('Content-Type: text/html; charset=utf-8');
@@ -1216,7 +1239,7 @@ function revizie_render_play_launcher($sursa = '') {
         '<!doctype html><html lang="ro"><head><meta charset="utf-8">'
         . '<meta name="viewport" content="width=device-width,initial-scale=1">'
         . '<meta name="robots" content="noindex">'
-        . '<title>Se deschide Magazin Play</title>'
+        . '<title>Descarca aplicatia revizie.ro</title>'
         . '<script>location.replace(%s);</script>'
         . '<style>'
         . 'body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;'
@@ -1227,12 +1250,12 @@ function revizie_render_play_launcher($sursa = '') {
         . '.s{display:block;margin-top:18px;color:#6b7280;font-size:14px}'
         . 'p{font-size:17px;margin:0}'
         . '</style></head><body><div>'
-        . '<p>Se deschide Magazin Play...</p>'
+        . '<p>Descarca aplicatia revizie.ro</p>'
         . '<a class="b" href="%s">Deschide Magazin Play</a>'
-        . '<a class="s" href="%s">Deschide in browser</a>'
+        . '<a class="s" href="%s">Deschide pagina din browser</a>'
         . '</div></body></html>',
-        wp_json_encode($intent),
-        esc_attr($intent),
+        wp_json_encode($automat),
+        esc_attr($buton),
         esc_url($web)
     );
     exit;
