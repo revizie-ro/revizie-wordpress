@@ -54,7 +54,7 @@ get_header();
                 <li><strong>Date despre vehicule:</strong> marca, model, an fabricatie, numar inmatriculare, VIN, serie CIV, kilometraj</li>
                 <li><strong>Date de contact si adresa:</strong> numar de telefon, adresa de domiciliu/facturare (necesara pentru emiterea politei)</li>
                 <li><strong>Date financiare:</strong> istoricul politelor si al tranzactiilor (nu stocam datele complete ale cardului &mdash; vezi sectiunea 4)</li>
-                <li><strong>Documente:</strong> fotografii ale documentelor auto (talon/CIV, ITP, polita)</li>
+                <li><strong>Documente:</strong> fotografii ale documentelor pe care alegi sa le salvezi in aplicatie &mdash; permis de conducere, talon, cartea de identitate a vehiculului (CIV), certificat ITP, polite RCA/CASCO, contract de vanzare-cumparare, certificat de atestare fiscala. <strong>Unele contin coduri numerice personale</strong> &mdash; al tau sau, in cazul contractului de vanzare-cumparare, si al celeilalte parti. Incarcarea lor este optionala, sunt stocate privat si vizibile doar tie, iar fiecare poate fi sters oricand din aplicatie, fara sa-ti stergi contul.</li>
               </ul>
             </div>
 
@@ -210,6 +210,7 @@ get_header();
                 <li><strong>Dupa stergerea contului:</strong> 30 zile pentru recuperare, apoi stergere completa</li>
                 <li><strong>Date financiare:</strong> 10 ani (conform legislatiei fiscale)</li>
                 <li><strong>Logs tehnice:</strong> Maximum 90 zile</li>
+                <li><strong>Documente incarcate:</strong> cat timp le tii in aplicatie &mdash; le poti sterge oricand, individual</li>
                 <li><strong>Date marketing:</strong> Pana la retragerea consimtamantului</li>
               </ul>
             </div>
