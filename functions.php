@@ -1038,7 +1038,10 @@ function revizie_render_promo($fel = 'card') {
         return;
     }
     $titlu = '12 luni de REVIZIE+ gratuit';
-    $text  = 'Fa-ti cont pana pe 31 ianuarie 2027 si primesti 12 luni de REVIZIE+, fara card si fara reinnoire automata.';
+    // ⚠️ Din 20 octombrie 2026 promotia e DOAR pentru cine foloseste aplicatia
+    // de telefon (decizia clientului). Textul vechi spunea „fa-ti cont" si ar fi
+    // promis ceva ce nu se mai acorda asa.
+    $text  = 'Instaleaza aplicatia si intra cu contul tau pana pe 31 ianuarie 2027 — primesti 12 luni de REVIZIE+, fara card si fara reinnoire automata.';
     $cadou = '<svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 012-2h.5a2.5 2.5 0 010 5H12zm0 0V5.5A2.5 2.5 0 009.5 3H9a2 2 0 00-2 2v3m-2 0h14a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1V9a1 1 0 011-1zm1 5h12v7a2 2 0 01-2 2H8a2 2 0 01-2-2v-7z"/></svg>';
 
     if ($fel === 'pe-accent') {
