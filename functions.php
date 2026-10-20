@@ -1002,6 +1002,58 @@ function revizie_render_store_badges($size = 'lg') {
     }
 }
 
+
+/* ----------------------------------------------------------------------
+ * PROMOTIA DE LANSARE — 12 luni de REVIZIE+ pentru orice cont creat pana
+ * pe 31 ianuarie 2027.
+ *
+ * ⚠️ TERMENUL EXISTA IN PATRU LOCURI. Toate trebuie sa spuna acelasi lucru:
+ *   1. aici (tema WordPress);
+ *   2. revizie-app/src/lib/launchPromo.ts (app.revizie.ro);
+ *   3. content-site AppBanner.astro (paginile SEO);
+ *   4. gateway, `PROMO_DEADLINE` — SINGURUL care chiar acorda abonamentul.
+ * Restul sunt vitrine; daca se schimba una fara a patra, reclama promite
+ * altceva decat da codul.
+ *
+ * Textul se stinge SINGUR dupa termen. Un anunt care spune „pana pe 31
+ * ianuarie 2027" si ramane pe site pe 1 februarie nu e o scapare de
+ * copywriting: backendul refuza cererea (`after_deadline`), deci site-ul ar
+ * promite ceva ce aplicatia nu mai da. Asa nu depinde de memoria nimanui.
+ * ---------------------------------------------------------------------- */
+
+define('REVIZIE_PROMO_DEADLINE', '2027-01-31 23:59:59');
+
+function revizie_promo_activa() {
+    // `current_time` respecta fusul setat in WordPress, ca termenul sa fie
+    // ora Romaniei, nu UTC-ul serverului.
+    return current_time('timestamp') <= strtotime(REVIZIE_PROMO_DEADLINE);
+}
+
+/**
+ * Anuntul promotiei. `$fel`: 'card' (pe fundal obisnuit) sau 'pe-accent'
+ * (peste banda portocalie de la finalul paginilor).
+ */
+function revizie_render_promo($fel = 'card') {
+    if (!revizie_promo_activa()) {
+        return;
+    }
+    $titlu = '12 luni de REVIZIE+ gratuit';
+    $text  = 'Fa-ti cont pana pe 31 ianuarie 2027 si primesti 12 luni de REVIZIE+, fara card si fara reinnoire automata.';
+    $cadou = '<svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 012-2h.5a2.5 2.5 0 010 5H12zm0 0V5.5A2.5 2.5 0 009.5 3H9a2 2 0 00-2 2v3m-2 0h14a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1V9a1 1 0 011-1zm1 5h12v7a2 2 0 01-2 2H8a2 2 0 01-2-2v-7z"/></svg>';
+
+    if ($fel === 'pe-accent') {
+        printf(
+            '<div class="inline-flex items-start gap-2.5 rounded-2xl bg-white/15 text-white px-5 py-3 text-left">%s<p class="leading-snug"><span class="font-semibold">%s.</span> <span class="text-white/85">%s</span></p></div>',
+            $cadou, esc_html($titlu), esc_html($text)
+        );
+        return;
+    }
+    printf(
+        '<div class="inline-flex items-start gap-2.5 rounded-2xl border border-accent/30 bg-accent/10 text-accent-strong px-5 py-3 text-left max-w-xl"><span class="text-accent">%s</span><p class="leading-snug text-foreground"><span class="font-semibold">%s.</span> <span class="text-foreground-muted">%s</span></p></div>',
+        $cadou, esc_html($titlu), esc_html($text)
+    );
+}
+
 /** Bannerul nativ Safari pe iPhone („Deschide" / „Obtine"). */
 function revizie_print_itunes_meta() {
     echo '<meta name="apple-itunes-app" content="app-id=6803194044, app-argument=https://app.revizie.ro/">' . "\n";

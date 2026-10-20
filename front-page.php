@@ -296,6 +296,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
           <div class="flex flex-wrap items-center gap-3">
             <?php revizie_render_store_badges('lg'); ?>
           </div>
+          <div class="mt-4"><?php revizie_render_promo('card'); ?></div>
           <?php // Pe calculator o insigna duce in magazinul din browser, de unde aplicatia tot
                 // nu ajunge pe telefon. Pagina de descarcare are codul QR, care o duce. ?>
           <a href="<?php echo home_url('/descarca/'); ?>" class="hidden md:inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-accent-strong hover:text-accent transition-colors">

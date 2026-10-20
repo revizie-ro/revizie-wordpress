@@ -39,6 +39,8 @@ get_header();
             ITP, RCA, rovinieta si impozitul — toate intr-un singur loc, cu notificare inainte sa expire. Gratuit, fara card.
           </p>
 
+          <div class="mb-6"><?php revizie_render_promo('card'); ?></div>
+
           <div class="flex flex-wrap gap-3 mb-6">
             <?php revizie_render_store_badges('lg'); ?>
           </div>
@@ -134,7 +136,8 @@ get_header();
   <section class="py-20 bg-gradient-to-br from-accent via-accent-hover to-accent-strong">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Descarca aplicatia</h2>
-      <p class="text-xl text-white/90 mb-10">Gratuit, fara card. Adaugi prima masina in 30 de secunde.</p>
+      <p class="text-xl text-white/90 mb-6">Gratuit, fara card. Adaugi prima masina in 30 de secunde.</p>
+      <div class="mb-10"><?php revizie_render_promo('pe-accent'); ?></div>
       <div class="flex flex-wrap gap-3 justify-center">
         <?php revizie_render_store_badges('lg'); ?>
       </div>
