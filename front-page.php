@@ -87,6 +87,14 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
             </a>
           </div>
 
+          <!-- Al treilea buton ar inghesui hero-ul si ar imparti atentia intre trei
+               cereri. Un rand de text sub butoane se vede din primul ecran si nu
+               concureaza cu ele. -->
+          <p class="-mt-6 mb-10 text-sm text-foreground-muted">
+            Nu vrei sa platesti totul odata?
+            <a href="https://revizie.ro/rca-in-rate" class="font-semibold text-accent-strong hover:text-accent underline underline-offset-2 transition-colors">Plateste RCA-ul in rate, prin TBI Bank</a>
+          </p>
+
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-3">
             <div class="flex items-center gap-2.5">
               <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-success/10 text-success">
