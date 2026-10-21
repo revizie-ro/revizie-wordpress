@@ -223,10 +223,19 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
                 </li>
               <?php endforeach; ?>
             </ul>
-            <a href="https://revizie.ro/rca" class="group inline-flex items-center gap-2 px-7 py-3.5 bg-accent hover:bg-accent-hover text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:shadow-accent/30 transition-all">
-              Vezi oferte RCA
-              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </a>
+            <!-- Doua cai din aceeasi sectiune: cumpararea (primar) si explicatia platii
+                 in rate (secundar). Al doilea buton e outline, nu plin: ratele sunt
+                 inca o pagina de informare, nu un al doilea checkout. -->
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a href="https://revizie.ro/rca" class="group inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent hover:bg-accent-hover text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:shadow-accent/30 transition-all">
+                Vezi oferte RCA
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+              <a href="https://revizie.ro/rca-in-rate" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-card border border-border text-foreground rounded-2xl font-semibold hover:border-accent hover:text-accent transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+                RCA in rate
+              </a>
+            </div>
           </div>
           <!-- Right: two highlight boxes + insurer marquee under them -->
           <div class="min-w-0">
