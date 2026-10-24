@@ -2,9 +2,11 @@
 /**
  * Template Name: Pentru Parteneri
  *
- * Coming Soon — partner program nu este inca deschis. Userii care ajung
- * aici (de la Google sau link extern) primesc o pagina informativa cu
- * formular de waitlist in loc de 404 sau marketing fake.
+ * Programul de parteneri: pentru MAGAZINELE DE PIESE e deschis (promotia de
+ * lansare, 6 luni fara niciun cost), restul categoriilor sunt inca in
+ * pregatire. Oferta completa pentru magazine sta in aplicatie, la
+ * revizie.ro/pentru-magazine — o singura pagina, intretinuta intr-un singur
+ * loc, nu doua texte care diverg.
  */
 get_header();
 ?>
@@ -32,16 +34,38 @@ get_header();
       </div>
 
       <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
-        Programul de parteneri se deschide curand
+        Programul de parteneri
       </h1>
       <p class="text-xl text-foreground-muted mb-10 leading-relaxed max-w-2xl mx-auto">
-        Cautam service-uri auto, magazine de piese, furnizori de anvelope si firme de tractari pentru retea verificata. Daca esti interesat, scrie-ne direct si te contactam cand pornim onboarding-ul.
+        Pentru <strong class="text-foreground">magazinele de piese</strong> inscrierile sunt deschise, cu 6 luni fara niciun cost. Pentru service-uri auto, furnizori de anvelope si firme de tractari pregatim programul &mdash; scrie-ne si te contactam cand pornim.
       </p>
 
       <a href="mailto:office@revizie.ro?subject=Parteneriat%20revizie.ro" class="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-2xl font-semibold shadow-lg hover:shadow-2xl hover:shadow-accent/30 transition-all">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         Scrie-ne la office@revizie.ro
       </a>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="rounded-3xl border border-accent/30 bg-accent/5 p-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/15 text-accent rounded-full text-sm font-semibold mb-4">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          Deschis acum: magazine de piese
+        </div>
+        <h2 class="text-3xl font-bold text-foreground mb-3">6 luni de vanzari fara niciun cost</h2>
+        <p class="text-foreground-muted leading-relaxed mb-4">
+          Soferii din zona ta cer piese prin aplicatie, iar cererea ajunge la tine pe e-mail: piesa, masina, distanta. Raspunzi cu pretul tau, clientul alege si vine sa ridice de la tine. Fara comision din vanzare &mdash; pretul din oferta e pretul pe care il incasezi la tejghea.
+        </p>
+        <p class="text-foreground-muted leading-relaxed mb-6">
+          Promotia de lansare: <strong class="text-foreground">6 luni fara abonament, fara limita de cereri si fara taxe</strong>, ca sa vezi exact cum functioneaza. Daca dupa cele 6 luni alegi sa continui, mai primesti <strong class="text-foreground">inca 6 luni cu 50% reducere</strong>.
+        </p>
+        <a href="<?php echo esc_url( home_url('/pentru-magazine') ); ?>" class="inline-flex items-center gap-2 px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-2xl font-semibold shadow-lg hover:shadow-2xl hover:shadow-accent/30 transition-all">
+          Vezi cum functioneaza si inscrie-te
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -67,8 +91,8 @@ get_header();
           <div class="w-11 h-11 rounded-xl bg-info/15 text-info flex items-center justify-center mb-3">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
           </div>
-          <h3 class="font-semibold text-foreground mb-1">Magazine piese</h3>
-          <p class="text-xs text-foreground-muted">Catalog integrat cu VIN matching pe masinile clientilor.</p>
+          <h3 class="font-semibold text-foreground mb-1">Magazine piese <span class="text-accent">&middot; deschis</span></h3>
+          <p class="text-xs text-foreground-muted">Cereri de piese din zona ta, cu marca, modelul si VIN-ul masinii.</p>
         </div>
         <div class="bg-surface-muted rounded-2xl p-5 border border-border-subtle">
           <div class="w-11 h-11 rounded-xl bg-success/15 text-success flex items-center justify-center mb-3">
