@@ -1399,8 +1399,11 @@ add_action('template_redirect', 'revizie_download_route', 0);
 function revizie_og_pentru_pagina() {
     if (is_front_page()) {
         return array(
-            'titlu'   => 'revizie.ro – Tot ce ai nevoie pentru masina ta',
-            'descr'   => 'Cumpara RCA online, gestioneaza-ti masina in Garajul digital, primeste notificari si descopera masini de vanzare, piese auto si service-uri. Totul intr-o singura platforma!',
+            // Textul e EXACT cum l-a scris clientul, cu diacritice: e singurul
+            // loc din tema unde le folosim, fiindca aici nu scriem noi despre
+            // produs, ci reproducem ce a cerut el, cuvant cu cuvant.
+            'titlu'   => 'revizie.ro – Tot ce ai nevoie pentru mașina ta',
+            'descr'   => 'Cumpără RCA online, gestionează-ți mașina în Garajul digital, primește notificări și descoperă mașini de vânzare, piese auto și service-uri. Totul într-o singură platformă!',
             'imagine' => REVIZIE_THEME_URI . '/assets/img/phones-group.webp',
             'url'     => home_url('/'),
         );
