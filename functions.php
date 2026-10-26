@@ -1387,15 +1387,45 @@ add_action('template_redirect', 'revizie_download_route', 0);
  *
  * Se intampla DOAR pe pagina asta. Restul site-ului ramane cum era.
  */
-function revizie_download_og_buffer_start() {
+/**
+ * Pentru CE pagini scriem noi etichetele sociale, si cu ce text.
+ *
+ * `null` = pagina nu ne priveste, o lasam pluginului.
+ *
+ * Prima pagina a intrat aici pentru ca previzualizarea linkului arata „Acasa -
+ * revizie.ro" cu descriere GOALA — adica fix defectul pentru care exista
+ * tamponul de mai jos. Textul e cel cerut de client (26 oct 2026).
+ */
+function revizie_og_pentru_pagina() {
+    if (is_front_page()) {
+        return array(
+            'titlu'   => 'revizie.ro – Tot ce ai nevoie pentru masina ta',
+            'descr'   => 'Cumpara RCA online, gestioneaza-ti masina in Garajul digital, primeste notificari si descopera masini de vanzare, piese auto si service-uri. Totul intr-o singura platforma!',
+            'imagine' => REVIZIE_THEME_URI . '/assets/img/phones-group.webp',
+            'url'     => home_url('/'),
+        );
+    }
     if (is_page('descarca')) {
+        return array(
+            'titlu'   => 'Descarca aplicatia revizie.ro',
+            'descr'   => 'ITP, RCA, rovinieta si impozitul, toate in telefon, cu notificare inainte sa expire. Gratuit, fara card.',
+            'imagine' => REVIZIE_THEME_URI . '/assets/img/phones-group.webp',
+            'url'     => home_url('/descarca'),
+        );
+    }
+    return null;
+}
+
+function revizie_download_og_buffer_start() {
+    if (revizie_og_pentru_pagina() !== null) {
         ob_start();
     }
 }
 add_action('wp_head', 'revizie_download_og_buffer_start', -100);
 
 function revizie_download_og_buffer_end() {
-    if (!is_page('descarca') || ob_get_level() === 0) {
+    $pagina = revizie_og_pentru_pagina();
+    if ($pagina === null || ob_get_level() === 0) {
         return;
     }
     $head = ob_get_clean();
@@ -1408,9 +1438,9 @@ function revizie_download_og_buffer_end() {
     );
     echo $head;
 
-    $titlu   = 'Descarca aplicatia revizie.ro';
-    $descr   = 'ITP, RCA, rovinieta si impozitul, toate in telefon, cu notificare inainte sa expire. Gratuit, fara card.';
-    $imagine = REVIZIE_THEME_URI . '/assets/img/phones-group.webp';
+    $titlu   = $pagina['titlu'];
+    $descr   = $pagina['descr'];
+    $imagine = $pagina['imagine'];
 
     $etichete = array(
         'og:type'        => 'website',
@@ -1418,7 +1448,7 @@ function revizie_download_og_buffer_end() {
         'og:locale'      => 'ro_RO',
         'og:title'       => $titlu,
         'og:description' => $descr,
-        'og:url'         => home_url('/descarca'),
+        'og:url'         => $pagina['url'],
         'og:image'       => $imagine,
     );
     foreach ($etichete as $cheie => $valoare) {
@@ -1430,6 +1460,24 @@ function revizie_download_og_buffer_end() {
     printf('<meta name="twitter:image" content="%s">' . "\n", esc_attr($imagine));
 }
 add_action('wp_head', 'revizie_download_og_buffer_end', 9999);
+
+/**
+ * Titlul si descrierea pentru prima pagina, acolo unde NU sunt etichete `og:`:
+ * fila browserului, rezultatul din Google, bara de sus a telefonului.
+ *
+ * Pluginul de SEO scrie „Acasa - revizie.ro", adica numele slotului din meniu,
+ * nu numele produsului. Aici il inlocuim cu cel cerut de client, pe acelasi
+ * text ca previzualizarea linkului — ca sa nu spuna doua lucruri diferite
+ * despre acelasi site.
+ */
+function revizie_titlu_prima_pagina($titlu) {
+    if (!is_front_page()) {
+        return $titlu;
+    }
+    $pagina = revizie_og_pentru_pagina();
+    return $pagina === null ? $titlu : $pagina['titlu'];
+}
+add_filter('pre_get_document_title', 'revizie_titlu_prima_pagina', 9999);
 
 /* -------------------------------------------------------------------------
  * Iconita site-ului (fila din browser, ecranul de start al telefonului).
