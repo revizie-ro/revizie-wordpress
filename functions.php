@@ -7,6 +7,39 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// revizie.ro is served through our nginx VPS (93.115.53.173), which proxies to
+// this host. Without the lines below PHP sees the proxy's address as
+// REMOTE_ADDR for EVERY visitor, so Loginizer's brute-force lockout applies to
+// the whole world at once: on 27 Oct 2026 three people on three different
+// connections all got "You have exceeded maximum login retries", and each new
+// attempt extended the same countdown (16h -> 22h).
+//
+// The header is only trusted when the request really comes from our proxy —
+// nginx overwrites X-Forwarded-For with the client address (it does not append
+// to a client-supplied one), and REMOTE_ADDR cannot be spoofed over TCP. A
+// request sent straight to this host's IP therefore cannot forge an address.
+//
+// ⚠️ PARTIAL. Plugins load before themes, so this does not reach a
+// plugin that reads the address while loading — verified on 28 Oct 2026:
+// with these lines live, wp-login.php still answered "exceeded maximum login
+// retries". The authoritative place is wp-config.php, which runs before
+// everything; the same block lives there. This copy still corrects the address
+// for everything that reads it at `init` or later (comments, stats, other
+// plugins), and turns into a no-op once wp-config.php has run, because
+// REMOTE_ADDR no longer matches the proxy. The theme's FTP account is chrooted
+// to this folder, which is why the fix could not be put in wp-config.php from
+// here.
+if (
+    isset($_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_X_FORWARDED_FOR'])
+    && $_SERVER['REMOTE_ADDR'] === '93.115.53.173'
+) {
+    $revizie_client_ip = trim($_SERVER['HTTP_X_FORWARDED_FOR']);
+    if (filter_var($revizie_client_ip, FILTER_VALIDATE_IP)) {
+        $_SERVER['REMOTE_ADDR'] = $revizie_client_ip;
+    }
+    unset($revizie_client_ip);
+}
+
 define('REVIZIE_THEME_VERSION', '1.12.0');
 define('REVIZIE_THEME_DIR', get_template_directory());
 define('REVIZIE_THEME_URI', get_template_directory_uri());
