@@ -207,6 +207,8 @@
         <p class="text-xs font-semibold uppercase tracking-wider text-foreground-subtle px-3 mb-1">Companie</p>
         <a href="<?php echo home_url('/despre-noi/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Despre Noi</a>
         <a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Cum Functioneaza</a>
+        <?php /* Vezi nota din functions.php: pagina e servita de aplicatie. */ ?>
+        <a href="https://revizie.ro/parteneri" class="block px-3 py-2.5 rounded-lg text-accent hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-semibold">Devino partener</a>
 
         <div class="pt-4 mt-4 border-t border-border-subtle flex flex-col gap-2">
           <a href="https://app.revizie.ro/login" class="block w-full text-center px-4 py-3 rounded-xl border border-border text-foreground hover:bg-surface-muted font-semibold transition-colors">Login</a>

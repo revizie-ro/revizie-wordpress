@@ -389,6 +389,13 @@ function revizie_main_menu_fallback() {
         <span class="w-px h-4 bg-border" aria-hidden="true"></span>
         <a href="<?php echo home_url('/despre-noi/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Despre Noi</a>
         <a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Cum Functioneaza</a>
+        <?php /* Singura intrare pentru FIRME din toata bara, de aia e in accent:
+                 altfel se pierde printre cele pentru soferi. Cerut de client
+                 pe 4 noiembrie 2026, cu URL-ul scris de el: revizie.ro/parteneri.
+                 ⚠️ Pagina e servita de APLICATIE, nu de WordPress — nu urca
+                 fisierul asta inainte ca nginx sa trimita /parteneri spre app,
+                 altfel intrarea noua duce in 404 pe live. */ ?>
+        <a href="https://revizie.ro/parteneri" class="text-accent hover:text-accent-strong transition-colors text-sm font-semibold whitespace-nowrap">Devino partener</a>
     </nav>
     <?php
 }
