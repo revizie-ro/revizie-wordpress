@@ -178,11 +178,19 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
             'desc'=>'Cumperi sau vinzi masini rapid si in siguranta.',
             'badge'=>'Nou','badge_class'=>'bg-warning/15 text-warning',
             'btn'=>'Vezi anunturi','href'=>'https://revizie.ro/anunturi','style'=>'outline'),
-          array('title'=>'Piese &amp; Service','chip'=>'bg-foreground/5 text-foreground-muted',
-            'icon'=>'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
-            'desc'=>'In curand: piese auto, service si revizii.',
-            'badge'=>null,'badge_class'=>'',
-            'btn'=>'In curand','href'=>null,'style'=>'disabled'),
+          /* „Gaseste-mi:" — noua directie, ceruta de client pe 4 noiembrie 2026.
+             Inlocuieste vechiul card „Piese & Service", care promitea vag
+             „piese auto, service si revizii" si nu spunea nimanui ce urmeaza.
+
+             Ramane pe „In curand" DELIBERAT: pe productie piesele merg doar
+             pentru conturile din pilot, iar celelalte patru servicii sunt
+             stinse. Anuntam directia, nu promitem ca e deschisa — un buton
+             care duce intr-o lista goala costa mai mult decat tacerea. */
+          array('title'=>'Gaseste-mi:','chip'=>'bg-accent/15 text-accent',
+            'icon'=>'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+            'desc'=>'Piesa, piese din dezmembrari, service, ITP sau vulcanizare &mdash; spui ce iti trebuie, firmele din zona ta revin cu pretul.',
+            'badge'=>'In curand','badge_class'=>'bg-accent/15 text-accent',
+            'btn'=>'Inscriem firmele','href'=>null,'style'=>'disabled'),
         );
         foreach ($services as $s) : ?>
           <div class="relative bg-card rounded-2xl border border-border-subtle p-5 flex flex-col hover:shadow-lg transition-all">
