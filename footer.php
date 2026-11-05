@@ -46,10 +46,11 @@
         <div>
           <h4 class="text-white font-semibold mb-4">Companie</h4>
           <ul class="space-y-2">
-            <?php // Oferta pentru magazinele de piese. In footer, nu doar pe pagina de
-                  // parteneri: un magazin care ne cauta trebuie s-o gaseasca singur. ?>
-            <li><a href="<?php echo home_url('/pentru-magazine'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Pentru magazine de piese</a></li>
-            <li><a href="<?php echo home_url('/pentru-parteneri/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Pentru parteneri</a></li>
+            <?php // O SINGURA pagina de parteneri (5 nov 2026). Erau trei linkuri
+                  // catre trei texte care se contraziceau: cel vechi din WordPress
+                  // spunea ca pentru service si anvelope „nu e deschis inca", cand
+                  // pagina noua ii inscrie. Celelalte doua redirecteaza aici. ?>
+            <li><a href="<?php echo home_url('/parteneri'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Devino partener</a></li>
             <li><a href="<?php echo home_url('/despre-noi/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Despre Noi</a></li>
             <li><a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Cum Functioneaza</a></li>
             <li><a href="<?php echo home_url('/intrebari-frecvente/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Intrebari frecvente</a></li>
