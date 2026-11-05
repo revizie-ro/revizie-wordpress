@@ -189,22 +189,77 @@ Cardurile features active duc direct in app:
 
 ## Update tema dupa schimbari
 
-Cand modifici fisiere pe local + push pe main:
+⚠️ **Din 4 noiembrie 2026, FTP-ul NU mai ajunge la vizitatori.** Daca ai in
+cap vechea regula „upload = LIVE", uita-o: e gresita si te face sa crezi ca ai
+publicat cand n-ai publicat.
 
-⚠️ **In practica, singura cale e FTP.** Butonul cPanel „Deploy HEAD" nu e
-accesibil, iar contul FTP vede doar folderul temei. Credentialele si comenzile
-gata de folosit: `secrets/README.md`, sectiunea „FTP tema WordPress".
-**Nu exista staging: upload = LIVE pe revizie.ro.**
+### De ce s-a schimbat
 
-Inainte sa suprascrii un fisier, descarca-l si compara-l cu `git show HEAD:<fisier>`
-— pe server pot fi modificari care nu sunt in repo. Dupa upload: `revizie.ro` = 200,
-fara „Fatal error" / „Parse error".
+RomArg a blocat IP-ul VPS-ului nostru (`93.115.53.173`) — ping si toate
+porturile in timeout. VPS-ul nu mai poate citi site-ul de la RomArg, asa ca
+nginx serveste copia statica din `/var/www/wp-mirror` si intoarce 200 pe tot.
+Site-ul pare sanatos; doar ca e o fotografie.
 
-Variantele de mai jos raman documentate pentru cand se schimba gazduirea:
-   - **cPanel Git Version Control** (daca e setat): trigger automat la push
-   - **Manual**: ssh → `cd /var/www/wp-content/themes/<tema> && git pull`
-   - **FTP**: re-upload fisierele schimbate
-2. WP Admin → Themes → vezi noua versiune. Tema se refresheaza automat la urmatoarea cerere.
+### Cum se publica acum — GitHub e sursa, nu RomArg
+
+```
+local  --git push-->  GitHub (revizie-ro/revizie-wordpress, main)
+                          |
+                          |  git fetch + checkout, pe VPS
+                          v
+            /opt/wp-render/public_html   (WordPress complet, restaurat din
+            tema = clona a aceluiasi repo   backup cPanel, servit DOAR pe
+                          |                 127.0.0.2 de vhost-ul
+                          |                 `wp-render-local`)
+                          |  ORIGIN_IP=127.0.0.2 /root/bin/wp-mirror.sh
+                          v                (wget peste WordPress-ul local)
+                   /var/www/wp-mirror  -->  nginx  -->  revizie.ro
+```
+
+Pasii, de facut de **server-Claude** (sesiunile locale doar citesc pe VPS):
+
+```bash
+cd /opt/wp-render/public_html/wp-content/themes/revizie-theme
+cp -a <fisierele> /var/tmp/                      # plasa
+git fetch origin
+git checkout origin/main -- <fisierele>          # DOAR fisierele schimbate:
+chown www-data:www-data <fisierele>              # copia e murdara intentionat
+ORIGIN_IP=127.0.0.2 /root/bin/wp-mirror.sh
+tail -3 /var/log/wp-mirror.log                   # „OK: N pagini html"
+```
+
+Scriptul construieste in temp si inlocuieste doar daca homepage-ul iese
+intreg; copia veche ramane in `/var/www/wp-mirror.prev`.
+
+**Verificarea reala e pe `revizie.ro`, nu pe RomArg.** Un `curl` catre
+`89.42.218.38` iti arata ce-ai urcat prin FTP, nu ce vede lumea.
+
+### FTP-ul ramane, dar ca oglinda, nu ca publicare
+
+Continuam sa urcam la RomArg prin FTP ca originea sa fie corecta in ziua in
+care ne deblocheaza (sau in ziua in care plecam de acolo cu totul, ceea ce e
+planul). Credentialele si comenzile: `secrets/README.md`, sectiunea
+„FTP tema WordPress".
+
+Inainte sa suprascrii un fisier, descarca-l si compara-l cu
+`git show HEAD:<fisier>` — pe server pot fi modificari care nu sunt in repo.
+
+Ca sa verifici ca RomArg e sincron cu git, pe toata tema:
+
+```sh
+set -a; . "secrets/ftp-wordpress.env"; set +a
+F="ftp://$FTP_HOST"; A=(--ssl-reqd -k -u "$FTP_USER:$FTP_PASS")
+for f in $(git ls-files | grep -E '^[^/]+\.(php|css)$'); do
+  curl -s "${A[@]}" "$F/$f" -o /tmp/srv; git show HEAD:$f > /tmp/git
+  diff -q /tmp/git /tmp/srv >/dev/null || echo "$f DIFERIT"
+done
+```
+
+### Cand plecam de la RomArg
+
+Nu mai e nevoie de nimic de acolo: WordPress-ul care conteaza ruleaza deja pe
+VPS (`/opt/wp-render`), iar continutul vine din GitHub. De mutat atunci: DNS-ul
+(zona e la RomArg) si casutele de email.
 
 **Cache busting**: bump `Version: X.Y.Z` in `style.css` + constanta `REVIZIE_THEME_VERSION` in `functions.php` la fiecare release vizibil. Forteaza re-descarcarea CSS-urilor.
 
