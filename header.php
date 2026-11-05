@@ -154,8 +154,8 @@
 
   <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-border-subtle">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-10">
-        <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-3">
+      <div class="flex items-center gap-6 min-w-0">
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center gap-3 shrink-0">
           <?php // Transparent wordmark (dark text) — big, blends on the white header.
                 // Inlined (base64) so it renders even though the host doesn't serve the binary file. ?>
           <img src="<?php echo REVIZIE_LOGO_DARK_DATAURI; ?>" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto object-contain">
@@ -164,15 +164,15 @@
         <?php revizie_display_main_menu(); ?>
       </div>
 
-      <div class="flex items-center gap-3">
-        <a href="https://app.revizie.ro/login" class="hidden md:inline-block px-4 py-2 text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Login</a>
-        <a href="https://app.revizie.ro/register" class="hidden md:inline-flex px-5 py-2.5 bg-accent hover:bg-accent-hover text-white rounded-full text-sm font-semibold shadow-md hover:shadow-lg hover:shadow-accent/30 transition-all duration-300">Inregistreaza-te</a>
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="https://app.revizie.ro/login" class="hidden md:inline-block px-4 py-2 text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Login</a>
+        <a href="https://app.revizie.ro/register" class="hidden md:inline-flex px-5 py-2.5 bg-accent hover:bg-accent-hover text-white rounded-full text-sm font-semibold whitespace-nowrap shadow-md hover:shadow-lg hover:shadow-accent/30 transition-all duration-300">Inregistreaza-te</a>
 
         <!-- Mobile hamburger toggle (vizibil doar < md) -->
         <button
           id="revizie-mobile-toggle"
           type="button"
-          class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-foreground hover:bg-surface-muted transition-colors"
+          class="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-foreground hover:bg-surface-muted transition-colors"
           aria-label="Deschide meniul"
           aria-expanded="false"
           aria-controls="revizie-mobile-menu"
@@ -190,7 +190,7 @@
     <!-- Mobile dropdown — solid white (no transparency on overlays) -->
     <div
       id="revizie-mobile-menu"
-      class="md:hidden hidden border-t border-border-subtle bg-white shadow-lg"
+      class="xl:hidden hidden border-t border-border-subtle bg-white shadow-lg"
     >
       <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-1">
         <p class="text-xs font-semibold uppercase tracking-wider text-foreground-subtle px-3 mb-1">Functii</p>
@@ -269,7 +269,7 @@
 
     // Close when resizing up to desktop
     window.addEventListener('resize', function () {
-      if (window.innerWidth >= 768 && !menu.classList.contains('hidden')) {
+      if (window.innerWidth >= 1280 && !menu.classList.contains('hidden')) {
         setOpen(false);
       }
     });

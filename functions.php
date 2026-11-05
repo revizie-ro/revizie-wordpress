@@ -380,7 +380,7 @@ function revizie_get_logo_url() {
 
 function revizie_main_menu_fallback() {
     ?>
-    <nav class="hidden md:flex items-center gap-5 lg:gap-6">
+    <nav class="hidden xl:flex items-center gap-5 shrink-0">
         <a href="<?php echo home_url('/functii/garaj-digital/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Garaj Digital</a>
         <a href="https://revizie.ro/anunturi" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Anunturi</a>
         <a href="https://revizie.ro/rca" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Asigurari</a>
