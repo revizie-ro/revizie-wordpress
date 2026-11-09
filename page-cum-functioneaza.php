@@ -138,12 +138,12 @@ get_header();
           <div>
             <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-success to-success/70 text-white text-xl font-bold mb-6 shadow-md">3</div>
             <h2 class="text-3xl font-bold text-foreground mb-4">Folosesti platforma</h2>
-            <p class="text-lg text-foreground-muted mb-6">Toate functionalitatile pornesc de la masina ta din garaj. Cu un click obtii oferte RCA &amp; CASCO, postezi un anunt de vanzare, verifici istoricul VIN sau primesti notificari pentru scadente.</p>
+            <p class="text-lg text-foreground-muted mb-6">Toate functionalitatile pornesc de la masina ta din garaj. Cu un click obtii oferte RCA, postezi un anunt de vanzare, verifici istoricul VIN sau primesti notificari pentru scadente.</p>
             <div class="grid grid-cols-2 gap-3">
               <a href="https://revizie.ro/rca" class="group bg-card border border-success/20 rounded-xl p-3 hover:border-success/50 transition-colors">
                 <div class="flex items-center gap-2 mb-1">
                   <svg class="w-4 h-4 text-success" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                  <span class="text-sm font-semibold text-foreground">RCA &amp; CASCO</span>
+                  <span class="text-sm font-semibold text-foreground">RCA</span>
                 </div>
                 <p class="text-xs text-foreground-muted">Calculezi oferte online</p>
               </a>

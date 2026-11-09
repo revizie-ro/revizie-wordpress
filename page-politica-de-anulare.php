@@ -72,7 +72,7 @@ get_header();
               OUG 34/2014 art. 16 lit. (l) prevede ca dreptul de retragere de 14 zile <strong>nu se aplica</strong> contractelor de asigurare obligatorie (RCA este obligatorie conform Legii 132/2017 &mdash; Codul Asigurarilor). Aceasta excludere este standard pentru toti distribuitorii de asigurari auto din Romania, nu este o practica interna revizie.ro.
             </p>
             <p class="text-foreground-subtle">
-              Pentru asigurarile facultative (de ex. CASCO, cand va fi disponibil), dreptul de retragere de 14 zile <strong>se aplica</strong> conform aceleiasi legi, iar politica va fi actualizata corespunzator.
+              Daca vom oferi pe viitor asigurari facultative, dreptul de retragere de 14 zile <strong>se aplica</strong> pentru ele conform aceleiasi legi, iar politica va fi actualizata corespunzator.
             </p>
           </div>
         </section>

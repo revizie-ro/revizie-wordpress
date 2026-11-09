@@ -38,7 +38,8 @@ get_header();
           array('De la ce asiguratori primesc oferte?', 'Comparam oferte de la asiguratori autorizati ASF: Groupama, Omniasig, Allianz-Tiriac, Generali, Asirom, Grawe, Axeria, Eazy si altii.'),
           array('Polita emisa online este valabila?', 'Da. Polita RCA emisa prin revizie.ro este 100% valabila si inregistrata in baza de date oficiala, exact ca una emisa la ghiseu.'),
           array('Pot plati RCA in rate?', 'Da, acolo unde asiguratorul permite, poti alege plata in mai multe rate la finalizarea comenzii.'),
-          array('Oferiti si CASCO?', 'Da, pe langa RCA poti compara si cumpara si polite CASCO direct din cont.'),
+          // CASCO nu se mai vinde (nov 2026) — intrarea ramane aici, comentata.
+          // array('Oferiti si CASCO?', 'Da, pe langa RCA poti compara si cumpara si polite CASCO direct din cont.'),
         ),
         'Cont &amp; Garaj digital' => array(
           array('Este gratuit sa imi fac cont?', 'Da. Crearea contului si folosirea garajului digital sunt 100% gratuite, fara card la inregistrare.'),
