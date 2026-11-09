@@ -57,7 +57,7 @@ get_header();
               </div>
             </div>
             <p class="text-foreground-subtle">
-              Trimite cererea de anulare la <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a> cu numarul de polita si motivul. Procesam cererea in maxim 24 de ore lucratoare.
+              Trimite cererea de anulare la <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a> cu numarul de polita si motivul. Procesam cererea in cel mai scurt timp.
             </p>
           </div>
         </section>
@@ -126,7 +126,7 @@ get_header();
               </div>
             </div>
             <div class="mt-4 text-foreground-subtle text-sm">
-              <p class="mb-1"><strong>Pas 2 &mdash; Verificare:</strong> trimitem cererea catre asigurator in maxim 24 de ore lucratoare.</p>
+              <p class="mb-1"><strong>Pas 2 &mdash; Verificare:</strong> trimitem cererea catre asigurator in cel mai scurt timp.</p>
               <p class="mb-1"><strong>Pas 3 &mdash; Raspuns:</strong> primesti decizia asiguratorului in 5-15 zile lucratoare.</p>
               <p><strong>Pas 4 &mdash; Restituire:</strong> daca cererea e aprobata, suma se restituie in 14 zile lucratoare pe cardul folosit la plata.</p>
             </div>
