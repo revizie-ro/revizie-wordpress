@@ -50,7 +50,7 @@ get_header();
               <li><strong class="text-foreground">Nr. Registrul Comertului:</strong> J2015006020404</li>
               <li><strong class="text-foreground">Cod CAEN principal:</strong> 6622 &mdash; Activitati ale agentilor si broker-ilor de asigurari (asistent in brokeraj)</li>
               <li><strong class="text-foreground">Email:</strong> <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a></li>
-              <li><strong class="text-foreground">Telefon:</strong> 0758 500 700</li>
+              <li><strong class="text-foreground">Telefon:</strong> 0758 400 100</li>
             </ul>
             <p class="text-foreground-subtle mt-4">
               SMART HAGGLING SRL este <strong>asistent in brokeraj</strong>, afiliat al brokerului <strong>Transilvania Broker de Asigurare-Reasigurare SA</strong>, si isi desfasoara activitatea de distributie de asigurari sub supravegherea Autoritatii de Supraveghere Financiara (ASF).
@@ -230,7 +230,7 @@ get_header();
             </p>
             <ul class="space-y-2 text-foreground-subtle">
               <li><strong>Email:</strong> <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a></li>
-              <li><strong>Telefon:</strong> 0758 500 700</li>
+              <li><strong>Telefon:</strong> 0758 400 100</li>
               <li><strong>Program:</strong> Luni - Vineri, 09:00 - 17:00</li>
             </ul>
           </div>

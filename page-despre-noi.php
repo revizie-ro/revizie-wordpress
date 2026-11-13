@@ -120,12 +120,12 @@ get_header();
           <span class="text-sm text-foreground-muted group-hover:text-accent transition-colors">office@revizie.ro</span>
         </a>
 
-        <a href="tel:0758500700" class="group bg-surface-muted rounded-2xl p-5 hover:bg-card hover:border-accent/30 border border-transparent transition-all text-center">
+        <a href="tel:0758400100" class="group bg-surface-muted rounded-2xl p-5 hover:bg-card hover:border-accent/30 border border-transparent transition-all text-center">
           <div class="w-12 h-12 rounded-xl bg-accent/15 text-accent flex items-center justify-center mx-auto mb-3">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
           </div>
           <h3 class="font-semibold text-foreground mb-1">Telefon</h3>
-          <span class="text-sm text-foreground-muted group-hover:text-accent transition-colors">0758 500 700</span>
+          <span class="text-sm text-foreground-muted group-hover:text-accent transition-colors">0758 400 100</span>
         </a>
 
         <div class="bg-surface-muted rounded-2xl p-5 text-center">

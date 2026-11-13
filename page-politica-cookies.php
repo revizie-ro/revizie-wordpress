@@ -182,7 +182,7 @@ get_header();
             <p class="text-foreground-muted mb-4">Pentru intrebari despre politica de cookies, contactati-ne:</p>
             <ul class="space-y-2 text-foreground-muted list-none pl-0">
               <li><strong>Email:</strong> <a href="mailto:gdpr@revizie.ro" class="text-orange-500 hover:text-accent">gdpr@revizie.ro</a></li>
-              <li><strong>Telefon:</strong> 0758 500 700</li>
+              <li><strong>Telefon:</strong> 0758 400 100</li>
             </ul>
           </div>
         </section>

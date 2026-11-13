@@ -290,7 +290,7 @@ get_header();
             </p>
             <ul class="space-y-2 text-foreground-muted mb-6">
               <li><strong class="text-foreground">Email:</strong> <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a></li>
-              <li><strong class="text-foreground">Telefon:</strong> 0758 500 700</li>
+              <li><strong class="text-foreground">Telefon:</strong> 0758 400 100</li>
               <li><strong class="text-foreground">Program:</strong> Luni - Vineri, 09:00 - 17:00</li>
             </ul>
             <div class="border-t border-border-subtle pt-4">

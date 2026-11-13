@@ -81,7 +81,7 @@
             <?php revizie_render_wallet_pay_marks(); ?>
           </div>
           <div class="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1">
-            <span class="text-foreground-subtle text-sm">Contact: 0758 500 700</span>
+            <span class="text-foreground-subtle text-sm">Contact: 0758 400 100</span>
             <span class="text-foreground-subtle text-sm">|</span>
             <a href="mailto:office@revizie.ro" class="text-foreground-subtle hover:text-white text-sm transition-colors">office@revizie.ro</a>
           </div>
