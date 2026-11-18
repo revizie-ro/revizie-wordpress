@@ -94,7 +94,7 @@ get_header();
               <li>Pierderea calității de utilizator legal al vehiculului</li>
             </ul>
             <p class="text-foreground-subtle mt-4">
-              În aceste cazuri, asigurătorul restituie prima neutilizata <strong>pro-rata</strong> (proportional cu zilele rămase din perioada de asigurare), după ce se retin eventuale cheltuieli administrative și impozite. Suma exacta este stabilita de asigurător, nu de revizie.ro.
+              În aceste cazuri, asigurătorul restituie prima neutilizata <strong>pro-rata</strong> (proportional cu zilele rămase din perioada de asigurare), după ce se rețin eventuale cheltuieli administrative și impozite. Suma exacta este stabilita de asigurător, nu de revizie.ro.
             </p>
           </div>
         </section>

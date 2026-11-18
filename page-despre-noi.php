@@ -23,7 +23,7 @@ get_header();
       </h1>
 
       <p class="text-xl text-foreground-muted leading-relaxed max-w-3xl">
-        revizie.ro consolideaza intr-un singur cont toate serviciile de care are nevoie un sofer: gestionarea documentelor vehiculului, asigurari RCA emise online, marketplace pentru masini noi sau second-hand si verificarea istoricului prin VIN.
+        revizie.ro consolidează într-un singur cont toate serviciile de care are nevoie un șofer: gestionarea documentelor vehiculului, asigurări RCA emise online, marketplace pentru mașini noi sau second-hand și verificarea istoricului prin VIN.
       </p>
     </div>
   </section>

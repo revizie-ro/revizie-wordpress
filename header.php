@@ -258,7 +258,7 @@
         iconMenu.classList.add('hidden');
         iconClose.classList.remove('hidden');
         btn.setAttribute('aria-expanded', 'true');
-        btn.setAttribute('aria-label', 'Inchide meniul');
+        btn.setAttribute('aria-label', 'Închide meniul');
       } else {
         menu.classList.add('hidden');
         iconMenu.classList.remove('hidden');

@@ -46,7 +46,7 @@ get_header();
                 </svg>
                 <h3 class="text-xl font-bold text-green-800 m-0">Cookies Strict Necesare</h3>
               </div>
-              <p class="text-green-700 mb-4">Aceste cookies sunt esentiale pentru funcționarea platformei. Fără ele, site-ul nu ar functiona corect.</p>
+              <p class="text-green-700 mb-4">Aceste cookies sunt esentiale pentru funcționarea platformei. Fără ele, site-ul nu ar funcționa corect.</p>
               <div class="bg-white rounded-xl p-4 overflow-x-auto">
                 <table class="w-full text-sm">
                   <thead>

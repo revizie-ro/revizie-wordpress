@@ -44,7 +44,7 @@ get_header();
 
   <section class="py-20 bg-card">
     <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-3xl font-bold text-foreground text-center mb-12">Cum va functiona</h2>
+      <h2 class="text-3xl font-bold text-foreground text-center mb-12">Cum va funcționa</h2>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="bg-surface-muted rounded-2xl p-6 border border-border-subtle">
           <div class="w-12 h-12 rounded-xl bg-warning/15 text-warning flex items-center justify-center mb-4">

@@ -496,7 +496,7 @@ function revizie_render_waitlist_form($feature_slug, $feature_label) {
           type="submit"
           class="px-6 py-3 bg-accent hover:bg-accent-hover text-white rounded-xl font-semibold transition-colors disabled:opacity-60"
         >
-          Anunta-ma
+          Anunță-mă
         </button>
       </div>
       <p class="waitlist-msg text-sm mt-3 text-foreground-muted text-center" role="status" aria-live="polite"></p>
@@ -535,15 +535,15 @@ function revizie_print_waitlist_script() {
           var res = await fetch(form.dataset.ajaxUrl, { method: 'POST', body: body });
           var data = await res.json();
           if (data.success) {
-            msg.textContent = 'Te-am adaugat pe lista! Te anuntam de indata ce lansam ' + form.dataset.label + '.';
+            msg.textContent = 'Te-am adăugat pe lista! Te anunțăm de indata ce lansam ' + form.dataset.label + '.';
             msg.className = 'waitlist-msg text-sm mt-3 text-success text-center';
             input.value = '';
           } else {
-            msg.textContent = (data.data && data.data.message) || 'Nu am putut salva. Incearca din nou.';
+            msg.textContent = (data.data && data.data.message) || 'Nu am putut salva. Încearcă din nou.';
             msg.className = 'waitlist-msg text-sm mt-3 text-danger text-center';
           }
         } catch (err) {
-          msg.textContent = 'Eroare de retea. Incearca din nou.';
+          msg.textContent = 'Eroare de retea. Încearcă din nou.';
           msg.className = 'waitlist-msg text-sm mt-3 text-danger text-center';
         } finally {
           btn.disabled = false;
@@ -1363,16 +1363,16 @@ function revizie_render_play_launcher($sursa = '') {
 }
 
 /**
- * Trimite telefoanele in magazin; restul vad pagina.
+ * Trimite telefoanele în magazin; restul vad pagina.
  *
- * `?vezi=1` opreste redirectarea — altfel pagina n-ar putea fi verificata
- * niciodata de pe telefon, adica exact de pe aparatul pe care conteaza.
+ * `?vezi=1` oprește redirectarea — altfel pagina n-ar putea fi verificata
+ * niciodată de pe telefon, adica exact de pe aparatul pe care contează.
  */
 function revizie_download_route() {
     $path = rtrim(strtolower((string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH)), '/');
-    $alias = in_array($path, array('/app', '/aplicatie'), true);
+    $alias = în_array($path, array('/app', '/aplicație'), true);
 
-    if (!$alias && !is_page('descarca')) {
+    if (!$alias && !is_page('descarcă')) {
         return;
     }
 
@@ -1390,9 +1390,9 @@ function revizie_download_route() {
         exit;
     }
 
-    // Calculator sau robot venit pe un alias: pagina sta la o singura adresa.
+    // Calculator sau robot venit pe un alias: pagina sta la o singură adresa.
     if ($alias) {
-        $tinta = home_url('/descarca');
+        $tinta = home_url('/descarcă');
         if ($sursa !== '') {
             $tinta = add_query_arg('sursa', $sursa, $tinta);
         }
@@ -1406,54 +1406,54 @@ add_action('template_redirect', 'revizie_download_route', 0);
 /**
  * Previzualizarea linkului pe WhatsApp, Facebook, Messenger.
  *
- * Linkul asta se trimite mai mult decat se tasteaza: cum arata cand e lipit
- * intr-o conversatie conteaza la fel de mult ca pagina.
+ * Linkul asta se trimite mai mult decât se tastează: cum arată când e lipit
+ * într-o conversație contează la fel de mult ca pagina.
  *
  * ---------------------------------------------------------------------------
  * DE CE E NEVOIE DE TAMPON SI NU DOAR DE `echo`
  *
- * Prima varianta doar tiparea etichetele. Rezultatul, verificat pe site cu
+ * Prima variantă doar tiparea etichetele. Rezultatul, verificat pe site cu
  * robotul Facebook, a fost DOUA seturi: pe site e un plugin de SEO care scrie
- * si el `og:`, iar al lui vine primul si e gresit — `og:description` e un
- * spatiu gol, `og:locale` spune `en_US` pe un site romanesc, si `og:image`
- * lipseste cu totul. Cand aceeasi proprietate apare de doua ori, cine citeste
+ * și el `og:`, iar al lui vine primul și e greșit — `og:description` e un
+ * spatiu gol, `og:locale` spune `en_US` pe un site românesc, și `og:image`
+ * lipsește cu totul. Când aceeași proprietate apare de doua ori, cine citește
  * o ia pe prima; adica exact pe cea goala.
  *
- * Nu se poate rezolva cu prioritati: pluginul isi scrie etichetele inaintea
- * oricarei prioritati pe care i-am da-o temei. Si nu se poate rezolva cerandu-i
- * pluginului valorile bune — nu stim care e. Asa ca strangem tot ce scrie
- * `wp_head` intr-un tampon, scoatem din el etichetele sociale, si le punem pe
- * ale noastre. Independent de plugin si de versiunea lui.
+ * Nu se poate rezolva cu priorități: pluginul își scrie etichetele inaintea
+ * oricărei priorități pe care i-am da-o temei. Și nu se poate rezolva cerandu-i
+ * pluginului valorile bune — nu știm care e. Așa ca strangem tot ce scrie
+ * `wp_head` într-un tampon, scoatem din el etichetele sociale, și le punem pe
+ * ale noastre. Independent de plugin și de versiunea lui.
  *
- * Se intampla DOAR pe pagina asta. Restul site-ului ramane cum era.
+ * Se intampla DOAR pe pagina asta. Restul site-ului rămâne cum era.
  */
 /**
- * Pentru CE pagini scriem noi etichetele sociale, si cu ce text.
+ * Pentru CE pagini scriem noi etichetele sociale, și cu ce text.
  *
  * `null` = pagina nu ne priveste, o lasam pluginului.
  *
- * Prima pagina a intrat aici pentru ca previzualizarea linkului arata „Acasa -
- * revizie.ro" cu descriere GOALA — adica fix defectul pentru care exista
+ * Prima pagină a intrat aici pentru ca previzualizarea linkului arată „Acasa -
+ * revizie.ro" cu descriere GOALA — adica fix defectul pentru care există
  * tamponul de mai jos. Textul e cel cerut de client (26 oct 2026).
  */
 function revizie_og_pentru_pagina() {
     if (is_front_page()) {
         return array(
             // Textul e EXACT cum l-a scris clientul, cu diacritice: e singurul
-            // loc din tema unde le folosim, fiindca aici nu scriem noi despre
-            // produs, ci reproducem ce a cerut el, cuvant cu cuvant.
+            // loc din tema unde le folosim, fiindcă aici nu scriem noi despre
+            // produs, ci reproducem ce a cerut el, cuvânt cu cuvânt.
             'titlu'   => 'revizie.ro – Tot ce ai nevoie pentru mașina ta',
             'descr'   => 'Cumpără RCA online, gestionează-ți mașina în Garajul digital, primește notificări și descoperă mașini de vânzare, piese auto și service-uri. Totul într-o singură platformă!',
             'imagine' => REVIZIE_THEME_URI . '/assets/img/phones-group.webp',
             'url'     => home_url('/'),
         );
     }
-    if (is_page('descarca')) {
+    if (is_page('descarcă')) {
         return array(
-            'titlu'   => 'Descarca aplicatia revizie.ro',
-            'descr'   => 'ITP, RCA, rovinieta si impozitul, toate in telefon, cu notificare inainte sa expire. Gratuit, fara card.',
+            'titlu'   => 'Descarcă aplicația revizie.ro',
+            'descr'   => 'ITP, RCA, rovinieta și impozitul, toate în telefon, cu notificare înainte să expire. Gratuit, fără card.',
             'imagine' => REVIZIE_THEME_URI . '/assets/img/phones-group.webp',
-            'url'     => home_url('/descarca'),
+            'url'     => home_url('/descarcă'),
         );
     }
     return null;
@@ -1473,7 +1473,7 @@ function revizie_download_og_buffer_end() {
     }
     $head = ob_get_clean();
 
-    // Scoatem orice eticheta sociala scrisa pana aici — a noastra sau a oricui.
+    // Scoatem orice eticheta sociala scrisă până aici — a noastră sau a oricui.
     $head = preg_replace(
         '#<meta[^>]*(?:property|name)=["\'](?:og:[a-z_:]+|twitter:[a-z_:]+)["\'][^>]*>\s*#i',
         '',
@@ -1505,22 +1505,22 @@ function revizie_download_og_buffer_end() {
 add_action('wp_head', 'revizie_download_og_buffer_end', 9999);
 
 /**
- * Titlul si descrierea pentru prima pagina, acolo unde NU sunt etichete `og:`:
+ * Titlul și descrierea pentru prima pagină, acolo unde NU sunt etichete `og:`:
  * fila browserului, rezultatul din Google, bara de sus a telefonului.
  *
  * Pluginul de SEO scrie „Acasa - revizie.ro", adica numele slotului din meniu,
- * nu numele produsului. Aici il inlocuim cu cel cerut de client, pe acelasi
- * text ca previzualizarea linkului — ca sa nu spuna doua lucruri diferite
- * despre acelasi site.
+ * nu numele produsului. Aici îl inlocuim cu cel cerut de client, pe același
+ * text ca previzualizarea linkului — ca să nu spuna doua lucruri diferite
+ * despre același site.
  */
-function revizie_titlu_prima_pagina($titlu) {
+function revizie_titlu_prima_pagină($titlu) {
     if (!is_front_page()) {
         return $titlu;
     }
     $pagina = revizie_og_pentru_pagina();
     return $pagina === null ? $titlu : $pagina['titlu'];
 }
-add_filter('pre_get_document_title', 'revizie_titlu_prima_pagina', 9999);
+add_filter('pre_get_document_title', 'revizie_titlu_prima_pagină', 9999);
 
 /* -------------------------------------------------------------------------
  * Iconita site-ului (fila din browser, ecranul de start al telefonului).
@@ -1528,24 +1528,24 @@ add_filter('pre_get_document_title', 'revizie_titlu_prima_pagina', 9999);
  * ---------------------------------------------------------------------------
  * DE CE E IN TEMA SI NU IN PANOUL WORDPRESS
  *
- * Cea de pana acum era incarcata in biblioteca media si venea de la WordPress
+ * Cea de până acum era incarcata în biblioteca media și venea de la WordPress
  * (`wp_site_icon`). Problema nu era unde statea, ci din ce era facuta: dintr-un
  * JPEG mic, marit. La 512x512 cantarea 399 KB — pentru un desen din doua culori,
  * care exportat curat are sub 100 KB. Restul era zgomot: margini zimtate,
- * portocaliu patat, halouri albe in jurul liniilor. Clientul a numit-o „se vede
- * ieftin", si avea dreptate.
+ * portocaliu patat, halouri albe în jurul liniilor. Clientul a numit-o „se vede
+ * ieftin", și avea dreptate.
  *
- * Cea de acum e facuta din pictograma APLICATIEI (1024x1024, curata, aceeasi
- * forma), care era in proiect de la inceput. Designul nu s-a schimbat deloc:
- * acelasi cerc crem, acelasi semn, aceeasi asezare. Doar nu mai e marita dintr-o
- * poza.
+ * Cea de acum e facuta din pictograma APLICAȚIEI (1024x1024, curata, aceeași
+ * forma), care era în proiect de la început. Designul nu s-a schimbat deloc:
+ * același cerc crem, același semn, aceeași asezare. Doar nu mai e marita dintr-o
+ * poză.
  *
- * Sta in tema fiindca acolo ajung modificarile mele: biblioteca media e in
- * `wp-content/uploads`, in afara contului de FTP. Si fiindca asa e versionata
- * odata cu restul, nu ca un fisier incarcat de mana pe care nu-l mai gaseste
+ * Sta în tema fiindcă acolo ajung modificările mele: biblioteca media e în
+ * `wp-content/uploads`, în afara contului de FTP. Și fiindcă așa e versionata
+ * odata cu restul, nu ca un fișier încărcat de mana pe care nu-l mai găsește
  * nimeni peste un an.
  *
- * ⚠️ `wp_site_icon` se scoate explicit — altfel ar ramane amandoua in pagina si
+ * ⚠️ `wp_site_icon` se scoate explicit — altfel ar rămâne amandoua în pagina și
  * browserul ar putea-o alege tot pe cea veche.
  * ---------------------------------------------------------------------- */
 
@@ -1556,7 +1556,7 @@ function revizie_print_site_icon() {
     printf('<link rel="icon" href="%s" sizes="any">' . "\n", esc_url($d . '/favicon.ico'));
     printf('<link rel="icon" type="image/png" sizes="96x96" href="%s">' . "\n", esc_url($d . '/favicon-96x96.png'));
     printf('<link rel="icon" type="image/png" sizes="192x192" href="%s">' . "\n", esc_url($d . '/web-app-manifest-192x192.png'));
-    // Fara canal alfa: iOS nu intelege transparenta si ar innegri colturile.
+    // Fără canal alfa: iOS nu intelege transparența și ar innegri colturile.
     printf('<link rel="apple-touch-icon" sizes="180x180" href="%s">' . "\n", esc_url($d . '/apple-touch-icon.png'));
 }
 add_action('wp_head', 'revizie_print_site_icon', 2);

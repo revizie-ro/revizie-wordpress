@@ -54,7 +54,7 @@ get_header();
                 <li><strong>Date despre vehicule:</strong> marca, model, an fabricație, număr înmatriculare, VIN, serie CIV, kilometraj</li>
                 <li><strong>Date de contact și adresa:</strong> număr de telefon, adresa de domiciliu/facturare (necesara pentru emiterea poliței)</li>
                 <li><strong>Date financiare:</strong> istoricul polițelor și al tranzacțiilor (nu stocam datele complete ale cardului &mdash; vezi secțiunea 4)</li>
-                <li><strong>Documente:</strong> fotografii ale documentelor pe care alegi să le salvezi în aplicație &mdash; permis de conducere, talon, cartea de identitate a vehiculului (CIV), certificat ITP, polițe RCA/CASCO, contract de vânzare-cumpărare, certificat de atestare fiscală. <strong>Unele contin coduri numerice personale</strong> &mdash; al tău sau, în cazul contractului de vânzare-cumpărare, și al celeilalte parți. Incarcarea lor este optionala, sunt stocate privat și vizibile doar ție, iar fiecare poate fi șters oricând din aplicație, fără să-ți ștergi contul.</li>
+                <li><strong>Documente:</strong> fotografii ale documentelor pe care alegi să le salvezi în aplicație &mdash; permis de conducere, talon, cartea de identitate a vehiculului (CIV), certificat ITP, polițe RCA/CASCO, contract de vânzare-cumpărare, certificat de atestare fiscală. <strong>Unele conțin coduri numerice personale</strong> &mdash; al tău sau, în cazul contractului de vânzare-cumpărare, și al celeilalte parți. Incarcarea lor este optionala, sunt stocate privat și vizibile doar ție, iar fiecare poate fi șters oricând din aplicație, fără să-ți ștergi contul.</li>
               </ul>
             </div>
 
@@ -108,7 +108,7 @@ get_header();
             <p>Prelucram datele dumneavoastra pe baza urmatoarelor temeiuri legale (conform Art. 6 GDPR):</p>
             <ul class="list-disc pl-6 space-y-2">
               <li><strong>Executarea contractului</strong> - pentru furnizarea serviciilor solicitate</li>
-              <li><strong>Consimtamantul</strong> - pentru comunicari de marketing (optional)</li>
+              <li><strong>Consimtamantul</strong> - pentru comunicari de marketing (opțional)</li>
               <li><strong>Interesul legitim</strong> - pentru imbunatatirea serviciilor și prevenirea fraudelor</li>
               <li><strong>Obligatii legale</strong> - pentru conformitatea fiscală și legala</li>
             </ul>

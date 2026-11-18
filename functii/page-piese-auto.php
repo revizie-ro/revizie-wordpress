@@ -44,14 +44,14 @@ get_header();
 
   <section class="py-20 bg-card">
     <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-3xl font-bold text-foreground text-center mb-12">Cum va functiona</h2>
+      <h2 class="text-3xl font-bold text-foreground text-center mb-12">Cum va funcționa</h2>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="bg-surface-muted rounded-2xl p-6 border border-border-subtle">
           <div class="w-12 h-12 rounded-xl bg-info/15 text-info flex items-center justify-center mb-4">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
           </div>
           <h3 class="text-lg font-semibold text-foreground mb-2">Conversație naturala</h3>
-          <p class="text-sm text-foreground-muted">Spui in limbaj normal ce piesa cauti sau ce problema are masina. AI-ul intelege contextul si raspunde cu recomandari concrete.</p>
+          <p class="text-sm text-foreground-muted">Spui în limbaj normal ce piesa cauți sau ce problema are mașina. AI-ul intelege contextul și răspunde cu recomandări concrete.</p>
         </div>
         <div class="bg-surface-muted rounded-2xl p-6 border border-border-subtle">
           <div class="w-12 h-12 rounded-xl bg-info/15 text-info flex items-center justify-center mb-4">

@@ -47,7 +47,7 @@ get_header();
           array('Ce documente pot tine în garaj?', 'Talon, RCA, ITP, asigurări, facturi de service și orice alt document al mașinii — toate la un loc, accesibile oricând.'),
         ),
         'Verificare VIN / Istoric' => array(
-          array('Ce contine raportul de istoric VIN?', 'Kilometraj real, istoric de accidente și daune, foști proprietari, date tehnice oficiale și multe altele, prin partenerul nostru carVertical.'),
+          array('Ce conține raportul de istoric VIN?', 'Kilometraj real, istoric de accidente și daune, foști proprietari, date tehnice oficiale și multe altele, prin partenerul nostru carVertical.'),
           array('Cât costa un raport VIN?', 'Utilizatorii revizie.ro beneficiază de ' . (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT . '% reducere la rapoartele carVertical.'),
         ),
         'Notificari' => array(

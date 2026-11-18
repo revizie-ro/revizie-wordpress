@@ -78,8 +78,8 @@ get_header();
   <section class="py-20 bg-card">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-14">
-        <h2 class="text-4xl font-bold text-foreground mb-3">Ce contine garajul</h2>
-        <p class="text-lg text-foreground-muted">Fiecare masina are pagina ei dedicata cu tot ce trebuie sa stii.</p>
+        <h2 class="text-4xl font-bold text-foreground mb-3">Ce conține garajul</h2>
+        <p class="text-lg text-foreground-muted">Fiecare mașina are pagina ei dedicata cu tot ce trebuie să știi.</p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
