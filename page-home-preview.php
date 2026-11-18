@@ -50,7 +50,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
         <div>
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-[1.1]">
             Tot ce ai nevoie pentru mașina ta,
-            <span class="block bg-gradient-to-r from-accent via-accent-hover to-accent-strong bg-clip-text text-transparent">intr-un singur loc</span>
+            <span class="block bg-gradient-to-r from-accent via-accent-hover to-accent-strong bg-clip-text text-transparent">într-un singur loc</span>
           </h1>
 
           <p class="text-lg md:text-xl text-foreground-muted mb-6 leading-relaxed max-w-xl">
@@ -217,7 +217,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
             </div>
             <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">Compară RCA<br>în 2 minute</h2>
             <ul class="space-y-3 mb-8">
-              <?php foreach (array('10 asiguratori intr-un singur loc', 'Polița emisă instant pe email', 'Plata 100% securizată', 'Prețuri corecte, fără comisioane ascunse') as $b) : ?>
+              <?php foreach (array('10 asigurători într-un singur loc', 'Polița emisă instant pe email', 'Plata 100% securizată', 'Prețuri corecte, fără comisioane ascunse') as $b) : ?>
                 <li class="flex items-center gap-3 text-foreground-muted">
                   <span class="flex items-center justify-center w-5 h-5 rounded-full bg-success/15 text-success shrink-0">
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>

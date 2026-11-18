@@ -23,7 +23,7 @@ get_header();
 
           <h1 class="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-[1.1]">
             Toate mașinile tale,
-            <span class="block bg-gradient-to-r from-accent via-accent-hover to-warning bg-clip-text text-transparent leading-[1.15] pb-2">intr-un singur loc</span>
+            <span class="block bg-gradient-to-r from-accent via-accent-hover to-warning bg-clip-text text-transparent leading-[1.15] pb-2">într-un singur loc</span>
           </h1>
 
           <p class="text-xl text-foreground-muted mb-8 leading-relaxed">
