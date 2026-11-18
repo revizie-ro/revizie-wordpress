@@ -39,7 +39,7 @@ get_header();
           array('Polița emisă online este valabilă?', 'Da. Polița RCA emisă prin revizie.ro este 100% valabilă și înregistrată în baza de date oficiala, exact ca una emisă la ghiseu.'),
           array('Pot plăti RCA în rate?', 'Da, acolo unde asigurătorul permite, poți alege plata în mai multe rate la finalizarea comenzii.'),
           // CASCO nu se mai vinde (nov 2026) — intrarea ramane aici, comentata.
-          // array('Oferiți și CASCO?', 'Da, pe langa RCA poți compara și cumpăra și polițe CASCO direct din cont.'),
+          // array('Oferiti si CASCO?', 'Da, pe langa RCA poti compara si cumpara si polite CASCO direct din cont.'),
         ),
         'Cont &amp; Garaj digital' => array(
           array('Este gratuit să imi fac cont?', 'Da. Crearea contului și folosirea garajului digital sunt 100% gratuite, fără card la înregistrare.'),

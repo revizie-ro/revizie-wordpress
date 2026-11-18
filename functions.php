@@ -440,7 +440,7 @@ add_filter('show_admin_bar', '__return_false');
 /* =============================================================================
  * Coming-soon waitlist
  *
- * Each "feature în development" page renders an email form via
+ * Each "feature in development" page renders an email form via
  * revizie_render_waitlist_form(). The form POSTs to admin-ajax.php with
  * action `revizie_waitlist_signup`. The handler:
  *   1. Forwards the signup to Supabase via the `upsert_waitlist_signup`
@@ -1241,7 +1241,7 @@ function revizie_store_url($platform, $sursa = '') {
             return REVIZIE_PLAY_STORE_URL;
         }
         // Play vrea `referrer` ca un singur parametru, cu utm-urile codate in el.
-        $referrer = 'utm_source=' . $sursa . '&utm_medium=referral&utm_campaign=descarca';
+        $referrer = 'utm_source=' . $sursa . '&utm_medium=referral&utm_campaign=descarcă';
         return REVIZIE_PLAY_STORE_URL . '&referrer=' . rawurlencode($referrer);
     }
 
@@ -1281,7 +1281,7 @@ function revizie_play_intent_url($sursa = '', $cu_rezerva = true) {
     $referrer = '';
     if ($sursa !== '') {
         $referrer = '&referrer=' . rawurlencode(
-            'utm_source=' . $sursa . '&utm_medium=referral&utm_campaign=descarca'
+            'utm_source=' . $sursa . '&utm_medium=referral&utm_campaign=descarcă'
         );
     }
     $rezerva = $cu_rezerva
@@ -1340,7 +1340,7 @@ function revizie_render_play_launcher($sursa = '') {
         '<!doctype html><html lang="ro"><head><meta charset="utf-8">'
         . '<meta name="viewport" content="width=device-width,initial-scale=1">'
         . '<meta name="robots" content="noindex">'
-        . '<title>Descarcă aplicația revizie.ro</title>'
+        . '<title>Descarca aplicatia revizie.ro</title>'
         . '<script>location.replace(%s);</script>'
         . '<style>'
         . 'body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;'
@@ -1351,7 +1351,7 @@ function revizie_render_play_launcher($sursa = '') {
         . '.s{display:block;margin-top:18px;color:#6b7280;font-size:14px}'
         . 'p{font-size:17px;margin:0}'
         . '</style></head><body><div>'
-        . '<p>Descarcă aplicația revizie.ro</p>'
+        . '<p>Descarca aplicatia revizie.ro</p>'
         . '<a class="b" href="%s">Deschide Magazin Play</a>'
         . '<a class="s" href="%s">Deschide pagina din browser</a>'
         . '</div></body></html>',
@@ -1363,16 +1363,16 @@ function revizie_render_play_launcher($sursa = '') {
 }
 
 /**
- * Trimite telefoanele în magazin; restul vad pagina.
+ * Trimite telefoanele in magazin; restul vad pagina.
  *
- * `?vezi=1` oprește redirectarea — altfel pagina n-ar putea fi verificata
- * niciodată de pe telefon, adica exact de pe aparatul pe care contează.
+ * `?vezi=1` opreste redirectarea — altfel pagina n-ar putea fi verificata
+ * niciodata de pe telefon, adica exact de pe aparatul pe care conteaza.
  */
 function revizie_download_route() {
     $path = rtrim(strtolower((string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH)), '/');
-    $alias = în_array($path, array('/app', '/aplicație'), true);
+    $alias = in_array($path, array('/app', '/aplicatie'), true);
 
-    if (!$alias && !is_page('descarcă')) {
+    if (!$alias && !is_page('descarca')) {
         return;
     }
 
@@ -1390,9 +1390,9 @@ function revizie_download_route() {
         exit;
     }
 
-    // Calculator sau robot venit pe un alias: pagina sta la o singură adresa.
+    // Calculator sau robot venit pe un alias: pagina sta la o singura adresa.
     if ($alias) {
-        $tinta = home_url('/descarcă');
+        $tinta = home_url('/descarca');
         if ($sursa !== '') {
             $tinta = add_query_arg('sursa', $sursa, $tinta);
         }
@@ -1406,54 +1406,54 @@ add_action('template_redirect', 'revizie_download_route', 0);
 /**
  * Previzualizarea linkului pe WhatsApp, Facebook, Messenger.
  *
- * Linkul asta se trimite mai mult decât se tastează: cum arată când e lipit
- * într-o conversație contează la fel de mult ca pagina.
+ * Linkul asta se trimite mai mult decat se tasteaza: cum arata cand e lipit
+ * intr-o conversatie conteaza la fel de mult ca pagina.
  *
  * ---------------------------------------------------------------------------
  * DE CE E NEVOIE DE TAMPON SI NU DOAR DE `echo`
  *
- * Prima variantă doar tiparea etichetele. Rezultatul, verificat pe site cu
+ * Prima varianta doar tiparea etichetele. Rezultatul, verificat pe site cu
  * robotul Facebook, a fost DOUA seturi: pe site e un plugin de SEO care scrie
- * și el `og:`, iar al lui vine primul și e greșit — `og:description` e un
- * spatiu gol, `og:locale` spune `en_US` pe un site românesc, și `og:image`
- * lipsește cu totul. Când aceeași proprietate apare de doua ori, cine citește
+ * si el `og:`, iar al lui vine primul si e gresit — `og:description` e un
+ * spatiu gol, `og:locale` spune `en_US` pe un site romanesc, si `og:image`
+ * lipseste cu totul. Cand aceeasi proprietate apare de doua ori, cine citeste
  * o ia pe prima; adica exact pe cea goala.
  *
- * Nu se poate rezolva cu priorități: pluginul își scrie etichetele inaintea
- * oricărei priorități pe care i-am da-o temei. Și nu se poate rezolva cerandu-i
- * pluginului valorile bune — nu știm care e. Așa ca strangem tot ce scrie
- * `wp_head` într-un tampon, scoatem din el etichetele sociale, și le punem pe
- * ale noastre. Independent de plugin și de versiunea lui.
+ * Nu se poate rezolva cu prioritati: pluginul isi scrie etichetele inaintea
+ * oricarei prioritati pe care i-am da-o temei. Si nu se poate rezolva cerandu-i
+ * pluginului valorile bune — nu stim care e. Asa ca strangem tot ce scrie
+ * `wp_head` intr-un tampon, scoatem din el etichetele sociale, si le punem pe
+ * ale noastre. Independent de plugin si de versiunea lui.
  *
- * Se intampla DOAR pe pagina asta. Restul site-ului rămâne cum era.
+ * Se intampla DOAR pe pagina asta. Restul site-ului ramane cum era.
  */
 /**
- * Pentru CE pagini scriem noi etichetele sociale, și cu ce text.
+ * Pentru CE pagini scriem noi etichetele sociale, si cu ce text.
  *
  * `null` = pagina nu ne priveste, o lasam pluginului.
  *
- * Prima pagină a intrat aici pentru ca previzualizarea linkului arată „Acasa -
- * revizie.ro" cu descriere GOALA — adica fix defectul pentru care există
+ * Prima pagina a intrat aici pentru ca previzualizarea linkului arata „Acasa -
+ * revizie.ro" cu descriere GOALA — adica fix defectul pentru care exista
  * tamponul de mai jos. Textul e cel cerut de client (26 oct 2026).
  */
 function revizie_og_pentru_pagina() {
     if (is_front_page()) {
         return array(
             // Textul e EXACT cum l-a scris clientul, cu diacritice: e singurul
-            // loc din tema unde le folosim, fiindcă aici nu scriem noi despre
-            // produs, ci reproducem ce a cerut el, cuvânt cu cuvânt.
+            // loc din tema unde le folosim, fiindca aici nu scriem noi despre
+            // produs, ci reproducem ce a cerut el, cuvant cu cuvant.
             'titlu'   => 'revizie.ro – Tot ce ai nevoie pentru mașina ta',
             'descr'   => 'Cumpără RCA online, gestionează-ți mașina în Garajul digital, primește notificări și descoperă mașini de vânzare, piese auto și service-uri. Totul într-o singură platformă!',
             'imagine' => REVIZIE_THEME_URI . '/assets/img/phones-group.webp',
             'url'     => home_url('/'),
         );
     }
-    if (is_page('descarcă')) {
+    if (is_page('descarca')) {
         return array(
             'titlu'   => 'Descarcă aplicația revizie.ro',
             'descr'   => 'ITP, RCA, rovinieta și impozitul, toate în telefon, cu notificare înainte să expire. Gratuit, fără card.',
             'imagine' => REVIZIE_THEME_URI . '/assets/img/phones-group.webp',
-            'url'     => home_url('/descarcă'),
+            'url'     => home_url('/descarca'),
         );
     }
     return null;
@@ -1473,7 +1473,7 @@ function revizie_download_og_buffer_end() {
     }
     $head = ob_get_clean();
 
-    // Scoatem orice eticheta sociala scrisă până aici — a noastră sau a oricui.
+    // Scoatem orice eticheta sociala scrisa pana aici — a noastra sau a oricui.
     $head = preg_replace(
         '#<meta[^>]*(?:property|name)=["\'](?:og:[a-z_:]+|twitter:[a-z_:]+)["\'][^>]*>\s*#i',
         '',
@@ -1505,22 +1505,22 @@ function revizie_download_og_buffer_end() {
 add_action('wp_head', 'revizie_download_og_buffer_end', 9999);
 
 /**
- * Titlul și descrierea pentru prima pagină, acolo unde NU sunt etichete `og:`:
+ * Titlul si descrierea pentru prima pagina, acolo unde NU sunt etichete `og:`:
  * fila browserului, rezultatul din Google, bara de sus a telefonului.
  *
  * Pluginul de SEO scrie „Acasa - revizie.ro", adica numele slotului din meniu,
- * nu numele produsului. Aici îl inlocuim cu cel cerut de client, pe același
- * text ca previzualizarea linkului — ca să nu spuna doua lucruri diferite
- * despre același site.
+ * nu numele produsului. Aici il inlocuim cu cel cerut de client, pe acelasi
+ * text ca previzualizarea linkului — ca sa nu spuna doua lucruri diferite
+ * despre acelasi site.
  */
-function revizie_titlu_prima_pagină($titlu) {
+function revizie_titlu_prima_pagina($titlu) {
     if (!is_front_page()) {
         return $titlu;
     }
     $pagina = revizie_og_pentru_pagina();
     return $pagina === null ? $titlu : $pagina['titlu'];
 }
-add_filter('pre_get_document_title', 'revizie_titlu_prima_pagină', 9999);
+add_filter('pre_get_document_title', 'revizie_titlu_prima_pagina', 9999);
 
 /* -------------------------------------------------------------------------
  * Iconita site-ului (fila din browser, ecranul de start al telefonului).
@@ -1528,24 +1528,24 @@ add_filter('pre_get_document_title', 'revizie_titlu_prima_pagină', 9999);
  * ---------------------------------------------------------------------------
  * DE CE E IN TEMA SI NU IN PANOUL WORDPRESS
  *
- * Cea de până acum era incarcata în biblioteca media și venea de la WordPress
+ * Cea de pana acum era incarcata in biblioteca media si venea de la WordPress
  * (`wp_site_icon`). Problema nu era unde statea, ci din ce era facuta: dintr-un
  * JPEG mic, marit. La 512x512 cantarea 399 KB — pentru un desen din doua culori,
  * care exportat curat are sub 100 KB. Restul era zgomot: margini zimtate,
- * portocaliu patat, halouri albe în jurul liniilor. Clientul a numit-o „se vede
- * ieftin", și avea dreptate.
+ * portocaliu patat, halouri albe in jurul liniilor. Clientul a numit-o „se vede
+ * ieftin", si avea dreptate.
  *
- * Cea de acum e facuta din pictograma APLICAȚIEI (1024x1024, curata, aceeași
- * forma), care era în proiect de la început. Designul nu s-a schimbat deloc:
- * același cerc crem, același semn, aceeași asezare. Doar nu mai e marita dintr-o
- * poză.
+ * Cea de acum e facuta din pictograma APLICATIEI (1024x1024, curata, aceeasi
+ * forma), care era in proiect de la inceput. Designul nu s-a schimbat deloc:
+ * acelasi cerc crem, acelasi semn, aceeasi asezare. Doar nu mai e marita dintr-o
+ * poza.
  *
- * Sta în tema fiindcă acolo ajung modificările mele: biblioteca media e în
- * `wp-content/uploads`, în afara contului de FTP. Și fiindcă așa e versionata
- * odata cu restul, nu ca un fișier încărcat de mana pe care nu-l mai găsește
+ * Sta in tema fiindca acolo ajung modificarile mele: biblioteca media e in
+ * `wp-content/uploads`, in afara contului de FTP. Si fiindca asa e versionata
+ * odata cu restul, nu ca un fisier incarcat de mana pe care nu-l mai gaseste
  * nimeni peste un an.
  *
- * ⚠️ `wp_site_icon` se scoate explicit — altfel ar rămâne amandoua în pagina și
+ * ⚠️ `wp_site_icon` se scoate explicit — altfel ar ramane amandoua in pagina si
  * browserul ar putea-o alege tot pe cea veche.
  * ---------------------------------------------------------------------- */
 
@@ -1556,7 +1556,7 @@ function revizie_print_site_icon() {
     printf('<link rel="icon" href="%s" sizes="any">' . "\n", esc_url($d . '/favicon.ico'));
     printf('<link rel="icon" type="image/png" sizes="96x96" href="%s">' . "\n", esc_url($d . '/favicon-96x96.png'));
     printf('<link rel="icon" type="image/png" sizes="192x192" href="%s">' . "\n", esc_url($d . '/web-app-manifest-192x192.png'));
-    // Fără canal alfa: iOS nu intelege transparența și ar innegri colturile.
+    // Fara canal alfa: iOS nu intelege transparenta si ar innegri colturile.
     printf('<link rel="apple-touch-icon" sizes="180x180" href="%s">' . "\n", esc_url($d . '/apple-touch-icon.png'));
 }
 add_action('wp_head', 'revizie_print_site_icon', 2);

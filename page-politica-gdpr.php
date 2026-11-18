@@ -146,7 +146,7 @@ get_header();
             <ul class="space-y-1 text-foreground-subtle text-sm">
               <li>Web: <a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">www.dataprotection.ro</a></li>
               <li>Email: anspdcp@dataprotection.ro</li>
-              <li>Adresa: B-dul G-ral Gheorghe Magheru 28-30, Sector 1, București</li>
+              <li>Adresa: B-dul G-ral Gheorghe Magheru 28-30, Sector 1, Bucuresti</li>
               <li>Telefon: +40 318 059 211</li>
             </ul>
             <p class="text-foreground-subtle text-sm mt-4">

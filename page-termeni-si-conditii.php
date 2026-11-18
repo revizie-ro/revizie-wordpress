@@ -2,7 +2,7 @@
 /**
  * Template Name: Termeni si Conditii
  *
- * Mirrors app.revizie.ro's "Termeni și Condiții" page (RCA-only alignment,
+ * Mirrors app.revizie.ro's "Termeni si Conditii" page (RCA-only alignment,
  * 28 Mai 2026). Keep in sync with revizie-app/src/pages/legal/TermsPage.tsx.
  */
 get_header();
@@ -45,7 +45,7 @@ get_header();
             </p>
             <ul class="space-y-2 text-foreground-subtle">
               <li><strong class="text-foreground">Denumire:</strong> SMART HAGGLING SRL</li>
-              <li><strong class="text-foreground">Sediu social:</strong> Str. Constantin Bonea Nr. 13, Sector 5, București, România</li>
+              <li><strong class="text-foreground">Sediu social:</strong> Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti, Romania</li>
               <li><strong class="text-foreground">Cod Unic de Înregistrare (CUI):</strong> 34531325</li>
               <li><strong class="text-foreground">Nr. Registrul Comerțului:</strong> J2015006020404</li>
               <li><strong class="text-foreground">Cod CAEN principal:</strong> 6622 &mdash; Activități ale agentilor și broker-ilor de asigurări (asistent în brokeraj)</li>
