@@ -70,7 +70,7 @@
       if (window.gtag) window.gtag('consent', 'update', {
         ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v
       });
-      if (v === 'granted') tiktok();
+      if (v === 'granted') { tiktok(); meta(); }
     }
 
     // TikTok Pixel. Spre deosebire de GA4 si Clarity, care stau incarcate si
@@ -85,6 +85,27 @@
         ttq.load(ID);
         ttq.page();
       }(window, document, 'ttq');
+    }
+
+    // Meta Pixel (Facebook + Instagram). Aceeasi regula ca la TikTok, din
+    // acelasi motiv: scriptul Meta scrie `_fbp` din prima secunda, deci nu se
+    // incarca pina la „Accept”. KEEP IN SYNC cu src/lib/meta.ts din
+    // revizie-app (acelasi pixel, aceeasi regula).
+    //
+    // ⚠️ ID-ul e GOL pina il trimite clientul din Events Manager. Cit e gol,
+    // functia iese imediat: nicio cerere, niciun cookie. Cind vine numarul, se
+    // schimba AICI si in src/lib/meta.ts — doua locuri, acelasi numar.
+    function meta() {
+      var ID = '';
+      if (!ID || window.fbq) return;
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+        t = b.createElement(e); t.async = !0; t.src = v;
+        s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      window.fbq('init', ID);
+      window.fbq('track', 'PageView');
     }
 
     var stored = read();
