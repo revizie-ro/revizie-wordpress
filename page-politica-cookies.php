@@ -134,10 +134,67 @@ get_header();
                       <td class="py-2">Google Analytics - identificare</td>
                       <td class="py-2">2 ani</td>
                     </tr>
-                    <tr>
+                    <tr class="border-b">
                       <td class="py-2">_gid</td>
                       <td class="py-2">Google Analytics - sesiune</td>
                       <td class="py-2">24 ore</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2">_clck</td>
+                      <td class="py-2">Microsoft Clarity - identificare</td>
+                      <td class="py-2">1 an</td>
+                    </tr>
+                    <tr>
+                      <td class="py-2">_clsk</td>
+                      <td class="py-2">Microsoft Clarity - sesiune</td>
+                      <td class="py-2">24 ore</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!--
+              Cookies de marketing. Scrise pe nume, si nu la gramada: astea sint
+              singurele de pe site care NU se pun pina la „Accept" in banner —
+              TikTok si Meta n-au mod fara cookie-uri, cum are Google.
+
+              KEEP IN SYNC cu src/pages/legal/CookiesPage.tsx din revizie-app.
+              Daca se adauga o retea noua de reclame, se adauga si aici: lista
+              asta e exact ce i se promite omului cind apasa „Accept".
+            -->
+            <div class="bg-surface-muted border border-gray-200 rounded-2xl p-6">
+              <div class="flex items-center gap-3 mb-4">
+                <svg class="w-6 h-6 text-foreground-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                </svg>
+                <h3 class="text-xl font-bold text-gray-800 m-0">Cookies de Marketing</h3>
+              </div>
+              <p class="text-foreground-muted mb-4">Ne arata daca reclamele noastre aduc oameni pe site si ce fac ei aici. Se pun DOAR daca apasati „Accept" in bannerul de cookie-uri; daca refuzati, scripturile nu se incarca deloc.</p>
+              <div class="bg-white rounded-xl p-4 overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="border-b">
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Cookie</th>
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Scop</th>
+                      <th class="text-left py-2 font-semibold text-foreground-muted">Durata</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-foreground-muted">
+                    <tr class="border-b">
+                      <td class="py-2">_ttp</td>
+                      <td class="py-2">TikTok - masurarea reclamelor</td>
+                      <td class="py-2">13 luni</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td class="py-2">_fbp</td>
+                      <td class="py-2">Meta (Facebook, Instagram) - masurarea reclamelor</td>
+                      <td class="py-2">3 luni</td>
+                    </tr>
+                    <tr>
+                      <td class="py-2">_fbc</td>
+                      <td class="py-2">Meta - de pe ce reclama ati venit</td>
+                      <td class="py-2">3 luni</td>
                     </tr>
                   </tbody>
                 </table>
