@@ -92,11 +92,11 @@
     // incarca pina la „Accept”. KEEP IN SYNC cu src/lib/meta.ts din
     // revizie-app (acelasi pixel, aceeasi regula).
     //
-    // ⚠️ ID-ul e GOL pina il trimite clientul din Events Manager. Cit e gol,
-    // functia iese imediat: nicio cerere, niciun cookie. Cind vine numarul, se
-    // schimba AICI si in src/lib/meta.ts — doua locuri, acelasi numar.
+    // ⚠️ ACELASI numar ca in src/lib/meta.ts din revizie-app. Doua
+    // suprafete, un singur pixel: cu doua, in Events Manager ar aparea doua
+    // pilnii pentru acelasi om care trece de pe site in aplicatie.
     function meta() {
-      var ID = '';
+      var ID = '1453503476214021';
       if (!ID || window.fbq) return;
       !function (f, b, e, v, n, t, s) {
         if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
