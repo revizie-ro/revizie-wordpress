@@ -104,6 +104,11 @@
         t = b.createElement(e); t.async = !0; t.src = v;
         s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
       }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      // ⚠️ Stingem configurarea automata INAINTE de init: altfel Meta asculta
+      // singura clicurile pe butoane si citeste datele din pagina. Comutatorul
+      // din Events Manager era stins, dar configuratia trimisa pixelului avea
+      // tot pornit. KEEP IN SYNC cu src/lib/meta.ts.
+      window.fbq('set', 'autoConfig', false, ID);
       window.fbq('init', ID);
       window.fbq('track', 'PageView');
     }
