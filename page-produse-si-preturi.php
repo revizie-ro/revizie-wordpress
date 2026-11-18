@@ -15,7 +15,7 @@ get_header();
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
         </svg>
-        Inapoi la pagina principala
+        Înapoi la pagina principală
       </a>
 
       <div class="flex items-center gap-4 mb-8">
@@ -26,7 +26,7 @@ get_header();
           </svg>
         </div>
         <div>
-          <h1 class="text-3xl font-bold text-foreground">Produse si Preturi</h1>
+          <h1 class="text-3xl font-bold text-foreground">Produse și Prețuri</h1>
           <p class="text-foreground-subtle">Ultima actualizare: 29 Mai 2026</p>
         </div>
       </div>
@@ -34,7 +34,7 @@ get_header();
       <div class="prose prose-lg max-w-none">
         <div class="bg-accent-soft border border-accent rounded-2xl p-6 mb-8">
           <p class="text-foreground m-0">
-            <strong class="text-foreground">Transparenta:</strong> Mai jos gasesti ce poti face pe revizie.ro si cat costa. Singurul produs cu plata direct pe revizie.ro este asigurarea RCA, al carei pret (prima de asigurare) il vezi exact, de la fiecare asigurator, inainte de a plati. Verificarea istoricului vehiculului se face printr-un partener (carVertical), cu plata pe site-ul lor. Restul functiilor sunt gratuite.
+            <strong class="text-foreground">Transparenta:</strong> Mai jos găsești ce poți face pe revizie.ro și cât costa. Singurul produs cu plata direct pe revizie.ro este asigurarea RCA, al carei preț (prima de asigurare) îl vezi exact, de la fiecare asigurător, înainte de a plăti. Verificarea istoricului vehiculului se face printr-un partener (carVertical), cu plata pe site-ul lor. Restul funcțiilor sunt gratuite.
           </p>
         </div>
 
@@ -46,25 +46,25 @@ get_header();
           <div class="bg-surface-muted rounded-xl p-6 space-y-4">
             <div class="flex items-start justify-between gap-4 flex-wrap">
               <p class="text-foreground-subtle m-0 max-w-xl">
-                Compari online oferte RCA de la mai multi asiguratori (Allianz-Tiriac, Asirom, Omniasig, Generali, Groupama, Grawe, Hellas, Axeria, Eazy Insure, DallBogg etc.) si cumperi polita aleasa, in calitate de asistent in brokeraj afiliat al Transilvania Broker. Polita este 100% digitala si se livreaza prin email + in contul tau.
+                Compari online oferte RCA de la mai mulți asigurători (Allianz-Tiriac, Asirom, Omniasig, Generali, Groupama, Grawe, Hellas, Axeria, Eazy Insure, DallBogg etc.) și cumperi polița aleasa, în calitate de asistent în brokeraj afiliat al Transilvania Broker. Polița este 100% digitala și se livrează prin email + în contul tău.
               </p>
               <span class="inline-flex items-center rounded-lg bg-accent px-3 py-1.5 text-sm font-semibold text-accent-fg whitespace-nowrap">
-                Pret variabil
+                Preț variabil
               </span>
             </div>
 
             <div class="border-t border-border-subtle pt-4">
-              <h3 class="font-semibold text-foreground mb-2">Cum se stabileste pretul</h3>
+              <h3 class="font-semibold text-foreground mb-2">Cum se stabileste prețul</h3>
               <ul class="list-disc pl-6 space-y-2 text-foreground-subtle text-sm m-0">
-                <li>Pretul este <strong>prima de asigurare</strong>, stabilita de fiecare asigurator in functie de datele vehiculului si ale conducatorului (tip vehicul, capacitate cilindrica, varsta, istoric daune / clasa bonus-malus, localitate, durata politei etc.).</li>
-                <li>Vezi pretul <strong>exact</strong>, in lei, de la fiecare asigurator, in pagina de comparatie &mdash; <strong>inainte</strong> de a plati.</li>
-                <li>Pretul afisat este <strong>final</strong>: nu percepem niciun cost suplimentar sau comision catre tine; comisionul de intermediere este inclus in prima si suportat de asigurator.</li>
-                <li>Platesti exact suma afisata, cu cardul, prin NETOPIA Payments.</li>
+                <li>Prețul este <strong>prima de asigurare</strong>, stabilita de fiecare asigurător în funcție de datele vehiculului și ale conducatorului (tip vehicul, capacitate cilindrică, varsta, istoric daune / clasa bonus-malus, localitate, durata poliței etc.).</li>
+                <li>Vezi prețul <strong>exact</strong>, în lei, de la fiecare asigurător, în pagina de comparație &mdash; <strong>inainte</strong> de a plăti.</li>
+                <li>Prețul afișat este <strong>final</strong>: nu percepem niciun cost suplimentar sau comision către tine; comisionul de intermediere este inclus în prima și suportat de asigurător.</li>
+                <li>Plătești exact suma afisata, cu cardul, prin NETOPIA Payments.</li>
               </ul>
             </div>
 
             <p class="text-foreground-subtle text-sm m-0">
-              Detalii despre livrare in <a href="<?php echo home_url('/politica-de-livrare/'); ?>" class="text-accent hover:underline">Politica de livrare</a>, iar despre anulare/restituire in <a href="<?php echo home_url('/politica-de-anulare/'); ?>" class="text-accent hover:underline">Politica de anulare</a>.
+              Detalii despre livrare în <a href="<?php echo home_url('/politica-de-livrare/'); ?>" class="text-accent hover:underline">Politica de livrare</a>, iar despre anulare/restituire în <a href="<?php echo home_url('/politica-de-anulare/'); ?>" class="text-accent hover:underline">Politica de anulare</a>.
             </p>
           </div>
         </section>
@@ -77,20 +77,20 @@ get_header();
           <div class="bg-surface-muted rounded-xl p-6 space-y-4">
             <div class="flex items-start justify-between gap-4 flex-wrap">
               <p class="text-foreground-subtle m-0 max-w-xl">
-                Verifici istoricul unei masini (accidente raportate, kilometraj real, daune, furt, proprietari anteriori) printr-un <strong>partener extern, carVertical</strong>. De pe revizie.ro esti redirectionat catre carVertical, unde cumperi si platesti raportul direct pe site-ul lor &mdash; revizie.ro nu iti percepe niciun cost pentru acest serviciu.
+                Verifici istoricul unei mașini (accidente raportate, kilometraj real, daune, furt, proprietari anteriori) printr-un <strong>partener extern, carVertical</strong>. De pe revizie.ro ești redirectionat către carVertical, unde cumperi și plătești raportul direct pe site-ul lor &mdash; revizie.ro nu îți percepe niciun cost pentru acest serviciu.
               </p>
               <span class="inline-flex items-center rounded-lg bg-accent px-3 py-1.5 text-sm font-semibold text-accent-fg whitespace-nowrap">
-                Pret carVertical
+                Preț carVertical
               </span>
             </div>
 
             <div class="border-t border-border-subtle pt-4">
-              <h3 class="font-semibold text-foreground mb-2">Preturi orientative</h3>
+              <h3 class="font-semibold text-foreground mb-2">Prețuri orientative</h3>
               <ul class="list-disc pl-6 space-y-2 text-foreground-subtle text-sm m-0">
-                <li>Prin linkul nostru se aplica automat o <strong>reducere de <?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>%</strong>. Orientativ, cu reducerea aplicata: raport <strong>Lite de la ~80 lei</strong>, <strong>Standard de la ~104 lei</strong>, <strong>Pro de la ~120 lei</strong> per raport. Pentru mai multe rapoarte, pretul pe raport scade.</li>
-                <li><strong>Aceste preturi sunt orientative si se pot schimba oricand</strong> &mdash; sunt stabilite de carVertical, nu de revizie.ro.</li>
-                <li>Vezi <strong>pretul exact</strong>, in lei, pe site-ul carVertical &mdash; <strong>inainte</strong> de a cumpara.</li>
-                <li>Plata se face pe carVertical, in conditiile si prin procesatorul lor; nu trece prin revizie.ro / NETOPIA.</li>
+                <li>Prin linkul nostru se aplică automat o <strong>reducere de <?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>%</strong>. Orientativ, cu reducerea aplicată: raport <strong>Lite de la ~80 lei</strong>, <strong>Standard de la ~104 lei</strong>, <strong>Pro de la ~120 lei</strong> per raport. Pentru mai multe rapoarte, prețul pe raport scade.</li>
+                <li><strong>Aceste prețuri sunt orientative și se pot schimba oricând</strong> &mdash; sunt stabilite de carVertical, nu de revizie.ro.</li>
+                <li>Vezi <strong>prețul exact</strong>, în lei, pe site-ul carVertical &mdash; <strong>inainte</strong> de a cumpăra.</li>
+                <li>Plata se face pe carVertical, în condițiile și prin procesatorul lor; nu trece prin revizie.ro / NETOPIA.</li>
               </ul>
             </div>
           </div>
@@ -104,7 +104,7 @@ get_header();
           <div class="bg-surface-muted rounded-xl p-6">
             <div class="flex items-start justify-between gap-4 flex-wrap">
               <p class="text-foreground-subtle m-0 max-w-xl">
-                Adaugi si gestionezi vehiculele tale, tii evidenta documentelor (talon, ITP, polita), a istoricului de intretinere si a kilometrajului, totul intr-un singur loc.
+                Adaugi și gestionezi vehiculele tale, tii evidența documentelor (talon, ITP, polița), a istoricului de întreținere și a kilometrajului, totul într-un singur loc.
               </p>
               <span class="inline-flex items-center rounded-lg bg-success px-3 py-1.5 text-sm font-semibold text-white whitespace-nowrap">
                 Gratuit
@@ -116,12 +116,12 @@ get_header();
         <section class="mb-10">
           <h2 class="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
             <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>
-            Notificari si remindere
+            Notificări și remindere
           </h2>
           <div class="bg-surface-muted rounded-xl p-6">
             <div class="flex items-start justify-between gap-4 flex-wrap">
               <p class="text-foreground-subtle m-0 max-w-xl">
-                Primesti la timp remindere pentru expirarea RCA, ITP, rovinietei, reviziilor si a altor termene importante legate de masinile tale.
+                Primești la timp remindere pentru expirarea RCA, ITP, rovinietei, reviziilor și a altor termene importante legate de mașinile tale.
               </p>
               <span class="inline-flex items-center rounded-lg bg-success px-3 py-1.5 text-sm font-semibold text-white whitespace-nowrap">
                 Gratuit
@@ -133,11 +133,11 @@ get_header();
         <section class="mb-10">
           <h2 class="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
             <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"/></svg>
-            Modalitati de plata
+            Modalități de plata
           </h2>
           <div class="bg-surface-muted rounded-xl p-6 text-foreground-subtle">
             <p class="m-0">
-              Plata se face online, cu cardul (Visa / Mastercard), prin procesatorul autorizat NETOPIA Payments, in mediu securizat 3D Secure. Datele cardului nu sunt stocate pe serverele revizie.ro. Mai multe in <a href="<?php echo home_url('/termeni-si-conditii/'); ?>" class="text-accent hover:underline">Termeni si Conditii</a>.
+              Plata se face online, cu cardul (Visa / Mastercard), prin procesatorul autorizat NETOPIA Payments, în mediu securizat 3D Secure. Datele cardului nu sunt stocate pe serverele revizie.ro. Mai multe în <a href="<?php echo home_url('/termeni-si-conditii/'); ?>" class="text-accent hover:underline">Termeni și Condiții</a>.
             </p>
           </div>
         </section>

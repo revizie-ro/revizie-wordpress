@@ -21,7 +21,7 @@ get_header();
           </article>
         <?php endwhile; ?>
       <?php else : ?>
-        <p class="text-gray-600">Nu s-a gasit niciun continut.</p>
+        <p class="text-gray-600">Nu s-a găsit niciun conținut.</p>
       <?php endif; ?>
     </div>
   </main>

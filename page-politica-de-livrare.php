@@ -15,7 +15,7 @@ get_header();
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
         </svg>
-        Inapoi la pagina principala
+        Înapoi la pagina principală
       </a>
 
       <div class="flex items-center gap-4 mb-8">
@@ -31,7 +31,7 @@ get_header();
       <div class="prose prose-lg max-w-none">
         <div class="bg-accent-soft border border-accent rounded-2xl p-6 mb-8">
           <p class="text-foreground m-0">
-            <strong class="text-foreground">Pe scurt:</strong> Polita ta RCA se livreaza electronic, prin email, imediat dupa confirmarea platii. Documentul este disponibil si permanent in contul tau, in sectiunea &bdquo;Asigurarile mele".
+            <strong class="text-foreground">Pe scurt:</strong> Polița ta RCA se livrează electronic, prin email, imediat după confirmarea plății. Documentul este disponibil și permanent în contul tău, în secțiunea &bdquo;Asigurarile mele".
           </p>
         </div>
 
@@ -42,10 +42,10 @@ get_header();
           </h2>
           <div class="bg-surface-muted rounded-xl p-6">
             <p class="text-foreground-subtle">
-              revizie.ro intermediaza (in calitate de asistent in brokeraj afiliat al <strong>Transilvania Broker de Asigurare-Reasigurare SA</strong>) emiterea politelor de asigurare RCA pe care le contractezi prin platforma. Polita in sine este emisa de asiguratorul ales (Allianz-Tiriac, Asirom, Omniasig, Generali, Groupama, Grawe, Hellas, Axeria, Eazy Insure, DallBogg etc.) si este 100% digitala.
+              revizie.ro intermediază (în calitate de asistent în brokeraj afiliat al <strong>Transilvania Broker de Asigurare-Reasigurare SA</strong>) emiterea polițelor de asigurare RCA pe care le contractezi prin platforma. Polița în sine este emisă de asigurătorul ales (Allianz-Tiriac, Asirom, Omniasig, Generali, Groupama, Grawe, Hellas, Axeria, Eazy Insure, DallBogg etc.) și este 100% digitala.
             </p>
             <p class="text-foreground-subtle mt-3">
-              Nu se livreaza produse fizice. Nu se aplica costuri de transport, ridicare la sediu sau livrare prin curier.
+              Nu se livrează produse fizice. Nu se aplică costuri de transport, ridicare la sediu sau livrare prin curier.
             </p>
           </div>
         </section>
@@ -59,14 +59,14 @@ get_header();
             <div class="flex items-start gap-3 mb-4">
               <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               <div>
-                <p class="text-foreground font-medium mb-1">Sub 5 minute, in conditii normale.</p>
+                <p class="text-foreground font-medium mb-1">Sub 5 minute, în condiții normale.</p>
                 <p class="text-foreground-subtle text-sm">
-                  De obicei polita se emite si se livreaza in maxim 60 de secunde de la confirmarea platii cu cardul. In perioadele de incarcare a sistemelor asiguratorului sau in cazul unor verificari suplimentare, livrarea poate dura pana la 24 de ore.
+                  De obicei polița se emite și se livrează în maxim 60 de secunde de la confirmarea plății cu cardul. În perioadele de incarcare a sistemelor asiguratorului sau în cazul unor verificari suplimentare, livrarea poate dura până la 24 de ore.
                 </p>
               </div>
             </div>
             <p class="text-foreground-subtle">
-              Daca nu primesti polita in maxim 24 de ore de la plata, contacteaza-ne la <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a> si verificam imediat statutul comenzii la asigurator.
+              Dacă nu primești polița în maxim 24 de ore de la plata, contactează-ne la <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a> și verificăm imediat statutul comenzii la asigurător.
             </p>
           </div>
         </section>
@@ -74,21 +74,21 @@ get_header();
         <section class="mb-10">
           <h2 class="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
             <span class="w-8 h-8 rounded-lg bg-surface-muted flex items-center justify-center text-sm font-bold text-foreground-subtle">3</span>
-            Modalitati de livrare
+            Modalități de livrare
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-surface-muted rounded-xl p-6">
               <svg class="w-6 h-6 text-accent mb-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
               <h3 class="font-semibold text-foreground mb-2">Email</h3>
               <p class="text-foreground-subtle text-sm">
-                Trimitem polita (PDF semnat electronic) pe adresa de email folosita la cumparare. Documentul este valid si se poate prezenta digital sau tiparit.
+                Trimitem polița (PDF semnat electronic) pe adresa de email folosită la cumpărare. Documentul este valid și se poate prezenta digital sau tiparit.
               </p>
             </div>
             <div class="bg-surface-muted rounded-xl p-6">
               <svg class="w-6 h-6 text-accent mb-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
               <h3 class="font-semibold text-foreground mb-2">Contul revizie.ro</h3>
               <p class="text-foreground-subtle text-sm">
-                Polita apare automat in sectiunea &bdquo;Asigurarile mele" din contul tau. O poti descarca oricand, de pe orice dispozitiv.
+                Polița apare automat în secțiunea &bdquo;Asigurarile mele" din contul tău. O poți descărca oricând, de pe orice dispozitiv.
               </p>
             </div>
           </div>
@@ -97,11 +97,11 @@ get_header();
         <section class="mb-10">
           <h2 class="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
             <span class="w-8 h-8 rounded-lg bg-surface-muted flex items-center justify-center text-sm font-bold text-foreground-subtle">4</span>
-            Intrarea in vigoare a politei
+            Intrarea în vigoare a poliței
           </h2>
           <div class="bg-surface-muted rounded-xl p-6">
             <p class="text-foreground-subtle">
-              Polita intra in vigoare la <strong>data de start aleasa de tine</strong> la momentul cumpararii (nu la data platii). Asigura-te ca alegi o data de start corecta &mdash; majoritatea asiguratorilor nu accepta &bdquo;azi" ca data de start, ci minim ziua urmatoare.
+              Polița intră în vigoare la <strong>data de start aleasa de tine</strong> la momentul cumpararii (nu la data plății). Asigură-te ca alegi o dată de start corecta &mdash; majoritatea asigurătorilor nu acceptă &bdquo;azi" ca data de start, ci minim ziua următoare.
             </p>
           </div>
         </section>
@@ -113,10 +113,10 @@ get_header();
           </h2>
           <div class="bg-surface-muted rounded-xl p-6">
             <p class="text-foreground-subtle mb-3">
-              Daca plata a fost confirmata dar polita nu a fost emisa (cazuri rare &mdash; sistemul asiguratorului poate refuza emisia post-plata din motive tehnice), banii iti sunt restituiti integral pe cardul folosit in maxim <strong>5 zile lucratoare</strong>. Vei primi o notificare prin email cu motivul si momentul restituirii.
+              Dacă plata a fost confirmată dar polița nu a fost emisă (cazuri rare &mdash; sistemul asiguratorului poate refuza emisia post-plata din motive tehnice), banii îți sunt restituiți integral pe cardul folosit în maxim <strong>5 zile lucrătoare</strong>. Vei primi o notificare prin email cu motivul și momentul restituirii.
             </p>
             <p class="text-foreground-subtle">
-              Pentru orice problema legata de livrare, scrie-ne la <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a>.
+              Pentru orice problemă legată de livrare, scrie-ne la <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a>.
             </p>
           </div>
         </section>
@@ -129,7 +129,7 @@ get_header();
           <div class="bg-surface-muted rounded-xl p-6">
             <p class="text-foreground-subtle">
               Email: <a href="mailto:office@revizie.ro" class="text-accent hover:underline">office@revizie.ro</a><br>
-              Adresa: vezi <a href="<?php echo home_url('/termeni-si-conditii/'); ?>" class="text-accent hover:underline">Termeni si Conditii</a> pentru datele complete ale companiei.
+              Adresa: vezi <a href="<?php echo home_url('/termeni-si-conditii/'); ?>" class="text-accent hover:underline">Termeni și Condiții</a> pentru datele complete ale companiei.
             </p>
           </div>
         </section>

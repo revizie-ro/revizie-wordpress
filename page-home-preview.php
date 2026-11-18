@@ -49,12 +49,12 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
         <!-- Left -->
         <div>
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-[1.1]">
-            Tot ce ai nevoie pentru masina ta,
+            Tot ce ai nevoie pentru mașina ta,
             <span class="block bg-gradient-to-r from-accent via-accent-hover to-accent-strong bg-clip-text text-transparent">intr-un singur loc</span>
           </h1>
 
           <p class="text-lg md:text-xl text-foreground-muted mb-6 leading-relaxed max-w-xl">
-            Compari RCA, verifici istoricul prin VIN, tii documentele si scadentele la zi si primesti notificari inainte de expirare.
+            Compari RCA, verifici istoricul prin VIN, tii documentele și scadentele la zi și primești notificări înainte de expirare.
           </p>
 
           <!-- Feature pills -->
@@ -77,13 +77,13 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
 
           <div class="flex flex-col sm:flex-row gap-4 mb-10">
             <a href="https://revizie.ro/rca" class="group px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-2xl font-semibold shadow-lg hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 inline-flex items-center justify-center gap-2">
-              Compara RCA acum
+              Compară RCA acum
               <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
             </a>
             <a href="https://app.revizie.ro/register" class="px-8 py-4 bg-card border border-border text-foreground rounded-2xl font-semibold hover:border-accent hover:text-accent transition-all inline-flex items-center justify-center gap-2">
-              Creeaza cont gratuit
+              Creează cont gratuit
             </a>
           </div>
 
@@ -94,7 +94,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
               </span>
               <div>
                 <div class="text-sm font-semibold text-foreground leading-tight">100% gratuit</div>
-                <div class="text-xs text-foreground-subtle leading-tight">Fara card la inregistrare</div>
+                <div class="text-xs text-foreground-subtle leading-tight">Fără card la înregistrare</div>
               </div>
             </div>
             <div class="flex items-center gap-2.5">
@@ -102,8 +102,8 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
               </span>
               <div>
-                <div class="text-sm font-semibold text-foreground leading-tight">Date in siguranta</div>
-                <div class="text-xs text-foreground-subtle leading-tight">Protejate si confidentiale</div>
+                <div class="text-sm font-semibold text-foreground leading-tight">Date în siguranța</div>
+                <div class="text-xs text-foreground-subtle leading-tight">Protejate și confidentiale</div>
               </div>
             </div>
             <div class="flex items-center gap-2.5">
@@ -111,8 +111,8 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
               </span>
               <div>
-                <div class="text-sm font-semibold text-foreground leading-tight">Rapid si simplu</div>
-                <div class="text-xs text-foreground-subtle leading-tight">RCA in 2 minute</div>
+                <div class="text-sm font-semibold text-foreground leading-tight">Rapid și simplu</div>
+                <div class="text-xs text-foreground-subtle leading-tight">RCA în 2 minute</div>
               </div>
             </div>
           </div>
@@ -125,11 +125,11 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
               <div class="w-[90%] h-[75%] bg-accent/10 rounded-full blur-[90px]"></div>
             </div>
             <?php if ($hero_car !== '') : ?>
-              <img src="<?php echo esc_attr($hero_car); ?>" alt="Masina ta, gestionata cu revizie.ro"
+              <img src="<?php echo esc_attr($hero_car); ?>" alt="Mașina ta, gestionata cu revizie.ro"
                    class="w-full max-w-none ml-auto lg:w-[120%] lg:-mr-[10%] select-none pointer-events-none" style="filter: drop-shadow(0 30px 45px rgba(15,17,19,.28));" />
             <?php endif; ?>
             <?php if ($hero_phone !== '') : ?>
-              <img src="<?php echo esc_attr($hero_phone); ?>" alt="Aplicatia revizie.ro"
+              <img src="<?php echo esc_attr($hero_phone); ?>" alt="Aplicația revizie.ro"
                    class="absolute top-1/2 -translate-y-1/2 -left-2 sm:left-0 lg:-left-4 w-[150px] sm:w-[175px] lg:w-[205px] select-none pointer-events-none"
                    style="filter: drop-shadow(0 25px 35px rgba(15,17,19,.30));" />
             <?php endif; ?>
@@ -152,31 +152,31 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
         <?php
         $arrow = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>';
         $services = array(
-          array('title'=>'RCA in 2 minute','chip'=>'bg-accent/10 text-accent-strong',
+          array('title'=>'RCA în 2 minute','chip'=>'bg-accent/10 text-accent-strong',
             'icon'=>'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-            'desc'=>'Compari pretul de la toate asigurarile si cumperi online.',
+            'desc'=>'Compari prețul de la toate asigurarile și cumperi online.',
             'badge'=>'Popular','badge_class'=>'bg-accent-soft text-accent-strong',
-            'btn'=>'Compara RCA','href'=>'https://revizie.ro/rca','style'=>'primary'),
+            'btn'=>'Compară RCA','href'=>'https://revizie.ro/rca','style'=>'primary'),
           array('title'=>'Garaj digital','chip'=>'bg-warning/15 text-warning',
             'icon'=>'M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z',
-            'desc'=>'Toate documentele, notificarile si istoricul masinii intr-un loc.',
+            'desc'=>'Toate documentele, notificările și istoricul mașinii într-un loc.',
             'badge'=>null,'btn'=>'Vezi garajul','href'=>home_url('/functii/garaj-digital/'),'style'=>'outline'),
-          array('title'=>'Verifica VIN cu ' . (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT . '% reducere','chip'=>'bg-info/15 text-info',
+          array('title'=>'Verifică VIN cu ' . (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT . '% reducere','chip'=>'bg-info/15 text-info',
             'icon'=>'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
-            'desc'=>'Istoric complet: daune, kilometraj, proprietari, accidente si multe altele.',
-            'badge'=>null,'btn'=>'Verifica acum','href'=>'https://revizie.ro/verificare-vin','style'=>'outline'),
+            'desc'=>'Istoric complet: daune, kilometraj, proprietari, accidente și multe altele.',
+            'badge'=>null,'btn'=>'Verifică acum','href'=>'https://revizie.ro/verificare-vin','style'=>'outline'),
           array('title'=>'Marketplace auto','chip'=>'bg-success/15 text-success',
             'icon'=>'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0',
-            'desc'=>'Cumperi sau vinzi masini rapid si in siguranta.',
+            'desc'=>'Cumperi sau vinzi mașini rapid și în siguranța.',
             'badge'=>'Nou','badge_class'=>'bg-warning/15 text-warning',
-            'btn'=>'Vezi masini','href'=>'https://revizie.ro/anunturi','style'=>'outline'),
+            'btn'=>'Vezi mașini','href'=>'https://revizie.ro/anunturi','style'=>'outline'),
           /* Aceeasi schimbare ca pe prima pagina: „Gaseste-mi:" in locul
              vechiului „Piese & Service". Daca una ramane in urma, pagina de
              previzualizare arata alta directie decat site-ul. */
-          array('title'=>'Gaseste-mi:','chip'=>'bg-accent/15 text-accent',
+          array('title'=>'Găsește-mi:','chip'=>'bg-accent/15 text-accent',
             'icon'=>'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
-            'desc'=>'Piesa, piese din dezmembrari, service, ITP sau vulcanizare &mdash; spui ce iti trebuie, firmele din zona ta revin cu pretul.',
-            'badge'=>'In curand','badge_class'=>'bg-accent/15 text-accent',
+            'desc'=>'Piesa, piese din dezmembrări, service, ITP sau vulcanizare &mdash; spui ce îți trebuie, firmele din zona ta revin cu prețul.',
+            'badge'=>'În curând','badge_class'=>'bg-accent/15 text-accent',
             'btn'=>'Inscriem firmele','href'=>null,'style'=>'disabled'),
         );
         foreach ($services as $s) : ?>
@@ -215,9 +215,9 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
               </span>
               <span class="text-sm font-semibold uppercase tracking-wide text-accent-strong">RCA online</span>
             </div>
-            <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">Compara RCA<br>in 2 minute</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6 leading-tight">Compară RCA<br>în 2 minute</h2>
             <ul class="space-y-3 mb-8">
-              <?php foreach (array('10 asiguratori intr-un singur loc', 'Polita emisa instant pe email', 'Plata 100% securizata', 'Preturi corecte, fara comisioane ascunse') as $b) : ?>
+              <?php foreach (array('10 asiguratori intr-un singur loc', 'Polița emisă instant pe email', 'Plata 100% securizată', 'Prețuri corecte, fără comisioane ascunse') as $b) : ?>
                 <li class="flex items-center gap-3 text-foreground-muted">
                   <span class="flex items-center justify-center w-5 h-5 rounded-full bg-success/15 text-success shrink-0">
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
@@ -237,16 +237,16 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
               <div class="bg-card rounded-2xl border border-border-subtle p-6">
                 <div class="flex items-center gap-2 text-success text-sm font-semibold mb-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-                  Economisesti timp si bani
+                  Economisești timp și bani
                 </div>
-                <p class="text-sm text-foreground-muted leading-relaxed">Compari ofertele de la toti asiguratorii dintr-un singur formular si alegi cea mai buna varianta.</p>
+                <p class="text-sm text-foreground-muted leading-relaxed">Compari ofertele de la toți asigurătorii dintr-un singur formular și alegi cea mai bună varianta.</p>
               </div>
               <div class="bg-card rounded-2xl border border-border-subtle p-6">
                 <div class="flex items-center gap-2 text-accent-strong text-sm font-semibold mb-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                  Polita pe loc
+                  Polița pe loc
                 </div>
-                <p class="text-sm text-foreground-muted leading-relaxed">Platesti securizat prin NETOPIA si primesti polita pe email imediat. Fara drumuri, fara hartii.</p>
+                <p class="text-sm text-foreground-muted leading-relaxed">Plătești securizat prin NETOPIA și primești polița pe email imediat. Fără drumuri, fără hârtii.</p>
               </div>
             </div>
 
@@ -275,7 +275,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
         <!-- Left: 3 phones -->
         <div class="order-2 lg:order-1">
           <?php $phones_group = revizie_img_datauri('phones-group.webp'); if ($phones_group !== '') : ?>
-            <img src="<?php echo esc_attr($phones_group); ?>" alt="Aplicatia revizie.ro pe telefon"
+            <img src="<?php echo esc_attr($phones_group); ?>" alt="Aplicația revizie.ro pe telefon"
                  class="w-full max-w-xl mx-auto lg:mx-0 select-none pointer-events-none"
                  style="filter: drop-shadow(0 30px 45px rgba(15,17,19,.18));" />
           <?php endif; ?>
@@ -284,12 +284,12 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
         <div class="order-1 lg:order-2">
           <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-accent-soft rounded-full text-accent-strong text-sm font-medium mb-4">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-            Aplicatia ta, pe orice ecran
+            Aplicația ta, pe orice ecran
           </div>
-          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">Garajul tau digital,<br>pe telefon si pe laptop</h2>
-          <p class="text-lg text-foreground-muted mb-6 leading-relaxed">Accesezi oricand si de oriunde toate informatiile importante despre masinile tale.</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">Garajul tău digital,<br>pe telefon și pe laptop</h2>
+          <p class="text-lg text-foreground-muted mb-6 leading-relaxed">Accesezi oricând și de oriunde toate informațiile importante despre mașinile tale.</p>
           <ul class="space-y-3 mb-8">
-            <?php foreach (array('Documente si asigurari mereu la zi', 'Notificari automate inainte de expirare', 'Istoric cheltuieli si revizii', 'Acces de pe web si din aplicatie') as $pt) : ?>
+            <?php foreach (array('Documente și asigurări mereu la zi', 'Notificări automate înainte de expirare', 'Istoric cheltuieli și revizii', 'Acces de pe web și din aplicație') as $pt) : ?>
               <li class="flex items-center gap-3 text-foreground-muted">
                 <span class="flex items-center justify-center w-5 h-5 rounded-full bg-success/15 text-success shrink-0"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
                 <?php echo $pt; ?>
@@ -299,11 +299,11 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
           <div class="flex flex-wrap items-center gap-3">
             <div class="inline-flex items-center gap-3 px-5 py-3 bg-foreground text-white rounded-2xl shadow-md">
               <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-              <span class="text-left leading-none"><span class="block text-[11px] text-white/70">In curand pe</span><span class="block text-lg font-semibold mt-0.5">App Store</span></span>
+              <span class="text-left leading-none"><span class="block text-[11px] text-white/70">În curând pe</span><span class="block text-lg font-semibold mt-0.5">App Store</span></span>
             </div>
             <div class="inline-flex items-center gap-3 px-5 py-3 bg-foreground text-white rounded-2xl shadow-md">
               <svg class="w-8 h-8" viewBox="0 0 24 24"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.609 22.186c-.31-.292-.5-.71-.5-1.186V3c0-.476.19-.894.5-1.186z"/><path fill="#FBBC04" d="M16.81 15.02l-2.07-2.07 2.07-2.07 3.18 1.82c.78.45.78 1.6 0 2.05l-3.18 1.82z"/><path fill="#EA4335" d="M3.609 22.186L13.792 12l3.018 3.02-11.43 6.55c-.5.29-1.15.27-1.77-.38z"/><path fill="#4285F4" d="M3.609 1.814L16.81 8.98 13.792 12 3.609 1.814z"/></svg>
-              <span class="text-left leading-none"><span class="block text-[11px] text-white/70">In curand pe</span><span class="block text-lg font-semibold mt-0.5">Google Play</span></span>
+              <span class="text-left leading-none"><span class="block text-[11px] text-white/70">În curând pe</span><span class="block text-lg font-semibold mt-0.5">Google Play</span></span>
             </div>
           </div>
         </div>
@@ -332,12 +332,12 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
             </div>
 
             <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
-              Verifica istoricul oricarei masini
+              Verifică istoricul oricărei mașini
               <span class="block text-info">cu <?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>% reducere</span>
             </h2>
 
             <p class="text-lg text-foreground-muted mb-6 leading-relaxed">
-              Inainte sa cumperi o masina second-hand, vezi tot ce trebuie sa stii: kilometraj real, accidente, fosti proprietari, daune declarate, date tehnice. Raport oficial generat in cateva minute, direct din contul tau revizie.ro.
+              Înainte să cumperi o mașina second-hand, vezi tot ce trebuie să știi: kilometraj real, accidente, foști proprietari, daune declarate, date tehnice. Raport oficial generat în câteva minute, direct din contul tău revizie.ro.
             </p>
 
             <div class="flex flex-wrap items-center gap-3 mb-8">
@@ -362,7 +362,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
               $carvertical_url = revizie_carvertical_url('wp_landing_promo');
             ?>
             <a href="<?php echo esc_url($carvertical_url); ?>" target="_blank" rel="noopener noreferrer sponsored" class="group inline-flex items-center gap-2 px-7 py-3.5 bg-info hover:bg-info/90 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:shadow-info/30 transition-all">
-              Verifica un VIN cu -<?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>%
+              Verifică un VIN cu -<?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>%
               <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
               </svg>
@@ -410,13 +410,13 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
 
         <!-- Left: FAQ accordion -->
         <div class="bg-card rounded-3xl border border-border-subtle p-8 sm:p-10">
-          <h2 class="text-2xl md:text-3xl font-bold text-foreground mb-6">Intrebari frecvente</h2>
+          <h2 class="text-2xl md:text-3xl font-bold text-foreground mb-6">Întrebări frecvente</h2>
           <?php
           $faqs = array(
-            array('Cum cumpar o polita RCA?', 'Completezi datele masinii, compari ofertele de la asiguratori si platesti securizat online. Primesti polita pe email in cateva minute.'),
-            array('Este sigur sa introduc datele masinii?', 'Da. Datele sunt criptate si folosite doar pentru calculul ofertelor si emiterea politei. Nu le partajam cu terti.'),
-            array('Cum functioneaza notificarile?', 'Primesti automat un email inainte sa expire RCA, ITP sau revizia, ca sa nu uiti nicio scadenta.'),
-            array('Pot adauga mai multe masini?', 'Da, poti adauga oricate masini in garajul tau digital si le gestionezi pe toate dintr-un singur cont.'),
+            array('Cum cumpar o polița RCA?', 'Completezi datele mașinii, compari ofertele de la asigurători și plătești securizat online. Primești polița pe email în câteva minute.'),
+            array('Este sigur să introduc datele mașinii?', 'Da. Datele sunt criptate și folosite doar pentru calculul ofertelor și emiterea poliței. Nu le partajăm cu terți.'),
+            array('Cum funcționează notificările?', 'Primești automat un email înainte să expire RCA, ITP sau revizia, ca să nu uiți nicio scadența.'),
+            array('Pot adăuga mai multe mașini?', 'Da, poți adăuga oricate mașini în garajul tău digital și le gestionezi pe toate dintr-un singur cont.'),
           );
           foreach ($faqs as $i => $q) : ?>
             <details class="group border-b border-border-subtle py-5"<?php if ($i === 0) echo ' open'; ?>>
@@ -438,10 +438,10 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
         <div class="relative overflow-hidden rounded-3xl p-8 sm:p-10 flex flex-col justify-center min-h-[340px] bg-accent-strong bg-cover bg-center"
              <?php if ($faq_key !== '') : ?>style="background-image: linear-gradient(100deg, rgba(21,15,8,0.94) 0%, rgba(21,15,8,0.55) 48%, rgba(21,15,8,0.05) 100%), url('<?php echo esc_attr($faq_key); ?>');"<?php endif; ?>>
           <div class="relative max-w-sm">
-            <h2 class="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">Esti gata sa simplifici gestionarea masinii tale?</h2>
-            <p class="text-white/80 mb-6">Creeaza cont gratuit si ai totul intr-un singur loc.</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">Ești gata să simplifici gestionarea mașinii tale?</h2>
+            <p class="text-white/80 mb-6">Creează cont gratuit și ai totul într-un singur loc.</p>
             <a href="https://app.revizie.ro/register" class="inline-flex items-center gap-2 px-6 py-3.5 bg-white text-accent-strong rounded-xl font-bold shadow-lg hover:scale-105 transition-transform">
-              Creeaza cont gratuit
+              Creează cont gratuit
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
           </div>
@@ -454,8 +454,8 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
   <!-- Social (kept) -->
   <section class="py-16 bg-surface-muted border-t border-border-subtle">
     <div class="max-w-3xl mx-auto px-6 text-center">
-      <h2 class="text-2xl font-bold text-foreground mb-2">Urmareste-ne pe social</h2>
-      <p class="text-foreground-muted mb-6">Tips, noutati despre lansari si feedback rapid.</p>
+      <h2 class="text-2xl font-bold text-foreground mb-2">Urmărește-ne pe social</h2>
+      <p class="text-foreground-muted mb-6">Tips, noutăți despre lansari și feedback rapid.</p>
       <div class="flex items-center justify-center gap-4">
         <?php revizie_render_social_links('card'); ?>
       </div>
@@ -474,7 +474,7 @@ $marquee_insurers = array('groupama','omniasig','allianz','generali','asirom','g
               </svg>
             </div>
             <div class="text-center sm:text-left">
-              <div class="font-semibold text-lg text-white">Plati 100% securizate</div>
+              <div class="font-semibold text-lg text-white">Plăti 100% securizate</div>
               <div class="text-sm text-white/60">Procesare prin NETOPIA Payments</div>
             </div>
           </div>

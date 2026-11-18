@@ -21,10 +21,10 @@ get_header();
     <div class="relative max-w-4xl mx-auto px-6 pt-32 pb-14 text-center">
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-soft border border-accent/20 mb-6">
         <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <span class="text-sm text-accent-strong font-medium">Ai o intrebare?</span>
+        <span class="text-sm text-accent-strong font-medium">Ai o întrebare?</span>
       </div>
-      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">Intrebari frecvente</h1>
-      <p class="text-lg text-foreground-muted max-w-2xl mx-auto">Raspunsuri la cele mai frecvente intrebari despre RCA, garajul digital, verificarea VIN si contul tau revizie.ro.</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">Întrebări frecvente</h1>
+      <p class="text-lg text-foreground-muted max-w-2xl mx-auto">Raspunsuri la cele mai frecvente întrebări despre RCA, garajul digital, verificarea VIN și contul tău revizie.ro.</p>
     </div>
   </section>
 
@@ -33,31 +33,31 @@ get_header();
     <div class="max-w-3xl mx-auto px-6 space-y-12">
       <?php
       $faq_groups = array(
-        'RCA &amp; Asigurari' => array(
-          array('Cum cumpar o polita RCA prin revizie.ro?', 'Completezi datele masinii (sau doar numarul de inmatriculare), compari instant ofertele de la asiguratorii autorizati, alegi cea mai buna varianta si platesti securizat online. Primesti polita pe email in cateva minute.'),
-          array('De la ce asiguratori primesc oferte?', 'Comparam oferte de la asiguratori autorizati ASF: Groupama, Omniasig, Allianz-Tiriac, Generali, Asirom, Grawe, Axeria, Eazy si altii.'),
-          array('Polita emisa online este valabila?', 'Da. Polita RCA emisa prin revizie.ro este 100% valabila si inregistrata in baza de date oficiala, exact ca una emisa la ghiseu.'),
-          array('Pot plati RCA in rate?', 'Da, acolo unde asiguratorul permite, poti alege plata in mai multe rate la finalizarea comenzii.'),
+        'RCA &amp; Asigurări' => array(
+          array('Cum cumpar o polița RCA prin revizie.ro?', 'Completezi datele mașinii (sau doar numărul de înmatriculare), compari instant ofertele de la asigurătorii autorizați, alegi cea mai bună varianta și plătești securizat online. Primești polița pe email în câteva minute.'),
+          array('De la ce asigurători primesc oferte?', 'Comparăm oferte de la asigurători autorizați ASF: Groupama, Omniasig, Allianz-Tiriac, Generali, Asirom, Grawe, Axeria, Eazy și alții.'),
+          array('Polița emisă online este valabilă?', 'Da. Polița RCA emisă prin revizie.ro este 100% valabilă și înregistrată în baza de date oficiala, exact ca una emisă la ghiseu.'),
+          array('Pot plăti RCA în rate?', 'Da, acolo unde asigurătorul permite, poți alege plata în mai multe rate la finalizarea comenzii.'),
           // CASCO nu se mai vinde (nov 2026) — intrarea ramane aici, comentata.
-          // array('Oferiti si CASCO?', 'Da, pe langa RCA poti compara si cumpara si polite CASCO direct din cont.'),
+          // array('Oferiți și CASCO?', 'Da, pe langa RCA poți compara și cumpăra și polițe CASCO direct din cont.'),
         ),
         'Cont &amp; Garaj digital' => array(
-          array('Este gratuit sa imi fac cont?', 'Da. Crearea contului si folosirea garajului digital sunt 100% gratuite, fara card la inregistrare.'),
-          array('Pot adauga mai multe masini?', 'Da, adaugi oricate masini in garajul tau digital si le gestionezi pe toate dintr-un singur cont.'),
-          array('Ce documente pot tine in garaj?', 'Talon, RCA, ITP, asigurari, facturi de service si orice alt document al masinii — toate la un loc, accesibile oricand.'),
+          array('Este gratuit să imi fac cont?', 'Da. Crearea contului și folosirea garajului digital sunt 100% gratuite, fără card la înregistrare.'),
+          array('Pot adăuga mai multe mașini?', 'Da, adaugi oricate mașini în garajul tău digital și le gestionezi pe toate dintr-un singur cont.'),
+          array('Ce documente pot tine în garaj?', 'Talon, RCA, ITP, asigurări, facturi de service și orice alt document al mașinii — toate la un loc, accesibile oricând.'),
         ),
         'Verificare VIN / Istoric' => array(
-          array('Ce contine raportul de istoric VIN?', 'Kilometraj real, istoric de accidente si daune, fosti proprietari, date tehnice oficiale si multe altele, prin partenerul nostru carVertical.'),
-          array('Cat costa un raport VIN?', 'Utilizatorii revizie.ro beneficiaza de ' . (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT . '% reducere la rapoartele carVertical.'),
+          array('Ce contine raportul de istoric VIN?', 'Kilometraj real, istoric de accidente și daune, foști proprietari, date tehnice oficiale și multe altele, prin partenerul nostru carVertical.'),
+          array('Cât costa un raport VIN?', 'Utilizatorii revizie.ro beneficiază de ' . (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT . '% reducere la rapoartele carVertical.'),
         ),
         'Notificari' => array(
-          array('Cum functioneaza notificarile?', 'Primesti automat un email inainte sa expire RCA, ITP sau revizia, ca sa nu uiti nicio scadenta.'),
-          array('Cand primesc notificarile?', 'Notificarile vin automat cu mai multe zile inainte de expirare (de regula 30, 14, 7 si 1 zi), ca sa ai timp sa reinnoiesti.'),
+          array('Cum funcționează notificările?', 'Primești automat un email înainte să expire RCA, ITP sau revizia, ca să nu uiți nicio scadența.'),
+          array('Când primesc notificările?', 'Notificările vin automat cu mai multe zile înainte de expirare (de regula 30, 14, 7 și 1 zi), ca să ai timp să reînnoiești.'),
         ),
-        'Plati &amp; Securitate' => array(
-          array('Este sigur sa introduc datele masinii?', 'Da. Datele sunt criptate si folosite doar pentru calculul ofertelor si emiterea politei. Nu le partajam cu terti.'),
+        'Plăti &amp; Securitate' => array(
+          array('Este sigur să introduc datele mașinii?', 'Da. Datele sunt criptate și folosite doar pentru calculul ofertelor și emiterea poliței. Nu le partajăm cu terți.'),
           array('Cum sunt procesate platile?', 'Toate platile sunt procesate securizat prin NETOPIA Payments — card bancar, Google Pay sau Apple Pay.'),
-          array('Primesc factura?', 'Da, primesti factura si polita pe email imediat dupa efectuarea platii.'),
+          array('Primesc factura?', 'Da, primești factura și polița pe email imediat după efectuarea plății.'),
         ),
       );
       foreach ($faq_groups as $group => $items) : ?>
@@ -79,11 +79,11 @@ get_header();
 
       <!-- CTA -->
       <div class="text-center bg-surface-muted rounded-3xl border border-border-subtle p-8 sm:p-10">
-        <h2 class="text-2xl font-bold text-foreground mb-2">Nu ai gasit raspunsul?</h2>
-        <p class="text-foreground-muted mb-6">Creeaza-ti cont gratuit si incepe sau scrie-ne, iti raspundem rapid.</p>
+        <h2 class="text-2xl font-bold text-foreground mb-2">Nu ai găsit răspunsul?</h2>
+        <p class="text-foreground-muted mb-6">Creează-ți cont gratuit și începe sau scrie-ne, îți raspundem rapid.</p>
         <div class="flex flex-col sm:flex-row gap-3 justify-center">
           <a href="https://app.revizie.ro/register" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent hover:bg-accent-hover text-white rounded-2xl font-semibold shadow-lg transition-all">
-            Creeaza cont gratuit
+            Creează cont gratuit
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
           <a href="<?php echo home_url('/contact/'); ?>" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-card border border-border text-foreground rounded-2xl font-semibold hover:border-accent hover:text-accent transition-all">

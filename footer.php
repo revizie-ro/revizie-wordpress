@@ -5,13 +5,13 @@
           <?php // Transparent wordmark (light text) — big, blends on the dark footer.
                 // Inlined (base64) so it renders even though the host doesn't serve the binary file. ?>
           <img src="<?php echo REVIZIE_LOGO_LIGHT_DATAURI; ?>" alt="<?php bloginfo('name'); ?>" class="h-16 w-auto object-contain mb-5">
-          <p class="text-foreground-subtle text-sm mb-4">Tot ce ai nevoie pentru intretinerea masinii, intr-un singur cont.</p>
+          <p class="text-foreground-subtle text-sm mb-4">Tot ce ai nevoie pentru întreținerea mașinii, într-un singur cont.</p>
           <div class="text-foreground-subtle text-xs space-y-1 mb-5">
             <p class="font-medium text-white/80">Operat de SMART HAGGLING SRL</p>
             <p>CUI: 34531325</p>
             <p>Reg. Com.: J2015006020404</p>
-            <p>CAEN 6622 — Asistent in brokeraj de asigurari</p>
-            <p>Sediu social: Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti</p>
+            <p>CAEN 6622 — Asistent în brokeraj de asigurări</p>
+            <p>Sediu social: Str. Constantin Bonea Nr. 13, Sector 5, București</p>
           </div>
           <div class="flex items-center gap-2">
             <?php revizie_render_social_links('light'); ?>
@@ -19,24 +19,24 @@
           <div class="flex flex-wrap gap-2 mt-5">
             <?php revizie_render_store_badges('sm'); ?>
           </div>
-          <a href="<?php echo home_url('/descarca/'); ?>" class="inline-block mt-3 text-foreground-subtle hover:text-white transition-colors text-sm underline underline-offset-4">Descarca aplicatia</a>
+          <a href="<?php echo home_url('/descarca/'); ?>" class="inline-block mt-3 text-foreground-subtle hover:text-white transition-colors text-sm underline underline-offset-4">Descarcă aplicația</a>
         </div>
 
         <div>
-          <h4 class="text-white font-semibold mb-4">Functii disponibile</h4>
+          <h4 class="text-white font-semibold mb-4">Funcții disponibile</h4>
           <ul class="space-y-2">
             <li><a href="<?php echo home_url('/functii/garaj-digital/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Garaj Digital</a></li>
-            <li><a href="https://revizie.ro/anunturi" class="text-foreground-subtle hover:text-white transition-colors text-sm">Anunturi masini</a></li>
-            <li><a href="https://revizie.ro/rca" class="text-foreground-subtle hover:text-white transition-colors text-sm">Asigurari RCA</a></li>
-            <li><a href="https://revizie.ro/rca-in-rate" class="text-foreground-subtle hover:text-white transition-colors text-sm">RCA in rate</a></li>
+            <li><a href="https://revizie.ro/anunturi" class="text-foreground-subtle hover:text-white transition-colors text-sm">Anunțuri mașini</a></li>
+            <li><a href="https://revizie.ro/rca" class="text-foreground-subtle hover:text-white transition-colors text-sm">Asigurări RCA</a></li>
+            <li><a href="https://revizie.ro/rca-in-rate" class="text-foreground-subtle hover:text-white transition-colors text-sm">RCA în rate</a></li>
             <?php // Hub SEO (content-site, servit de nginx pe apex). Link intern din homepage-ul
                   // WP — pagina cu cea mai mare autoritate — spre cele 203 landing-uri /rca/{marca}/{model}. ?>
             <li><a href="https://revizie.ro/rca-modele/" class="text-foreground-subtle hover:text-white transition-colors text-sm">RCA pe modele</a></li>
             <li><a href="<?php echo home_url('/functii/remindere/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Remindere</a></li>
           </ul>
-          <h4 class="text-white font-semibold mt-6 mb-3">In curand</h4>
+          <h4 class="text-white font-semibold mt-6 mb-3">În curând</h4>
           <ul class="space-y-2">
-            <li><a href="<?php echo home_url('/functii/servicii-auto/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Programari service</a></li>
+            <li><a href="<?php echo home_url('/functii/servicii-auto/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Programări service</a></li>
             <li><a href="<?php echo home_url('/functii/tractari/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Tractari</a></li>
             <li><a href="<?php echo home_url('/functii/piese-auto/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Piese auto</a></li>
             <li><a href="<?php echo home_url('/functii/anvelope/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Anvelope</a></li>
@@ -52,17 +52,17 @@
                   // pagina noua ii inscrie. Celelalte doua redirecteaza aici. ?>
             <li><a href="<?php echo home_url('/parteneri'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Devino partener</a></li>
             <li><a href="<?php echo home_url('/despre-noi/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Despre Noi</a></li>
-            <li><a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Cum Functioneaza</a></li>
-            <li><a href="<?php echo home_url('/intrebari-frecvente/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Intrebari frecvente</a></li>
+            <li><a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Cum Funcționează</a></li>
+            <li><a href="<?php echo home_url('/intrebari-frecvente/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Întrebări frecvente</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="text-white font-semibold mb-4">Legal</h4>
           <ul class="space-y-2">
-            <li><a href="<?php echo home_url('/produse-si-preturi/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Produse si preturi</a></li>
-            <li><a href="<?php echo home_url('/termeni-si-conditii/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Termeni si Conditii</a></li>
-            <li><a href="<?php echo home_url('/politica-de-confidentialitate/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Politica de Confidentialitate</a></li>
+            <li><a href="<?php echo home_url('/produse-si-preturi/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Produse și prețuri</a></li>
+            <li><a href="<?php echo home_url('/termeni-si-conditii/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Termeni și Condiții</a></li>
+            <li><a href="<?php echo home_url('/politica-de-confidentialitate/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Politica de Confidențialitate</a></li>
             <li><a href="<?php echo home_url('/politica-gdpr/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Politica GDPR</a></li>
             <li><a href="<?php echo home_url('/politica-cookies/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Politica Cookies</a></li>
             <li><a href="<?php echo home_url('/politica-de-livrare/'); ?>" class="text-foreground-subtle hover:text-white transition-colors text-sm">Politica de livrare</a></li>
@@ -76,7 +76,7 @@
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pb-8 mb-8 border-b border-white/10">
           <div class="flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-2">
             <svg class="w-5 h-5 text-success shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            <span class="text-foreground-subtle text-sm whitespace-nowrap">Plati securizate 3D Secure</span>
+            <span class="text-foreground-subtle text-sm whitespace-nowrap">Plăti securizate 3D Secure</span>
             <?php revizie_render_netopia_logo('0F1113', 'orizontal', 170, 42); ?>
             <?php revizie_render_wallet_pay_marks(); ?>
           </div>

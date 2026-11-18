@@ -138,8 +138,8 @@
       +   '<div style="font:600 18px/1.3 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;'
       +     'margin-bottom:8px;">Cookie-uri</div>'
       +   '<div style="color:#6b6b73;">'
-      +     'Folosim cookie-uri ca sa intelegem cum e folosit site-ul si sa il imbunatatim. '
-      +     'Poti refuza fara sa pierzi nicio functionalitate. '
+      +     'Folosim cookie-uri ca să înțelegem cum e folosit site-ul și să îl îmbunătățim. '
+      +     'Poți refuza fără să pierzi nicio funcționalitate. '
       +     '<a href="https://revizie.ro/politica-cookies" style="color:#f26a1b;">Politica de cookie-uri</a>'
       +   '</div>'
       +   '<div style="display:flex;gap:12px;margin-top:24px;">'
@@ -192,7 +192,7 @@
 
       <div class="flex items-center gap-3 shrink-0">
         <a href="https://app.revizie.ro/login" class="hidden md:inline-block px-4 py-2 text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Login</a>
-        <a href="https://app.revizie.ro/register" class="hidden md:inline-flex px-5 py-2.5 bg-accent hover:bg-accent-hover text-white rounded-full text-sm font-semibold whitespace-nowrap shadow-md hover:shadow-lg hover:shadow-accent/30 transition-all duration-300">Inregistreaza-te</a>
+        <a href="https://app.revizie.ro/register" class="hidden md:inline-flex px-5 py-2.5 bg-accent hover:bg-accent-hover text-white rounded-full text-sm font-semibold whitespace-nowrap shadow-md hover:shadow-lg hover:shadow-accent/30 transition-all duration-300">Inregistrează-te</a>
 
         <!-- Mobile hamburger toggle (vizibil doar < md) -->
         <button
@@ -221,24 +221,24 @@
       <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-1">
         <p class="text-xs font-semibold uppercase tracking-wider text-foreground-subtle px-3 mb-1">Functii</p>
         <a href="<?php echo home_url('/functii/garaj-digital/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Garaj Digital</a>
-        <a href="https://revizie.ro/anunturi" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Anunturi masini</a>
-        <a href="https://revizie.ro/rca" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Asigurari RCA</a>
-        <a href="https://revizie.ro/rca-in-rate" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">RCA in rate</a>
+        <a href="https://revizie.ro/anunturi" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Anunțuri mașini</a>
+        <a href="https://revizie.ro/rca" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Asigurări RCA</a>
+        <a href="https://revizie.ro/rca-in-rate" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">RCA în rate</a>
         <a href="<?php echo home_url('/functii/remindere/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Remindere</a>
 
-        <a href="<?php echo home_url('/descarca/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Aplicatia pe telefon</a>
+        <a href="<?php echo home_url('/descarca/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Aplicația pe telefon</a>
 
         <div class="h-px bg-border-subtle my-3"></div>
 
         <p class="text-xs font-semibold uppercase tracking-wider text-foreground-subtle px-3 mb-1">Companie</p>
         <a href="<?php echo home_url('/despre-noi/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Despre Noi</a>
-        <a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Cum Functioneaza</a>
+        <a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="block px-3 py-2.5 rounded-lg text-foreground hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-medium">Cum Funcționează</a>
         <?php /* Vezi nota din functions.php: pagina e servita de aplicatie. */ ?>
         <a href="https://revizie.ro/parteneri" class="block px-3 py-2.5 rounded-lg text-accent hover:bg-accent-soft hover:text-accent-strong transition-colors text-base font-semibold">Devino partener</a>
 
         <div class="pt-4 mt-4 border-t border-border-subtle flex flex-col gap-2">
           <a href="https://app.revizie.ro/login" class="block w-full text-center px-4 py-3 rounded-xl border border-border text-foreground hover:bg-surface-muted font-semibold transition-colors">Login</a>
-          <a href="https://app.revizie.ro/register" class="block w-full text-center px-4 py-3 rounded-xl bg-accent hover:bg-accent-hover text-white font-semibold shadow-md hover:shadow-lg hover:shadow-accent/30 transition-all">Inregistreaza-te</a>
+          <a href="https://app.revizie.ro/register" class="block w-full text-center px-4 py-3 rounded-xl bg-accent hover:bg-accent-hover text-white font-semibold shadow-md hover:shadow-lg hover:shadow-accent/30 transition-all">Inregistrează-te</a>
         </div>
       </nav>
     </div>

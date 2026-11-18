@@ -18,8 +18,8 @@ get_header();
       </div>
 
       <h1 class="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-[1.15]">
-        Platforma completa pentru
-        <span class="bg-gradient-to-r from-accent via-accent-hover to-warning bg-clip-text text-transparent pb-1">proprietarii de masini</span>
+        Platforma completă pentru
+        <span class="bg-gradient-to-r from-accent via-accent-hover to-warning bg-clip-text text-transparent pb-1">proprietarii de mașini</span>
       </h1>
 
       <p class="text-xl text-foreground-muted leading-relaxed max-w-3xl">
@@ -32,12 +32,12 @@ get_header();
     <div class="max-w-6xl mx-auto px-6">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <div>
-          <h2 class="text-4xl font-bold text-foreground mb-6">Misiunea noastra</h2>
+          <h2 class="text-4xl font-bold text-foreground mb-6">Misiunea noastră</h2>
           <p class="text-lg text-foreground-muted mb-5 leading-relaxed">
-            In prezent, un sofer roman trebuie sa foloseasca cinci sau sase aplicatii diferite pentru a-si gestiona masina: o platforma pentru asigurari, alta pentru anunturile auto, alta pentru istoricul VIN, una pentru reminder-e si asa mai departe. Niciuna nu comunica cu celelalte.
+            În prezent, un șofer roman trebuie să folosească cinci sau sase aplicații diferite pentru a-și gestiona mașina: o platformă pentru asigurări, alta pentru anunțurile auto, alta pentru istoricul VIN, una pentru reminder-e și așa mai departe. Niciuna nu comunică cu celelalte.
           </p>
           <p class="text-lg text-foreground-muted leading-relaxed">
-            revizie.ro inlocuieste acest fluxul fragmentat cu un cont unic, in care masina ta este punctul central al tuturor operatiunilor. Adaugi numarul de inmatriculare o singura data, iar restul datelor se completeaza automat din sursele oficiale DRPCIV. De acolo, ai acces direct la toate functionalitatile, fara sa reintroduci aceleasi informatii.
+            revizie.ro înlocuiește acest fluxul fragmentat cu un cont unic, în care mașina ta este punctul central al tuturor operațiunilor. Adaugi numărul de înmatriculare o singură data, iar restul datelor se completează automat din sursele oficiale DRPCIV. De acolo, ai acces direct la toate functionalitatile, fără să reintroduci aceleași informații.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ get_header();
           </div>
           <div class="bg-gradient-to-br from-warning/10 to-card rounded-2xl p-5 border border-warning/15">
             <div class="text-3xl font-bold text-warning mb-1">30 sec</div>
-            <div class="text-sm text-foreground-muted">Setezi prima masina</div>
+            <div class="text-sm text-foreground-muted">Setezi prima mașina</div>
           </div>
           <div class="bg-gradient-to-br from-info/10 to-card rounded-2xl p-5 border border-info/15">
             <div class="text-3xl font-bold text-info mb-1">DRPCIV</div>
@@ -67,7 +67,7 @@ get_header();
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-14">
         <h2 class="text-4xl font-bold text-foreground mb-3">Principiile noastre</h2>
-        <p class="text-lg text-foreground-muted">Standardele care ghideaza fiecare functionalitate pe care o livram.</p>
+        <p class="text-lg text-foreground-muted">Standardele care ghidează fiecare funcționalitate pe care o livram.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
@@ -77,8 +77,8 @@ get_header();
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-foreground mb-2">Transparenta totala</h3>
-          <p class="text-foreground-muted">Politica detaliata privind utilizarea datelor (GDPR), preturi afisate clar pentru fiecare functionalitate si zero costuri ascunse sau abonamente fortate.</p>
+          <h3 class="text-xl font-bold text-foreground mb-2">Transparența totală</h3>
+          <p class="text-foreground-muted">Politica detaliata privind utilizarea datelor (GDPR), prețuri afișate clar pentru fiecare funcționalitate și zero costuri ascunse sau abonamente fortate.</p>
         </div>
 
         <div class="bg-card rounded-2xl p-7 border border-border-subtle">
@@ -87,8 +87,8 @@ get_header();
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold text-foreground mb-2">Automatizare unde conteaza</h3>
-          <p class="text-foreground-muted">VIN decoder care completeaza automat 24+ campuri din DRPCIV. Remindere prin email inainte de expirarea ITP, RCA sau a reviziei. Functionalitati gandite sa economiseasca timp, nu sa adauge munca.</p>
+          <h3 class="text-xl font-bold text-foreground mb-2">Automatizare unde contează</h3>
+          <p class="text-foreground-muted">VIN decoder care completează automat 24+ câmpuri din DRPCIV. Remindere prin email înainte de expirarea ITP, RCA sau a reviziei. Funcționalități gandite să economisească timp, nu să adauge munca.</p>
         </div>
 
         <div class="bg-card rounded-2xl p-7 border border-border-subtle">
@@ -98,7 +98,7 @@ get_header();
             </svg>
           </div>
           <h3 class="text-xl font-bold text-foreground mb-2">Date oficiale, nu estimari</h3>
-          <p class="text-foreground-muted">Toate datele vehiculului provin direct de la sursele oficiale (DRPCIV) sau de la partenerii nostri verificati. Nu ghicim, nu interpolam — afisam exact ce e in registrele autoritatii.</p>
+          <p class="text-foreground-muted">Toate datele vehiculului provin direct de la sursele oficiale (DRPCIV) sau de la partenerii nostri verificați. Nu ghicim, nu interpolam — afișăm exact ce e în registrele autorității.</p>
         </div>
       </div>
     </div>
@@ -108,7 +108,7 @@ get_header();
     <div class="max-w-5xl mx-auto px-6">
       <div class="text-center mb-12">
         <h2 class="text-4xl font-bold text-foreground mb-3">Contact</h2>
-        <p class="text-lg text-foreground-muted">Echipa noastra raspunde in zilele lucratoare.</p>
+        <p class="text-lg text-foreground-muted">Echipa noastră răspunde în zilele lucrătoare.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto">
@@ -145,11 +145,11 @@ get_header();
             <p><span class="text-foreground font-medium">Operat de:</span> SMART HAGGLING SRL</p>
             <p><span class="text-foreground font-medium">CUI:</span> 34531325</p>
             <p><span class="text-foreground font-medium">Reg. Com.:</span> J2015006020404</p>
-            <p><span class="text-foreground font-medium">CAEN:</span> 6622 — Asistent in brokeraj de asigurari</p>
-            <p class="sm:col-span-2"><span class="text-foreground font-medium">Sediu social:</span> Str. Constantin Bonea Nr. 13, Sector 5, Bucuresti</p>
+            <p><span class="text-foreground font-medium">CAEN:</span> 6622 — Asistent în brokeraj de asigurări</p>
+            <p class="sm:col-span-2"><span class="text-foreground font-medium">Sediu social:</span> Str. Constantin Bonea Nr. 13, Sector 5, București</p>
           </div>
           <p class="text-xs text-foreground-subtle mt-6 pt-5 border-t border-border-subtle">
-            SMART HAGGLING SRL este asistent in brokeraj, afiliat al brokerului Transilvania Broker de Asigurare-Reasigurare SA.
+            SMART HAGGLING SRL este asistent în brokeraj, afiliat al brokerului Transilvania Broker de Asigurare-Reasigurare SA.
           </p>
         </div>
       </div>
@@ -158,10 +158,10 @@ get_header();
 
   <section class="py-24 bg-gradient-to-br from-accent via-accent-hover to-accent-strong">
     <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Incepe sa-ti gestionezi masina mai eficient</h2>
-      <p class="text-xl text-white/90 mb-10">Cont gratuit, fara card. Adaugi prima masina in 30 de secunde.</p>
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Începe să-ți gestionezi mașina mai eficient</h2>
+      <p class="text-xl text-white/90 mb-10">Cont gratuit, fără card. Adaugi prima mașina în 30 de secunde.</p>
       <a href="https://app.revizie.ro/register" class="inline-flex items-center gap-2 px-10 py-5 bg-white text-accent-strong rounded-2xl font-bold text-lg shadow-2xl hover:scale-105 transition-all">
-        Creeaza cont gratuit
+        Creează cont gratuit
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>

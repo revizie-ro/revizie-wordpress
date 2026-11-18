@@ -11,7 +11,7 @@ get_header();
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
         </svg>
-        Inapoi la pagina principala
+        Înapoi la pagina principală
       </a>
 
       <div class="flex items-center gap-4 mb-8">
@@ -30,8 +30,8 @@ get_header();
         <section class="mb-10">
           <h2 class="text-2xl font-bold text-foreground mb-4">Ce sunt cookie-urile?</h2>
           <div class="space-y-4 text-foreground-muted">
-            <p>Cookie-urile sunt fisiere text de mici dimensiuni stocate pe dispozitivul dumneavoastra (computer, telefon, tableta) atunci cand vizitati un website. Acestea permit site-ului sa va "aminteasca" - preferintele, actiunile si alte informatii.</p>
-            <p>Cookie-urile sunt esentiale pentru functionarea moderna a internetului si nu pot accesa alte informatii de pe dispozitivul dumneavoastra.</p>
+            <p>Cookie-urile sunt fișiere text de mici dimensiuni stocate pe dispozitivul dumneavoastra (computer, telefon, tableta) atunci când vizități un website. Acestea permit site-ului să va "amintească" - preferințele, acțiunile și alte informații.</p>
+            <p>Cookie-urile sunt esentiale pentru funcționarea moderna a internetului și nu pot accesa alte informații de pe dispozitivul dumneavoastra.</p>
           </div>
         </section>
 
@@ -46,7 +46,7 @@ get_header();
                 </svg>
                 <h3 class="text-xl font-bold text-green-800 m-0">Cookies Strict Necesare</h3>
               </div>
-              <p class="text-green-700 mb-4">Aceste cookies sunt esentiale pentru functionarea platformei. Fara ele, site-ul nu ar functiona corect.</p>
+              <p class="text-green-700 mb-4">Aceste cookies sunt esentiale pentru funcționarea platformei. Fără ele, site-ul nu ar functiona corect.</p>
               <div class="bg-white rounded-xl p-4 overflow-x-auto">
                 <table class="w-full text-sm">
                   <thead>
@@ -85,7 +85,7 @@ get_header();
                 </svg>
                 <h3 class="text-xl font-bold text-blue-800 m-0">Cookies Functionale</h3>
               </div>
-              <p class="text-blue-700 mb-4">Permit functionalitatii imbunatatite si personalizare. Pot fi setate de noi sau de furnizori terti.</p>
+              <p class="text-blue-700 mb-4">Permit funcționalității imbunatatite și personalizare. Pot fi setate de noi sau de furnizori terți.</p>
               <div class="bg-white rounded-xl p-4 overflow-x-auto">
                 <table class="w-full text-sm">
                   <thead>
@@ -98,12 +98,12 @@ get_header();
                   <tbody class="text-foreground-muted">
                     <tr class="border-b">
                       <td class="py-2">selected_car</td>
-                      <td class="py-2">Ultima masina selectata</td>
+                      <td class="py-2">Ultima mașina selectată</td>
                       <td class="py-2">30 zile</td>
                     </tr>
                     <tr>
                       <td class="py-2">cart_items</td>
-                      <td class="py-2">Continut cos cumparaturi</td>
+                      <td class="py-2">Conținut coș cumpărături</td>
                       <td class="py-2">7 zile</td>
                     </tr>
                   </tbody>
@@ -118,7 +118,7 @@ get_header();
                 </svg>
                 <h3 class="text-xl font-bold text-gray-800 m-0">Cookies Analitice</h3>
               </div>
-              <p class="text-foreground-muted mb-4">Ne ajuta sa intelegem cum este utilizata platforma pentru a o imbunatati. Datele sunt anonimizate.</p>
+              <p class="text-foreground-muted mb-4">Ne ajuta să înțelegem cum este utilizata platforma pentru a o îmbunătăți. Datele sunt anonimizate.</p>
               <div class="bg-white rounded-xl p-4 overflow-x-auto">
                 <table class="w-full text-sm">
                   <thead>
@@ -170,7 +170,7 @@ get_header();
                 </svg>
                 <h3 class="text-xl font-bold text-gray-800 m-0">Cookies de Marketing</h3>
               </div>
-              <p class="text-foreground-muted mb-4">Ne arata daca reclamele noastre aduc oameni pe site si ce fac ei aici. Se pun DOAR daca apasati „Accept" in bannerul de cookie-uri; daca refuzati, scripturile nu se incarca deloc.</p>
+              <p class="text-foreground-muted mb-4">Ne arată dacă reclamele noastre aduc oameni pe site și ce fac ei aici. Se pun DOAR dacă apasați „Accept" în bannerul de cookie-uri; dacă refuzați, scripturile nu se încarcă deloc.</p>
               <div class="bg-white rounded-xl p-4 overflow-x-auto">
                 <table class="w-full text-sm">
                   <thead>
@@ -193,7 +193,7 @@ get_header();
                     </tr>
                     <tr>
                       <td class="py-2">_fbc</td>
-                      <td class="py-2">Meta - de pe ce reclama ati venit</td>
+                      <td class="py-2">Meta - de pe ce reclamă ați venit</td>
                       <td class="py-2">3 luni</td>
                     </tr>
                   </tbody>
@@ -204,30 +204,30 @@ get_header();
         </section>
 
         <section class="mb-10">
-          <h2 class="text-2xl font-bold text-foreground mb-4">Cum sa gestionati cookies</h2>
+          <h2 class="text-2xl font-bold text-foreground mb-4">Cum să gestionați cookies</h2>
           <div class="space-y-4 text-foreground-muted">
-            <p>Puteti controla si sterge cookies din setarile browserului dumneavoastra. Iata cum:</p>
+            <p>Puteți controla și șterge cookies din setarile browserului dumneavoastra. Iată cum:</p>
             <div class="grid md:grid-cols-2 gap-4">
               <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" class="block bg-surface-muted rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
                 <h4 class="font-semibold text-foreground">Google Chrome</h4>
-                <p class="text-sm text-foreground-muted m-0">Setari &gt; Confidentialitate &gt; Cookies</p>
+                <p class="text-sm text-foreground-muted m-0">Setări &gt; Confidențialitate &gt; Cookies</p>
               </a>
               <a href="https://support.mozilla.org/ro/kb/activarea-si-dezactivarea-cookies" target="_blank" rel="noopener noreferrer" class="block bg-surface-muted rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
                 <h4 class="font-semibold text-foreground">Mozilla Firefox</h4>
-                <p class="text-sm text-foreground-muted m-0">Optiuni &gt; Confidentialitate &gt; Cookies</p>
+                <p class="text-sm text-foreground-muted m-0">Opțiuni &gt; Confidențialitate &gt; Cookies</p>
               </a>
               <a href="https://support.apple.com/ro-ro/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" class="block bg-surface-muted rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
                 <h4 class="font-semibold text-foreground">Safari</h4>
-                <p class="text-sm text-foreground-muted m-0">Preferinte &gt; Confidentialitate</p>
+                <p class="text-sm text-foreground-muted m-0">Preferinte &gt; Confidențialitate</p>
               </a>
               <a href="https://support.microsoft.com/ro-ro/microsoft-edge/stergerea-modulelor-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" class="block bg-surface-muted rounded-xl p-4 hover:bg-gray-100 transition-colors no-underline">
                 <h4 class="font-semibold text-foreground">Microsoft Edge</h4>
-                <p class="text-sm text-foreground-muted m-0">Setari &gt; Confidentialitate &gt; Cookies</p>
+                <p class="text-sm text-foreground-muted m-0">Setări &gt; Confidențialitate &gt; Cookies</p>
               </a>
             </div>
             <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-4">
               <p class="text-amber-800 m-0">
-                <strong>Atentie:</strong> Dezactivarea cookies strict necesare poate afecta functionarea platformei (nu veti putea ramane autentificat, cosul de cumparaturi nu va fi salvat, etc.)
+                <strong>Atentie:</strong> Dezactivarea cookies strict necesare poate afecta funcționarea platformei (nu veți putea rămâne autentificat, coșul de cumpărături nu va fi salvat, etc.)
               </p>
             </div>
           </div>
@@ -236,7 +236,7 @@ get_header();
         <section class="mb-10">
           <h2 class="text-2xl font-bold text-foreground mb-4">Contact</h2>
           <div class="bg-surface-muted rounded-xl p-6">
-            <p class="text-foreground-muted mb-4">Pentru intrebari despre politica de cookies, contactati-ne:</p>
+            <p class="text-foreground-muted mb-4">Pentru întrebări despre politica de cookies, contactați-ne:</p>
             <ul class="space-y-2 text-foreground-muted list-none pl-0">
               <li><strong>Email:</strong> <a href="mailto:gdpr@revizie.ro" class="text-orange-500 hover:text-accent">gdpr@revizie.ro</a></li>
               <li><strong>Telefon:</strong> 0758 400 100</li>

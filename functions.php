@@ -337,13 +337,13 @@ function revizie_render_anpc_sal() {
         // distorted.
         $data_uri = 'data:image/png;base64,' . base64_encode(file_get_contents($img_path));
         printf(
-            '<a href="%s" target="_blank" rel="noopener noreferrer" aria-label="ANPC - Solutionarea Alternativa a Litigiilor"><img src="%s" alt="ANPC - Solutionarea Alternativa a Litigiilor" width="201" height="50" loading="lazy" class="block"></a>',
+            '<a href="%s" target="_blank" rel="noopener noreferrer" aria-label="ANPC - Soluționarea Alternativa a Litigiilor"><img src="%s" alt="ANPC - Soluționarea Alternativa a Litigiilor" width="201" height="50" loading="lazy" class="block"></a>',
             esc_url($sal_url),
             $data_uri
         );
     } else {
         printf(
-            '<a href="%s" target="_blank" rel="noopener noreferrer" class="text-foreground-subtle hover:text-white transition-colors">ANPC &middot; Solutionarea Alternativa a Litigiilor</a>',
+            '<a href="%s" target="_blank" rel="noopener noreferrer" class="text-foreground-subtle hover:text-white transition-colors">ANPC &middot; Soluționarea Alternativa a Litigiilor</a>',
             esc_url($sal_url)
         );
     }
@@ -388,7 +388,7 @@ function revizie_main_menu_fallback() {
         <a href="<?php echo home_url('/descarca/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium">Aplicatia</a>
         <span class="w-px h-4 bg-border" aria-hidden="true"></span>
         <a href="<?php echo home_url('/despre-noi/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Despre Noi</a>
-        <a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Cum Functioneaza</a>
+        <a href="<?php echo home_url('/cum-functioneaza/'); ?>" class="text-foreground-muted hover:text-foreground transition-colors text-sm font-medium whitespace-nowrap">Cum Funcționează</a>
         <?php /* Singura intrare pentru FIRME din toata bara, de aia e in accent:
                  altfel se pierde printre cele pentru soferi. Cerut de client
                  pe 4 noiembrie 2026, cu URL-ul scris de el: revizie.ro/parteneri.
@@ -440,7 +440,7 @@ add_filter('show_admin_bar', '__return_false');
 /* =============================================================================
  * Coming-soon waitlist
  *
- * Each "feature in development" page renders an email form via
+ * Each "feature în development" page renders an email form via
  * revizie_render_waitlist_form(). The form POSTs to admin-ajax.php with
  * action `revizie_waitlist_signup`. The handler:
  *   1. Forwards the signup to Supabase via the `upsert_waitlist_signup`
@@ -614,17 +614,17 @@ function revizie_handle_waitlist_signup() {
     $allowed_features = array('general', 'servicii-auto', 'tractari', 'anvelope', 'piese-auto');
 
     if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'revizie_waitlist')) {
-        wp_send_json_error(array('message' => 'Sesiune expirata, reincarca pagina.'), 403);
+        wp_send_json_error(array('message' => 'Sesiune expirată, reîncarcă pagina.'), 403);
     }
 
     $email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
     $feature = isset($_POST['feature']) ? sanitize_key(wp_unslash($_POST['feature'])) : '';
 
     if (!is_email($email)) {
-        wp_send_json_error(array('message' => 'Adresa de email invalida.'), 400);
+        wp_send_json_error(array('message' => 'Adresa de email invalidă.'), 400);
     }
     if (!in_array($feature, $allowed_features, true)) {
-        wp_send_json_error(array('message' => 'Functie necunoscuta.'), 400);
+        wp_send_json_error(array('message' => 'Funcție necunoscută.'), 400);
     }
 
     // Primary write: Supabase (source of truth)
@@ -720,7 +720,7 @@ function revizie_handle_waitlist_csv_export() {
         return;
     }
     if (!current_user_can('manage_options')) {
-        wp_die('Nu ai permisiunea sa exporti.');
+        wp_die('Nu ai permisiunea să exporți.');
     }
     check_admin_referer('revizie_waitlist_export');
 
@@ -811,13 +811,13 @@ function revizie_render_waitlist_admin() {
         <hr class="wp-header-end">
 
         <p>
-          Email-uri colectate de la userii care vor sa fie anuntati cand lansam fiecare functionalitate.
+          Email-uri colectate de la userii care vor să fie anunțați când lansam fiecare funcționalitate.
           Total: <strong><?php echo count($all); ?></strong> intrari.
           <span class="description" style="margin-left: 12px;">Sursa: <code><?php echo esc_html($source_label); ?></code></span>
         </p>
         <?php if ($data['source'] !== 'supabase'): ?>
         <div class="notice notice-warning inline" style="margin-bottom: 12px;">
-          <p><strong>Atentie:</strong> Citesti din cache-ul local wp_options. Defineste <code>SUPABASE_SERVICE_ROLE_KEY</code> in <code>wp-config.php</code> pentru a vedea datele direct din Supabase.</p>
+          <p><strong>Atentie:</strong> Citești din cache-ul local wp_options. Defineste <code>SUPABASE_SERVICE_ROLE_KEY</code> in <code>wp-config.php</code> pentru a vedea datele direct din Supabase.</p>
         </div>
         <?php endif; ?>
 
@@ -852,7 +852,7 @@ function revizie_render_waitlist_admin() {
             </thead>
             <tbody>
                 <?php if (empty($list)): ?>
-                    <tr><td colspan="4"><em>Nicio intrare in lista pentru filtrul curent.</em></td></tr>
+                    <tr><td colspan="4"><em>Nicio intrare în lista pentru filtrul curent.</em></td></tr>
                 <?php else: ?>
                     <?php foreach ($list as $entry): ?>
                         <tr>
@@ -897,13 +897,13 @@ function revizie_page_manifest($functii_parent_id) {
     return array(
         // Top-level pages
         array('title' => 'Acasa',                          'slug' => 'acasa',                          'template' => 'front-page.php',                          'parent' => 0),
-        array('title' => 'Descarca aplicatia',             'slug' => 'descarca',                       'template' => 'page-descarca.php',                       'parent' => 0),
+        array('title' => 'Descarcă aplicația',             'slug' => 'descarca',                       'template' => 'page-descarca.php',                       'parent' => 0),
         array('title' => 'Despre Noi',                     'slug' => 'despre-noi',                     'template' => 'page-despre-noi.php',                     'parent' => 0),
-        array('title' => 'Cum Functioneaza',               'slug' => 'cum-functioneaza',               'template' => 'page-cum-functioneaza.php',               'parent' => 0),
+        array('title' => 'Cum Funcționează',               'slug' => 'cum-functioneaza',               'template' => 'page-cum-functioneaza.php',               'parent' => 0),
         array('title' => 'Pentru Parteneri',               'slug' => 'pentru-parteneri',               'template' => 'page-pentru-parteneri.php',               'parent' => 0),
-        array('title' => 'Produse si Preturi',             'slug' => 'produse-si-preturi',             'template' => 'page-produse-si-preturi.php',             'parent' => 0),
-        array('title' => 'Termeni si Conditii',            'slug' => 'termeni-si-conditii',            'template' => 'page-termeni-si-conditii.php',            'parent' => 0),
-        array('title' => 'Politica de Confidentialitate',  'slug' => 'politica-de-confidentialitate',  'template' => 'page-politica-de-confidentialitate.php',  'parent' => 0),
+        array('title' => 'Produse și Prețuri',             'slug' => 'produse-si-preturi',             'template' => 'page-produse-si-preturi.php',             'parent' => 0),
+        array('title' => 'Termeni și Condiții',            'slug' => 'termeni-si-conditii',            'template' => 'page-termeni-si-conditii.php',            'parent' => 0),
+        array('title' => 'Politica de Confidențialitate',  'slug' => 'politica-de-confidentialitate',  'template' => 'page-politica-de-confidentialitate.php',  'parent' => 0),
         array('title' => 'Politica GDPR',                  'slug' => 'politica-gdpr',                  'template' => 'page-politica-gdpr.php',                  'parent' => 0),
         array('title' => 'Politica Cookies',               'slug' => 'politica-cookies',               'template' => 'page-politica-cookies.php',               'parent' => 0),
         array('title' => 'Politica de livrare',            'slug' => 'politica-de-livrare',            'template' => 'page-politica-de-livrare.php',            'parent' => 0),
@@ -1031,7 +1031,7 @@ function revizie_render_store_badges($size = 'lg') {
     $apple = '<svg class="' . $icon . '" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>';
     $play  = '<svg class="' . $icon . '" viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.609 1.814L13.792 12 3.609 22.186c-.31-.292-.5-.71-.5-1.186V3c0-.476.19-.894.5-1.186z"/><path fill="#FBBC04" d="M16.81 15.02l-2.07-2.07 2.07-2.07 3.18 1.82c.78.45.78 1.6 0 2.05l-3.18 1.82z"/><path fill="#EA4335" d="M3.609 22.186L13.792 12l3.018 3.02-11.43 6.55c-.5.29-1.15.27-1.77-.38z"/><path fill="#4285F4" d="M3.609 1.814L16.81 8.98 13.792 12 3.609 1.814z"/></svg>';
     $badges = array(
-        array(REVIZIE_APP_STORE_URL, $apple, 'Descarca din', 'App Store'),
+        array(REVIZIE_APP_STORE_URL, $apple, 'Descarcă din', 'App Store'),
         array(REVIZIE_PLAY_STORE_URL, $play, 'Disponibil pe', 'Google Play'),
     );
     foreach ($badges as $b) {
@@ -1081,7 +1081,7 @@ function revizie_render_promo($fel = 'card') {
     // ⚠️ Din 20 octombrie 2026 promotia e DOAR pentru cine foloseste aplicatia
     // de telefon (decizia clientului). Textul vechi spunea „fa-ti cont" si ar fi
     // promis ceva ce nu se mai acorda asa.
-    $text  = 'Instaleaza aplicatia si intra cu contul tau pana pe 31 ianuarie 2027 — primesti 12 luni de REVIZIE+, fara card si fara reinnoire automata.';
+    $text  = 'Instalează aplicația și intră cu contul tău până pe 31 ianuarie 2027 — primești 12 luni de REVIZIE+, fără card și fără reînnoire automată.';
     $cadou = '<svg class="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 012-2h.5a2.5 2.5 0 010 5H12zm0 0V5.5A2.5 2.5 0 009.5 3H9a2 2 0 00-2 2v3m-2 0h14a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1V9a1 1 0 011-1zm1 5h12v7a2 2 0 01-2 2H8a2 2 0 01-2-2v-7z"/></svg>';
 
     if ($fel === 'pe-accent') {
@@ -1114,7 +1114,7 @@ function revizie_print_app_banner() {
     $play = REVIZIE_PLAY_STORE_URL;
     $android = 'intent://app.revizie.ro/#Intent;scheme=https;package=ro.revizie.revizie_mobile;S.browser_fallback_url=' . rawurlencode($play) . ';end';
     ?>
-    <div id="revizie-app-banner" role="region" aria-label="Aplicatia mobila revizie.ro"
+    <div id="revizie-app-banner" role="region" aria-label="Aplicația mobila revizie.ro"
          class="fixed left-3 right-3 bottom-3 z-40 flex items-center gap-3 rounded-2xl border border-border-subtle bg-white p-3 shadow-2xl"
          style="display:none; margin-bottom: env(safe-area-inset-bottom);">
       <?php
@@ -1125,7 +1125,7 @@ function revizie_print_app_banner() {
       ?>
       <img src="<?php echo esc_url(REVIZIE_THEME_URI . '/assets/img/icons/web-app-manifest-192x192.png'); ?>" alt="" width="44" height="44" class="h-11 w-11 shrink-0 rounded-xl">
       <div class="min-w-0 flex-1">
-        <p class="text-sm font-semibold leading-tight text-foreground">Aplicatia revizie.ro</p>
+        <p class="text-sm font-semibold leading-tight text-foreground">Aplicația revizie.ro</p>
         <p class="mt-0.5 text-xs leading-tight text-foreground-muted" data-sub></p>
       </div>
       <a data-open href="#" class="shrink-0 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white"></a>
@@ -1138,7 +1138,7 @@ function revizie_print_app_banner() {
       var el = document.getElementById('revizie-app-banner');
       if (!el) return;
       var ua = navigator.userAgent;
-      // X ascunde bara 30 de minute (vizita curenta), apoi reapare la fiecare intrare.
+      // X ascunde bara 30 de minute (vizita curentă), apoi reapare la fiecare intrare.
       var KEY = 'revizie_app_banner_closed_at', TTL = 30 * 6e4;
       try {
         var at = Number(localStorage.getItem(KEY));
@@ -1340,7 +1340,7 @@ function revizie_render_play_launcher($sursa = '') {
         '<!doctype html><html lang="ro"><head><meta charset="utf-8">'
         . '<meta name="viewport" content="width=device-width,initial-scale=1">'
         . '<meta name="robots" content="noindex">'
-        . '<title>Descarca aplicatia revizie.ro</title>'
+        . '<title>Descarcă aplicația revizie.ro</title>'
         . '<script>location.replace(%s);</script>'
         . '<style>'
         . 'body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;'
@@ -1351,7 +1351,7 @@ function revizie_render_play_launcher($sursa = '') {
         . '.s{display:block;margin-top:18px;color:#6b7280;font-size:14px}'
         . 'p{font-size:17px;margin:0}'
         . '</style></head><body><div>'
-        . '<p>Descarca aplicatia revizie.ro</p>'
+        . '<p>Descarcă aplicația revizie.ro</p>'
         . '<a class="b" href="%s">Deschide Magazin Play</a>'
         . '<a class="s" href="%s">Deschide pagina din browser</a>'
         . '</div></body></html>',

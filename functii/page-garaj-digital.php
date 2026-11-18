@@ -11,7 +11,7 @@ get_header();
     <div class="relative max-w-7xl mx-auto px-6">
       <a href="<?php echo home_url('/'); ?>" class="inline-flex items-center gap-2 text-foreground-muted hover:text-foreground mb-8 transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-        Inapoi la pagina principala
+        Înapoi la pagina principală
       </a>
 
       <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -22,17 +22,17 @@ get_header();
           </div>
 
           <h1 class="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-[1.1]">
-            Toate masinile tale,
+            Toate mașinile tale,
             <span class="block bg-gradient-to-r from-accent via-accent-hover to-warning bg-clip-text text-transparent leading-[1.15] pb-2">intr-un singur loc</span>
           </h1>
 
           <p class="text-xl text-foreground-muted mb-8 leading-relaxed">
-            Garajul Digital e centrul de comanda al masinilor tale. Adaugi numarul de inmatriculare, VIN decoder-ul aduce automat datele oficiale din DRPCIV, iar tu pornesti de aici cu RCA, anunturi, istoric si reminder-e.
+            Garajul Digital e centrul de comanda al mașinilor tale. Adaugi numărul de înmatriculare, VIN decoder-ul aduce automat datele oficiale din DRPCIV, iar tu pornești de aici cu RCA, anunțuri, istoric și reminder-e.
           </p>
 
           <div class="flex flex-col sm:flex-row gap-4">
             <a href="https://app.revizie.ro/register" class="px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-2xl font-semibold shadow-lg hover:shadow-2xl hover:shadow-accent/30 transition-all text-center inline-flex items-center justify-center gap-2">
-              Incepe gratuit
+              Începe gratuit
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
           </div>
@@ -57,7 +57,7 @@ get_header();
               </div>
               <div class="bg-warning/10 rounded-lg p-3 text-center">
                 <div class="text-xs text-foreground-muted mb-1">RCA</div>
-                <div class="text-xs font-semibold text-warning">Expira in 14 zile</div>
+                <div class="text-xs font-semibold text-warning">Expiră în 14 zile</div>
               </div>
               <div class="bg-accent/10 rounded-lg p-3 text-center">
                 <div class="text-xs text-foreground-muted mb-1">Revizie</div>
@@ -67,7 +67,7 @@ get_header();
 
             <div class="flex items-center gap-2 text-xs text-foreground-muted pt-3 border-t border-border-subtle">
               <svg class="w-4 h-4 text-success" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              <span>24+ campuri tehnice completate automat din DRPCIV</span>
+              <span>24+ câmpuri tehnice completate automat din DRPCIV</span>
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@ get_header();
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
           </div>
           <h3 class="font-bold text-foreground mb-2">Date tehnice DRPCIV</h3>
-          <p class="text-sm text-foreground-muted">Marca, model, an, capacitate cilindrica, combustibil, putere, masa, locuri, prima inmatriculare — toate aduse automat.</p>
+          <p class="text-sm text-foreground-muted">Marca, model, an, capacitate cilindrică, combustibil, putere, masa, locuri, prima înmatriculare — toate aduse automat.</p>
         </div>
 
         <div class="bg-surface-muted rounded-2xl p-6 border border-border-subtle">
@@ -96,15 +96,15 @@ get_header();
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           </div>
           <h3 class="font-bold text-foreground mb-2">Scadente urmarite</h3>
-          <p class="text-sm text-foreground-muted">ITP, RCA, revizie — adaugi data expirarii o data, primesti reminder-e cu cateva saptamani inainte sa nu fie prea tarziu.</p>
+          <p class="text-sm text-foreground-muted">ITP, RCA, revizie — adaugi data expirării o dată, primești reminder-e cu câteva saptamani înainte să nu fie prea târziu.</p>
         </div>
 
         <div class="bg-surface-muted rounded-2xl p-6 border border-border-subtle">
           <div class="w-12 h-12 rounded-xl bg-success/15 text-success flex items-center justify-center mb-4">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
-          <h3 class="font-bold text-foreground mb-2">Cumpara RCA</h3>
-          <p class="text-sm text-foreground-muted">Cu un click din pagina masinii, ai calculul de RCA. Polita emisa direct in cont, plata securizata, link la polita PDF.</p>
+          <h3 class="font-bold text-foreground mb-2">Cumpără RCA</h3>
+          <p class="text-sm text-foreground-muted">Cu un click din pagina mașinii, ai calculul de RCA. Polița emisă direct în cont, plata securizată, link la polița PDF.</p>
         </div>
 
         <div class="bg-surface-muted rounded-2xl p-6 border border-border-subtle">
@@ -112,7 +112,7 @@ get_header();
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
           </div>
           <h3 class="font-bold text-foreground mb-2">Vinde cu un click</h3>
-          <p class="text-sm text-foreground-muted">Pui anunt direct din pagina masinii. Toate datele tehnice sunt deja completate. Tu adaugi pretul, fotografiile si descrierea.</p>
+          <p class="text-sm text-foreground-muted">Pui anunț direct din pagina mașinii. Toate datele tehnice sunt deja completate. Tu adaugi prețul, fotografiile și descrierea.</p>
         </div>
 
         <div class="bg-surface-muted rounded-2xl p-6 border border-border-subtle">
@@ -120,15 +120,15 @@ get_header();
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
           </div>
           <h3 class="font-bold text-foreground mb-2">Istoric prin carVertical</h3>
-          <p class="text-sm text-foreground-muted">Inainte sa cumperi o masina, verifici istoricul cu VIN-ul: kilometraj, accidente, fosti proprietari. Discount <?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>% prin parteneriat.</p>
+          <p class="text-sm text-foreground-muted">Înainte să cumperi o mașina, verifici istoricul cu VIN-ul: kilometraj, accidente, foști proprietari. Discount <?php echo (int) REVIZIE_CARVERTICAL_DISCOUNT_PERCENT; ?>% prin parteneriat.</p>
         </div>
 
         <div class="bg-surface-muted rounded-2xl p-6 border border-border-subtle">
           <div class="w-12 h-12 rounded-xl bg-success/15 text-success flex items-center justify-center mb-4">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
           </div>
-          <h3 class="font-bold text-foreground mb-2">Pana la 50 de masini</h3>
-          <p class="text-sm text-foreground-muted">Free pentru o masina. Premium (29.99 RON/luna) pana la 5 masini. Fleet (99.99 RON/luna) pana la 50 — perfect pentru parc auto mic.</p>
+          <h3 class="font-bold text-foreground mb-2">Până la 50 de mașini</h3>
+          <p class="text-sm text-foreground-muted">Free pentru o mașina. Premium (29.99 RON/luna) până la 5 mașini. Fleet (99.99 RON/luna) până la 50 — perfect pentru parc auto mic.</p>
         </div>
       </div>
     </div>
@@ -136,10 +136,10 @@ get_header();
 
   <section class="py-24 bg-gradient-to-br from-accent via-accent-hover to-accent-strong">
     <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Adauga prima masina in 30 de secunde</h2>
-      <p class="text-xl text-white/90 mb-10">Cont gratuit, fara card. Doar un numar de inmatriculare.</p>
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Adaugă prima mașina în 30 de secunde</h2>
+      <p class="text-xl text-white/90 mb-10">Cont gratuit, fără card. Doar un număr de înmatriculare.</p>
       <a href="https://app.revizie.ro/register" class="inline-flex items-center gap-2 px-10 py-5 bg-white text-accent-strong rounded-2xl font-bold text-lg shadow-2xl hover:scale-105 transition-all">
-        Creeaza cont gratuit
+        Creează cont gratuit
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>
